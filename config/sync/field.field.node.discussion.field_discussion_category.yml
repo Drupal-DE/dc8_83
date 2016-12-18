@@ -1,0 +1,28 @@
+uuid: 4dc9215f-774a-4bcb-a949-c14b6f1c3a3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_discussion_category
+    - node.type.discussion
+    - taxonomy.vocabulary.discussion_category
+id: node.discussion.field_discussion_category
+field_name: field_discussion_category
+entity_type: node
+bundle: discussion
+label: 'Discussion category'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      discussion_category: discussion_category
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

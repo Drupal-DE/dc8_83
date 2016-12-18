@@ -1,0 +1,27 @@
+uuid: bdb83047-0c9a-43b3-a090-02785a694e8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.discussion.body
+    - node.type.discussion
+  module:
+    - text
+    - user
+id: node.discussion.teaser
+targetEntityType: node
+bundle: discussion
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden:
+  langcode: true

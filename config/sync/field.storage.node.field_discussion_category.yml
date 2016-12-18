@@ -1,0 +1,20 @@
+uuid: 66cbae24-e4d7-433a-aa8f-b25982cb88dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_discussion_category
+field_name: field_discussion_category
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
