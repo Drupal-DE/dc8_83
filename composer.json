@@ -1,0 +1,83 @@
+{
+    "name": "drupalcenter/dcd8",
+    "description": "Drupalcenter with composer",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Steffen Rühlmann",
+            "email": "steffen@undpaul.de"
+        },
+        {
+            "name": "Stefan Borchert",
+            "email": "stefan@undpaul.de"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "composer/installers": "^1.0",
+        "consolidation/robo": "^0.7.2",
+        "cweagans/composer-patches": "~1.0",
+        "drupal-composer/drupal-scaffold": "^2.2.0",
+        "drupal/admin_toolbar": "^1.0",
+        "drupal/core": "^8.0",
+        "drupal/media_entity": "1.6",
+        "drupal/media_entity_image": "^1.0",
+        "drupal/metatag": "^1.0",
+        "drupal/paragraphs": "^1.0",
+        "drupal/pathauto": "^1.0",
+        "drupal/token": "^1.0",
+        "drush/drush": "~8.0"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "dependency-cleanup": [
+            "DrupalProject\\composer\\ScriptHandler::dependencyCleanup"
+        ],
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::buildScaffold"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::buildScaffold"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "DrupalCenter\\Robo\\": "robo/"
+        },
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "docroot/core": ["type:drupal-core"],
+            "docroot/profiles/contrib/thunder/libraries/{$name}": ["type:drupal-library"],
+            "docroot/modules/contrib/{$name}": ["type:drupal-module"],
+            "docroot/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/contrib/{$name}": ["type:drupal-drush"]
+        },
+        "drupal-scaffold": {
+            "source": "http://cgit.drupalcode.org/drupal/plain/{path}?h={version}",
+            "excludes": [
+                "update.php"
+            ]
+        },
+        "enable-patching": true,
+        "patches": {}
+    },
+    "config": {
+        "autoloader-suffix": "DrupalCenter",
+        "bin-dir": "bin/"
+    }
+}
