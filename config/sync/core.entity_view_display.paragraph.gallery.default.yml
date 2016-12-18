@@ -1,0 +1,30 @@
+uuid: aab6bd58-e7e2-4d95-9eed-e2c8a04b5e80
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.gallery.field_headline
+    - field.field.paragraph.gallery.field_images
+    - paragraphs.paragraphs_type.gallery
+id: paragraph.gallery.default
+targetEntityType: paragraph
+bundle: gallery
+mode: default
+content:
+  field_headline:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_images:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+hidden:
+  created: true
+  uid: true

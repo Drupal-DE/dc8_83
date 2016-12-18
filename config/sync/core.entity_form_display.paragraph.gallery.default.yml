@@ -1,0 +1,38 @@
+uuid: 013ca50c-d1d1-45de-a270-c5db3cf850dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.gallery.field_headline
+    - field.field.paragraph.gallery.field_images
+    - paragraphs.paragraphs_type.gallery
+  module:
+    - inline_entity_form
+id: paragraph.gallery.default
+targetEntityType: paragraph
+bundle: gallery
+mode: default
+content:
+  field_headline:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_images:
+    weight: 1
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+hidden:
+  created: true
+  status: true
+  uid: true
