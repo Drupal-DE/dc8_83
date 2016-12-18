@@ -1,19 +1,19 @@
-uuid: 19396d43-dbc5-408b-817e-9ec0981ff2fa
+uuid: a7036cfc-f24e-4b1f-872a-12d19c8bb783
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.admin
   module:
     - system
   theme:
-    - stark
+    - seven
 _core:
   default_config_hash: DWAB7HaAfAJerAmyT8B2K-6qxicu9n0PcKVpDr--N4c
-id: stark_admin
-theme: stark
-region: sidebar_first
-weight: 1
+id: seven_admin
+theme: seven
+region: '-1'
+weight: -3
 provider: null
 plugin: 'system_menu_block:admin'
 settings:
