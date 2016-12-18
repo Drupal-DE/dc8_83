@@ -1,0 +1,11 @@
+uuid: a55cc3bd-8ed3-4b6d-be28-d637b55ba001
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.showroom_category
+id: taxonomy_term.showroom_category
+target_entity_type_id: taxonomy_term
+target_bundle: showroom_category
+default_langcode: site_default
+language_alterable: false
