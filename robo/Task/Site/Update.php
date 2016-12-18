@@ -5,7 +5,7 @@ namespace DrupalCenter\Robo\Task\Site;
 use DrupalCenter\Robo\Task\Drush\ApplyDatabaseUpdates;
 use DrupalCenter\Robo\Task\Drush\ApplyEntitySchemaUpdates;
 use DrupalCenter\Robo\Task\Drush\CacheRebuild;
-use DrupalCenter\Robo\Task\Drush\FoodConfigImport;
+use DrupalCenter\Robo\Task\Drush\ConfigImport;
 use DrupalCenter\Robo\Task\Drush\LocaleUpdate;
 use Robo\Collection\Collection;
 use Robo\Task\BaseTask;
@@ -48,13 +48,13 @@ class Update extends BaseTask {
       // Clear all caches.
       'Update.cacheRebuild' => new CacheRebuild(),
       // Import configuration.
-      'Update.drushConfigImport' => new FoodConfigImport(),
+      'Update.drushConfigImport' => new ConfigImport(),
       // Apply database updates.
       'Update.applyDatabaseUpdates' => new ApplyDatabaseUpdates(),
       // Clear all caches (again).
       'Update.cacheRebuildAgain' => new CacheRebuild(),
       // Import configuration (again, to ensure no stale configuration updates).
-      'Update.drushConfigImportAgain' => new FoodConfigImport(),
+      'Update.drushConfigImportAgain' => new ConfigImport(),
       // Apply entity schema updates.
       'Update.applyEntitySchemaUpdates' => new ApplyEntitySchemaUpdates(),
       // Clear all caches (again).
