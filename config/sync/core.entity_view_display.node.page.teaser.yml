@@ -15,4 +15,5 @@ content:
   links:
     weight: 100
 hidden:
+  field_content: true
   langcode: true

@@ -24,4 +24,7 @@ content:
   links:
     weight: 100
 hidden:
+  field_discussion_category: true
+  field_drupal_version: true
+  field_parent: true
   langcode: true
