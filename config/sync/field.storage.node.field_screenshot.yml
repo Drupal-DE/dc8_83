@@ -1,0 +1,20 @@
+uuid: cf2b9cd0-27af-49ad-9c99-dc76c495b5a9
+langcode: en
+status: true
+dependencies:
+  module:
+    - media_entity
+    - node
+id: node.field_screenshot
+field_name: field_screenshot
+entity_type: node
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

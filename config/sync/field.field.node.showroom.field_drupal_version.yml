@@ -1,0 +1,28 @@
+uuid: f92817b9-1578-4ccc-83ae-b9836812d60c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_drupal_version
+    - node.type.showroom
+    - taxonomy.vocabulary.drupal_version
+id: node.showroom.field_drupal_version
+field_name: field_drupal_version
+entity_type: node
+bundle: showroom
+label: 'Drupal version'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      drupal_version: drupal_version
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

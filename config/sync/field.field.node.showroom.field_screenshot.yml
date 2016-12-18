@@ -1,0 +1,28 @@
+uuid: cb7c2c86-3391-463f-9158-89f906f838ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_screenshot
+    - media_entity.bundle.image
+    - node.type.showroom
+id: node.showroom.field_screenshot
+field_name: field_screenshot
+entity_type: node
+bundle: showroom
+label: Screenshot
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

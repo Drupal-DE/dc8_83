@@ -1,0 +1,18 @@
+uuid: c8f0eb53-00cc-4058-b22d-c038eea71b10
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.showroom
+  module:
+    - user
+id: node.showroom.teaser
+targetEntityType: node
+bundle: showroom
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden:
+  langcode: true

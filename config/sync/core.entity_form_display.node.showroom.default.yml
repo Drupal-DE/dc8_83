@@ -1,0 +1,104 @@
+uuid: f9beec42-5743-4d4f-a73b-d5ce8318f509
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.showroom.field_content
+    - field.field.node.showroom.field_drupal_version
+    - field.field.node.showroom.field_screenshot
+    - field.field.node.showroom.field_showroom_category
+    - field.field.node.showroom.field_showroom_url
+    - node.type.showroom
+  module:
+    - link
+    - paragraphs
+    - path
+id: node.showroom.default
+targetEntityType: node
+bundle: showroom
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+  field_content:
+    weight: 6
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+  field_drupal_version:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_screenshot:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_showroom_category:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_showroom_url:
+    weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  langcode:
+    type: language_select
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 9
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 10
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

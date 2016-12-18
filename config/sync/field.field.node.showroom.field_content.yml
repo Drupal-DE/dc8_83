@@ -1,0 +1,46 @@
+uuid: b44d4dc5-038d-469c-a1dd-9abb9c865ea8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content
+    - node.type.showroom
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.text_with_image
+  module:
+    - entity_reference_revisions
+id: node.showroom.field_content
+field_name: field_content
+entity_type: node
+bundle: showroom
+label: Content
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      image: image
+      text: text
+      text_with_image: text_with_image
+    target_bundles_drag_drop:
+      gallery:
+        weight: 6
+        enabled: false
+      image:
+        enabled: true
+        weight: 7
+      link_list:
+        weight: 8
+        enabled: false
+      text:
+        enabled: true
+        weight: 9
+      text_with_image:
+        enabled: true
+        weight: 10
+field_type: entity_reference_revisions

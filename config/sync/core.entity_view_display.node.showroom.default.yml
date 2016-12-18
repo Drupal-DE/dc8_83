@@ -1,0 +1,64 @@
+uuid: e665f507-066a-414e-bdce-ba0dcc911565
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.showroom.field_content
+    - field.field.node.showroom.field_drupal_version
+    - field.field.node.showroom.field_screenshot
+    - field.field.node.showroom.field_showroom_category
+    - field.field.node.showroom.field_showroom_url
+    - node.type.showroom
+  module:
+    - entity_reference_revisions
+    - link
+    - user
+id: node.showroom.default
+targetEntityType: node
+bundle: showroom
+mode: default
+content:
+  field_content:
+    weight: 105
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+  field_drupal_version:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_screenshot:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_showroom_category:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_showroom_url:
+    weight: 101
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  links:
+    weight: 100
+hidden:
+  langcode: true
