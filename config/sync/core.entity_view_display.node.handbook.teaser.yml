@@ -1,0 +1,27 @@
+uuid: 8e924c7c-81f4-40b2-8d0c-8f006658fba2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.handbook.body
+    - node.type.handbook
+  module:
+    - text
+    - user
+id: node.handbook.teaser
+targetEntityType: node
+bundle: handbook
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden:
+  langcode: true

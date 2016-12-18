@@ -1,0 +1,28 @@
+uuid: 42b05e55-3beb-45e4-8d35-757f9bfd4885
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_drupal_version
+    - node.type.handbook
+    - taxonomy.vocabulary.drupal_version
+id: node.handbook.field_drupal_version
+field_name: field_drupal_version
+entity_type: node
+bundle: handbook
+label: 'Drupal version'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      drupal_version: drupal_version
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

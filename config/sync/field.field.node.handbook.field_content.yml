@@ -1,0 +1,50 @@
+uuid: b1d35211-d430-4d8d-8acf-3eaf9862aeb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content
+    - node.type.handbook
+    - paragraphs.paragraphs_type.gallery
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.link_list
+    - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.text_with_image
+  module:
+    - entity_reference_revisions
+id: node.handbook.field_content
+field_name: field_content
+entity_type: node
+bundle: handbook
+label: Content
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      gallery: gallery
+      image: image
+      link_list: link_list
+      text: text
+      text_with_image: text_with_image
+    target_bundles_drag_drop:
+      gallery:
+        enabled: true
+        weight: 6
+      image:
+        enabled: true
+        weight: 7
+      link_list:
+        enabled: true
+        weight: 8
+      text:
+        enabled: true
+        weight: 9
+      text_with_image:
+        enabled: true
+        weight: 10
+field_type: entity_reference_revisions

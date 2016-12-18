@@ -1,0 +1,11 @@
+uuid: b526a4b4-f072-4a20-869d-cf0f78ce08d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.handbook
+id: node.handbook
+target_entity_type_id: node
+target_bundle: handbook
+default_langcode: site_default
+language_alterable: false
