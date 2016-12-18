@@ -1,0 +1,47 @@
+uuid: f3cea69f-dc1a-49dc-acc3-1dc46c2a5032
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_image
+    - field.field.user.user.field_real_name
+    - field.field.user.user.field_signature
+  module:
+    - text
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  account:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  field_image:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_real_name:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_signature:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+hidden:
+  langcode: true
+  language: true
+  path: true
+  timezone: true

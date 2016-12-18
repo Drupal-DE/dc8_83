@@ -1,0 +1,21 @@
+uuid: dc5da7f4-6806-474e-9e7a-5e341ae57615
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_signature
+  module:
+    - text
+    - user
+id: user.user.field_signature
+field_name: field_signature
+entity_type: user
+bundle: user
+label: Signature
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
