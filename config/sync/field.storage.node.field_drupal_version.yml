@@ -1,0 +1,20 @@
+uuid: e5ad4cf8-66f6-42a7-87f2-133b3ac04b6f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_drupal_version
+field_name: field_drupal_version
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
