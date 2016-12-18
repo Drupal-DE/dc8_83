@@ -3,7 +3,7 @@
 ## General system dependencies
 This guide assumes you can setup your database and web server. 
 
-* PHP 5.6
+* PHP >= 5.6
 * MySQL > 5.5
 * Apache
 
