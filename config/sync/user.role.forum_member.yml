@@ -1,0 +1,9 @@
+uuid: 6a54f20f-96c8-4ff8-862c-9171ecc64eb4
+langcode: en
+status: true
+dependencies: {  }
+id: forum_member
+label: 'Forum member'
+weight: 4
+is_admin: null
+permissions: {  }
