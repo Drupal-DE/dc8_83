@@ -1,0 +1,14 @@
+uuid: 27b5c5dc-5082-4279-9b9b-19238a4f6ab4
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.forum_moderator
+  module:
+    - user
+id: user_remove_role_action.forum_moderator
+label: 'Remove the Forum moderator role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: forum_moderator

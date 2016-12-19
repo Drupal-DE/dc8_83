@@ -1,0 +1,14 @@
+uuid: cb352a42-58dd-49a8-8e2b-da7c5b2a9fe1
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.forum_member
+  module:
+    - user
+id: user_remove_role_action.forum_member
+label: 'Remove the Forum member role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: forum_member

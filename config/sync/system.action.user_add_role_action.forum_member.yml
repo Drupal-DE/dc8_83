@@ -1,0 +1,14 @@
+uuid: 507d1cc4-43b2-4390-b1a6-fb5a75e0ab94
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.forum_member
+  module:
+    - user
+id: user_add_role_action.forum_member
+label: 'Add the Forum member role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: forum_member

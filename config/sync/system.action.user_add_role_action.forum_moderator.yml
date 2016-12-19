@@ -1,0 +1,14 @@
+uuid: 449b89ce-bbb4-413a-9d38-88e43ecef185
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.forum_moderator
+  module:
+    - user
+id: user_add_role_action.forum_moderator
+label: 'Add the Forum moderator role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: forum_moderator
