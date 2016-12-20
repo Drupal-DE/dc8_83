@@ -1,0 +1,5 @@
+name: DrupalCenter Discussion
+type: module
+description: DrupalCenter discussion related tweaks.
+core: 8.x
+package: DrupalCenter

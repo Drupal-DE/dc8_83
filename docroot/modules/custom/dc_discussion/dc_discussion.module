@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains dc_discussion.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dc_discussion_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dc_discussion module.
+    case 'help.page.dc_discussion':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DrupalCenter discussion related tweaks.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
