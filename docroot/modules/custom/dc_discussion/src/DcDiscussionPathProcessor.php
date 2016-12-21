@@ -29,6 +29,11 @@ class DcDiscussionPathProcessor implements InboundPathProcessorInterface, Outbou
       $path = '/node/' . $matches[1] . '/edit';
     }
 
+    // Process path "diskussion/[nid]/beantworten".
+    if (preg_match('|^/diskussion/([0-9]*)/beantworten(/.*)?|', $path, $matches)) {
+      $path = '/node/' . $matches[1] . '/discussion_answer';
+    }
+
     return $path;
   }
 
@@ -47,6 +52,15 @@ class DcDiscussionPathProcessor implements InboundPathProcessorInterface, Outbou
       $node = Node::load($matches[1]);
       if ($node->bundle() == 'discussion') {
         $path = '/diskussion/' . $matches[1] . '/bearbeiten';
+      }
+    }
+
+    // Rewrite path "node/[node]/discussion_answer".
+    if (preg_match('|^/node/([0-9]*)/discussion_answer(/.*)?|', $path, $matches)) {
+      // We have to load node object to retrieve actual type.
+      $node = Node::load($matches[1]);
+      if ($node->bundle() == 'discussion') {
+        $path = '/diskussion/' . $matches[1] . '/beantworten';
       }
     }
 
