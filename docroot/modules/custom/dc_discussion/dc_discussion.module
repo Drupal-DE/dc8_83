@@ -5,7 +5,9 @@
  * Contains dc_discussion.module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_help().
@@ -22,3 +24,53 @@ function dc_discussion_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dc_discussion_form_node_discussion_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Get current route..
+  $route = \Drupal::service('current_route_match');
+
+  // Start new discussion.
+  if ($route->getRouteName() == 'node.add') {
+    // Hide field field_parent on default node.add pages.
+    if (!empty($form['field_parent'])) {
+      $form['field_parent']['#access'] = FALSE;
+    }
+  }
+
+  // Add new discussion answer.
+  if ($route->getRouteName() == 'node.add_discussion_answer') {
+    $node = Node::load($route->getParameter('node'));
+    // Prepopulate field_parent with node id from url.
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $form['field_parent']['widget'][0]['target_id']['#default_value'] = $node;
+      // Hide field_parent for discussion answers.
+      $form['field_parent']['#access'] = FALSE;
+      // Hide field_drupal_version for discussion answers.
+      $form['field_drupal_version']['#access'] = FALSE;
+      // Hide field_discussion_category for discussion answers.
+      $form['field_discussion_category']['#access'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dc_discussion_form_node_discussion_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $node = $form_state->getFormObject()->getEntity();
+
+  // Hide field_parent for disussion edit form.
+  $form['field_parent']['#access'] = FALSE;
+
+  // Check for filled field_parent and hide fields
+  if ($node instanceof \Drupal\node\NodeInterface && ($node->hasField('field_parent') && !empty($node->get('field_parent')->getValue()[0]))) {
+    // Hide field_drupal_version while editing discussion answers.
+    $form['field_drupal_version']['#access'] = FALSE;
+    $form['field_discussion_category']['#access'] = FALSE;
+  }
+}
+
+
