@@ -1,0 +1,14 @@
+node.add_discussion_answer:
+  path: '/node/{node}/discussion_answer'
+  defaults:
+    _controller: '\Drupal\node\Controller\NodeController::add'
+    _title_callback: '\Drupal\node\Controller\NodeController::addPageTitle'
+    node_type: 'discussion'
+  requirements:
+    _node_add_access: 'node:discussion'
+    node: '\d+'
+  options:
+    _node_operation_route: TRUE
+    parameters:
+      node_type:
+        with_config_overrides: TRUE
