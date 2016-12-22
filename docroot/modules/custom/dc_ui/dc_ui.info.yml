@@ -1,0 +1,5 @@
+name: DrupalCenter UI Tweaks
+description: UI tweaks for DrupalCenter.
+type: module
+core: 8.x
+package: DrupalCenter

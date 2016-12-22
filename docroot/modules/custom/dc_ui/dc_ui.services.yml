@@ -1,0 +1,8 @@
+services:
+  dc_ui.path_processor:
+    class: Drupal\dc_ui\DcUiPathProcessor
+    tags:
+      - { name: path_processor_inbound, priority: 99 }
+      - { name: path_processor_outbound, priority: 200 }
+    arguments: []
+
