@@ -1,9 +1,9 @@
-uuid: bdb83047-0c9a-43b3-a090-02785a694e8d
+uuid: 59c4726d-1f05-4006-9d1b-1de161779768
 langcode: en
-status: false
+status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.discussion_answer
     - field.field.node.discussion.body
     - field.field.node.discussion.field_discussion_category
     - field.field.node.discussion.field_drupal_version
@@ -12,20 +12,21 @@ dependencies:
   module:
     - text
     - user
-id: node.discussion.teaser
+id: node.discussion.discussion_answer
 targetEntityType: node
 bundle: discussion
-mode: teaser
+mode: discussion_answer
 content:
   body:
     label: hidden
-    type: text_summary_or_trimmed
-    weight: 101
-    settings:
-      trim_length: 600
+    type: text_default
+    weight: 1
+    settings: {  }
     third_party_settings: {  }
   links:
-    weight: 100
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   field_discussion_category: true
   field_drupal_version: true

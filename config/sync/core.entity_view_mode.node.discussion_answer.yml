@@ -1,0 +1,10 @@
+uuid: f85d7da2-ce37-457a-9f04-8094c374aa2b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.discussion_answer
+label: 'Discussion answer'
+targetEntityType: node
+cache: true
