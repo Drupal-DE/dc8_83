@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Contains dc_ui.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dc_ui_form_taxonomy_term_drupal_version_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Hide fieldset relations - we only have a flat hierarchy.
+  $form['relations']['#required'] = FALSE;
+  $form['relations']['#access'] = FALSE;
+}
