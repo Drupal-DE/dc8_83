@@ -14,9 +14,9 @@ dependencies:
 _core:
   default_config_hash: fUDNcSYKNw6cTMPsX3G9VhsUGov5yUe6_TBHbcnZHyo
 id: content
-label: Content
+label: Inhalt
 module: node
-description: 'Find and manage content.'
+description: 'Die Inhalte finden und verwalten.'
 tag: default
 base_table: node_field_data
 base_field: nid
@@ -37,20 +37,20 @@ display:
         options:
           submit_button: Filter
           reset_button: true
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Zurücksetzen
+          exposed_sorts_label: 'Sortieren nach'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Aufsteigend
+          sort_desc_label: Absteigend
       pager:
         type: full
         options:
           items_per_page: 50
           tags:
             previous: '‹ Previous'
-            next: 'Next ›'
-            first: '« First'
-            last: 'Last »'
+            next: 'Weiter >'
+            first: '« Anfang'
+            last: 'Ende »'
       style:
         type: table
         options:
@@ -167,7 +167,7 @@ display:
           id: title
           table: node_field_data
           field: title
-          label: Title
+          label: Titel
           exclude: false
           alter:
             alter_text: false
@@ -190,7 +190,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Content type'
+          label: Inhaltstyp
           exclude: false
           alter:
             alter_text: false
@@ -253,7 +253,7 @@ display:
           table: users_field_data
           field: name
           relationship: uid
-          label: Author
+          label: Autor
           exclude: false
           alter:
             alter_text: false
@@ -293,7 +293,7 @@ display:
           id: changed
           table: node_field_data
           field: changed
-          label: Updated
+          label: Aktualisiert
           exclude: false
           alter:
             alter_text: false
@@ -318,7 +318,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Operations
+          label: Operationen
           exclude: false
           alter:
             alter_text: false
@@ -396,7 +396,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: 'Published status'
+            label: 'Status „veröffentlicht“'
             description: ''
             identifier: status
             optional: true
@@ -407,11 +407,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Published
+                title: Veröffentlicht
                 operator: '='
                 value: '1'
               2:
-                title: Unpublished
+                title: Unveröffentlicht
                 operator: '='
                 value: '0'
           plugin_id: boolean
@@ -431,7 +431,7 @@ display:
           exposed: true
           expose:
             operator_id: type_op
-            label: 'Content type'
+            label: Inhaltstyp
             description: ''
             use_operator: false
             operator: type_op
@@ -474,7 +474,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: Title
+            label: Titel
             description: ''
             use_operator: false
             operator: title_op
@@ -514,7 +514,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Language
+            label: Sprache
             description: ''
             use_operator: false
             operator: langcode_op
@@ -543,14 +543,14 @@ display:
           entity_type: node
           entity_field: langcode
       sorts: {  }
-      title: Content
+      title: Inhalt
       empty:
         area_text_custom:
           id: area_text_custom
           table: views
           field: area_text_custom
           empty: true
-          content: 'No content available.'
+          content: 'Kein Inhalt verfügbar.'
           plugin_id: text_custom
       arguments: {  }
       relationships:
