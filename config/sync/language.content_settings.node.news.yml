@@ -7,5 +7,5 @@ dependencies:
 id: node.news
 target_entity_type_id: node
 target_bundle: news
-default_langcode: site_default
+default_langcode: de
 language_alterable: false
