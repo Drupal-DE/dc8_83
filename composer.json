@@ -17,6 +17,11 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "vcs",
+            "name": "drupal/migrate_source_yaml",
+            "url": "https://git.drupal.org/sandbox/stborchert/2808617.git"
         }
     ],
     "require": {
@@ -32,6 +37,9 @@
         "drupal/media_entity": "1.6",
         "drupal/media_entity_image": "^1.0",
         "drupal/metatag": "^1.0",
+        "drupal/migrate_plus": "dev-3.x",
+        "drupal/migrate_source_yaml": "dev-8.x-1.x",
+        "drupal/migrate_tools": "dev-3.x",
         "drupal/page_manager": "1.x-dev",
         "drupal/panels": "3.x-dev",
         "drupal/paragraphs": "^1.0",

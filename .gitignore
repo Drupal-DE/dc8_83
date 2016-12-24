@@ -22,3 +22,9 @@ docroot/sites/*/services*.yml
 # Ignore paths that contain user-generated content.
 docroot/sites/*/files
 docroot/sites/*/private
+
+# Exclude migration files but include fixed migration files.
+!/migration/files
+/migration/files/*
+!/migration/fixed
+
