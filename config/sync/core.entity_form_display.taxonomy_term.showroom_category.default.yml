@@ -1,0 +1,22 @@
+uuid: 756643e6-98fd-4bee-8d25-39af2838d5bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.showroom_category
+id: taxonomy_term.showroom_category.default
+targetEntityType: taxonomy_term
+bundle: showroom_category
+mode: default
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true
