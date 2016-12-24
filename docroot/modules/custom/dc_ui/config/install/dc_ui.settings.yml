@@ -7,7 +7,7 @@ rewrites:
     add: '/seite/erstellen'
     edit: '/seite/[nid]/bearbeiten'
     delete: '/seite/[nid]/loeschen'
-  handbook:
+  book:
     add: '/handbuchseite/erstellen'
     edit: '/handbuchseite/[nid]/bearbeiten'
     delete: '/handbuchseite/[nid]/loeschen'
