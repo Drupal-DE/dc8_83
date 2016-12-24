@@ -1,0 +1,12 @@
+uuid: 3f40bbb4-6838-4abc-a270-d3b638876756
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: XXbg3hHIuUlJCl5gKBtFkBHTndl4hePKKHNHV78t99Q
+id: drupalcenter
+label: DrupalCenter
+description: 'Migration content from old site.'
+source_type: 'Mixed sources'
+module: null
+shared_configuration: null

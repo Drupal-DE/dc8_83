@@ -1,0 +1,34 @@
+uuid: 40b4cd4b-2ae0-489f-95c1-516c317e11a8
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 2Mk-MugXTcPM_Fs44kRbf6Gu_U0xpa5F74-dRndA2YA
+id: term__drupal_version
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Term: Drupal version'
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: yaml
+  urls: 'dcmigration://fixed/term.drupal_version.yml'
+  fields:
+    _identifier: 'Unique term identifier'
+    name: 'Term name'
+    weight: 'Term weight'
+  ids:
+    _identifier:
+      type: string
+  constants:
+    bundle: drupal_version
+    langcode: de
+process:
+  vid: constants/bundle
+  langcode: constants/langcode
+  name: name
+  weight: weight
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies: null

@@ -1,0 +1,26 @@
+id: term__drupal_version
+label: 'Term: Drupal version'
+migration_group: drupalcenter
+destination:
+  plugin: entity:taxonomy_term
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: yaml
+  urls: 'dcmigration://fixed/term.drupal_version.yml'
+  #idMap: 'fastsql'
+  fields:
+    _identifier: 'Unique term identifier'
+    name: 'Term name'
+    weight: 'Term weight'
+  ids:
+    _identifier:
+      type: string
+  constants:
+    bundle: 'drupal_version'
+    langcode: 'de'
+process:
+  vid: 'constants/bundle'
+  langcode: 'constants/langcode'
+  name: name
+  weight: weight

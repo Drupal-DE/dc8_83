@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * Implements hook_uninstall().
+ */
+function dc_migrate_uninstall() {
+  $factory = \Drupal::service('config.factory');
+
+  $storage = Drupal::entityTypeManager()->getStorage('migration');
+  $query = $storage->getQuery();
+  $query->condition('migration_group', 'drupalcenter');
+
+  $migrations = $query->execute();
+
+  /** @var \Drupal\migrate\Plugin\MigrationInterface $migration */
+  foreach ($migrations as $migration_id) {
+    $factory
+      ->getEditable('migrate_plus.migration.' . $migration_id)
+      ->delete();
+  }
+  // Remove migration group.
+  $factory
+    ->getEditable('migrate_plus.migration_group.drupalcenter')
+    ->delete();
+}
