@@ -9,7 +9,7 @@ use Drupal\dc_migrate\Plugin\migrate\source\DcSqlBaseFile;
  * SQL-based source plugin for user pictures.
  *
  * @MigrateSource(
- *   id = "file__user_picture"
+ *   id = "dc_file__user_picture"
  * )
  */
 class UserPictureFile extends DcSqlBaseFile {

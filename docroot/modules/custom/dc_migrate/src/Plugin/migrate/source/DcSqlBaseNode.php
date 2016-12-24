@@ -9,7 +9,7 @@ use Drupal\migrate\MigrateException;
  * General SQL-based source plugin for nodes.
  *
  * @MigrateSource(
- *   id = "node__base"
+ *   id = "dc_node__base"
  * )
  */
 class DcSqlBaseNode extends DcSqlBase {

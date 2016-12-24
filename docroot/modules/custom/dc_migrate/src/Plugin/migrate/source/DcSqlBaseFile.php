@@ -9,7 +9,7 @@ use Drupal\migrate\Row;
  * General SQL-based source plugin for managed files.
  *
  * @MigrateSource(
- *   id = "file__base"
+ *   id = "dc_file__base"
  * )
  */
 class DcSqlBaseFile extends DcSqlBase {

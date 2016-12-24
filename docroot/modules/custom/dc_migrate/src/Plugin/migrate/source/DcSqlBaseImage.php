@@ -9,7 +9,7 @@ use Drupal\dc_migrate\Plugin\migrate\source\DcSqlBaseFile;
  * SQL-based source plugin for node images.
  *
  * @MigrateSource(
- *   id = "image__base",
+ *   id = "dc_image__base",
  *   mime_type = "image"
  * )
  */

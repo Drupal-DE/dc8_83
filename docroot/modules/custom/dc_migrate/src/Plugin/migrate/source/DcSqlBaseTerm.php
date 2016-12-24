@@ -9,7 +9,7 @@ use Drupal\migrate\Row;
  * General SQL-based source plugin for taxonomy terms.
  *
  * @MigrateSource(
- *   id = "term__base"
+ *   id = "dc_term__base"
  * )
  */
 class DcSqlBaseTerm extends DcSqlBase {

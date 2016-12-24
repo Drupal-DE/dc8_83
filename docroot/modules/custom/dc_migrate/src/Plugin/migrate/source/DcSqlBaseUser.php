@@ -10,7 +10,7 @@ use Drupal\migrate\Row;
  * General SQL-based source plugin for user accounts.
  *
  * @MigrateSource(
- *   id = "user__base"
+ *   id = "dc_user__base"
  * )
  */
 class DcSqlBaseUser extends DcSqlBase {
@@ -39,7 +39,6 @@ class DcSqlBaseUser extends DcSqlBase {
       'pass' => $this->t('Password'),
       'mail' => $this->t('Email address'),
       'signature' => $this->t('Signature'),
-      'signature_format' => $this->t('Signature format'),
       'created' => $this->t('Registered timestamp'),
       'access' => $this->t('Last access timestamp'),
       'login' => $this->t('Last login timestamp'),

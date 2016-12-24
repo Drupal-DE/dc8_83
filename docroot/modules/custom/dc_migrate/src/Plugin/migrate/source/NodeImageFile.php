@@ -10,7 +10,7 @@ use Drupal\migrate\MigrateException;
  * SQL-based source plugin for node images.
  *
  * @MigrateSource(
- *   id = "file__node_image"
+ *   id = "dc_file__node_image"
  * )
  */
 class NodeImageFile extends DcSqlBaseImage {
