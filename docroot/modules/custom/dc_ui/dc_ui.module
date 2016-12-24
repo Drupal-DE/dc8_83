@@ -34,3 +34,31 @@ function dc_ui_form_taxonomy_term_news_category_form_alter(&$form, FormStateInte
   $form['relations']['#required'] = FALSE;
   $form['relations']['#access'] = FALSE;
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dc_ui_form_node_book_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add access check for body field.
+  $form['field_legacy_content']['#access'] = _dc_ui_access_legacy_content_field();
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dc_ui_form_node_book_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add access check for body field.
+  $form['field_legacy_content']['#access'] = _dc_ui_access_legacy_content_field();
+}
+
+/**
+ * Helper function to check for user role.
+ *
+ */
+function _dc_ui_access_legacy_content_field() {
+  $user_roles = \Drupal::currentUser()->getRoles();
+  if(in_array("administrator", $user_roles)) {
+    return TRUE;
+  }
+  return FALSE;
+}
