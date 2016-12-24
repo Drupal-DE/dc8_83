@@ -1,0 +1,22 @@
+uuid: 543af37b-85b8-451c-873c-52632c22837b
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.drupal_version
+id: taxonomy_term.drupal_version.default
+targetEntityType: taxonomy_term
+bundle: drupal_version
+mode: default
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true
