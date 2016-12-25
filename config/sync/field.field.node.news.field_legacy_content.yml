@@ -1,14 +1,14 @@
-uuid: 6198a9ad-0e37-41d6-943d-0db81d8d8c51
+uuid: 72195066-d050-4dc6-a6fe-cceba6246dd6
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
+    - field.storage.node.field_legacy_content
     - node.type.news
   module:
     - text
-id: node.news.body
-field_name: body
+id: node.news.field_legacy_content
+field_name: field_legacy_content
 entity_type: node
 bundle: news
 label: 'Legacy content'
@@ -17,6 +17,5 @@ required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
-settings:
-  display_summary: false
-field_type: text_with_summary
+settings: {  }
+field_type: text_long
