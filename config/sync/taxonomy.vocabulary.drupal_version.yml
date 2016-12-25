@@ -1,5 +1,5 @@
 uuid: b685548b-90d7-45c4-a568-de0932a925d8
-langcode: en
+langcode: de
 status: true
 dependencies: {  }
 name: 'Drupal Version'
