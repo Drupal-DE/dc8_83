@@ -1,0 +1,34 @@
+uuid: f9fedbd7-9f87-465b-a22a-5ce2fb9a41dd
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ryQ3JQ4JoP2ydBKWUbuLWhfQRO_DknVP3zNulg9chYY
+id: term__discussion_category
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Term: Discussion category'
+source:
+  plugin: dc_term__base
+  vid: 1
+  constants:
+    bundle: discussion_category
+    format: wysiwyg_small
+    langcode: de
+process:
+  vid: constants/bundle
+  langcode: constants/langcode
+  name: name
+  parent:
+    plugin: migration
+    migration: term__discussion_category
+    source: parent
+  description/value: description
+  description/format: constants/format
+  weight: weight
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies:
+  optional:
+    - term__discussion_category

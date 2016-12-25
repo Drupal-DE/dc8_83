@@ -66,14 +66,14 @@ abstract class DcSqlBase extends SqlBase {
    * Get configuration values for the current migration. Configuration made in
    * the source plugin definition may be overriden by the migration itself.
    *
-   * @param string|NULL $name
-   *   The configuration value or NULL if there is no configuration with that
-   *   name.
+   * @param string $name
+   *   The configuration name.
    * @param mixed $default
    *   Default value.
    *
    * @return mixed
-   *   The configuration value.
+   *   The configuration value or $default if there is no configuration with
+   *   that name.
    */
   public function getConfig($name, $default = NULL) {
     $plugin_definition = $this->pluginDefinition;
