@@ -20,10 +20,10 @@ class ArrayUnique extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    if (is_array($value)) {
-      return array_unique($value);
+    if (!is_array($value)) {
+      $value = [$value];
     }
-    throw new MigrateException(sprintf('%s is not an array', var_export($value, TRUE)));
+    return array_unique($value);
   }
 
   /**

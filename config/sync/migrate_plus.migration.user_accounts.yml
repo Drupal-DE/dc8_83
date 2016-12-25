@@ -1,9 +1,9 @@
-uuid: f8ff6d14-ee07-4e22-8e2a-97a98e3d0aef
+uuid: 060390a3-ed81-483b-946e-adfb0e88e80a
 langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: fJsmz2kevFWpKJLWw3iE9JXOwtN4M3ZdFZXlnNlGfAo
+  default_config_hash: Wy4GZzfHuMldvm7MLArNBMlG7bKmLDQRGtmD2L0A7j0
 id: user_accounts
 class: null
 migration_tags: null
@@ -14,7 +14,19 @@ source:
   track_changes: true
   langcode: de
 process:
-  uid: uid
+  uid:
+    plugin: static_map
+    source: uid
+    bypass: true
+    map:
+      1: 2
+      2: 3
+      3: 4
+      4: 5
+      5: 6
+      6: 7
+      8: 9
+      9: 10
   name: name
   pass: pass
   mail: mail
