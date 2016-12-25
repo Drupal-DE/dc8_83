@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.image.field_headline
     - field.field.paragraph.image.field_image
     - paragraphs.paragraphs_type.image
 id: paragraph.image.default
@@ -10,6 +11,13 @@ targetEntityType: paragraph
 bundle: image
 mode: default
 content:
+  field_headline:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
   field_image:
     weight: 0
     label: above

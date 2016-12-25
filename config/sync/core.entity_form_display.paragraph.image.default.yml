@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.image.field_headline
     - field.field.paragraph.image.field_image
     - paragraphs.paragraphs_type.image
   module:
@@ -12,8 +13,15 @@ targetEntityType: paragraph
 bundle: image
 mode: default
 content:
-  field_image:
+  field_headline:
     weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_image:
+    weight: 1
     settings:
       form_mode: default
       label_singular: ''
