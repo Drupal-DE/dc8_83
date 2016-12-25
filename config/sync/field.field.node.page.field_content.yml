@@ -26,25 +26,25 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      gallery: gallery
-      image: image
-      link_list: link_list
       text: text
       text_with_image: text_with_image
+      link_list: link_list
+      image: image
+      gallery: gallery
     target_bundles_drag_drop:
-      gallery:
-        enabled: true
-        weight: 6
-      image:
-        enabled: true
-        weight: 7
-      link_list:
-        enabled: true
-        weight: 8
       text:
         enabled: true
-        weight: 9
+        weight: -11
       text_with_image:
         enabled: true
-        weight: 10
+        weight: -10
+      link_list:
+        enabled: true
+        weight: -9
+      image:
+        enabled: true
+        weight: -8
+      gallery:
+        enabled: true
+        weight: -7
 field_type: entity_reference_revisions
