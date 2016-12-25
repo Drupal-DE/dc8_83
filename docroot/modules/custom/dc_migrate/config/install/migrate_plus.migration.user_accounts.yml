@@ -1,0 +1,45 @@
+id: user_accounts
+label: User accounts
+migration_group: drupalcenter
+destination:
+  plugin: entity:user
+source:
+  plugin: 'dc_user__base'
+  track_changes: true
+  langcode: 'de'
+process:
+  uid: uid
+  name: name
+  pass: pass
+  mail: mail
+  created: created
+  access: access
+  login: login
+  status: status
+  timezone:
+    plugin: static_map
+    source: timezone
+    bypass: true
+    map:
+      7200: 'Europe/Berlin'
+    default: 'Europe/Berlin'
+  langcode: 'constants/langcode'
+  preferred_langcode: 'constants/langcode'
+  preferred_admin_langcode: 'constants/langcode'
+  init: init
+  roles:
+    -
+      plugin: static_map
+      source: roles
+      # Merge old role assignments.
+      map:
+        1: anonymous
+        2: authenticated
+        3: forum_member
+        4: administrator
+        9: forum_moderator
+        14: administrator
+        15: forum_moderator
+      default_value: authenticated
+    -
+      plugin: array_unique

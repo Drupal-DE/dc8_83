@@ -68,7 +68,6 @@ class DcSqlBaseUser extends DcSqlBase {
       ->condition('ur.uid', $row->getSourceProperty('uid'))
       ->execute()
       ->fetchCol();
-    $row->setSourceProperty('roles', $roles);
 
     $row->setSourceProperty('data', unserialize($row->getSourceProperty('data')));
     return TRUE;
