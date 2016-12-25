@@ -1,0 +1,19 @@
+id: term__news_category
+label: 'Term: News category'
+migration_group: drupalcenter
+destination:
+  plugin: entity:taxonomy_term
+source:
+  plugin: dc_term__base
+  vid: 2
+  constants:
+    bundle: 'news_category'
+    format: 'wysiwyg_small'
+    langcode: 'de'
+process:
+  vid: 'constants/bundle'
+  langcode: 'constants/langcode'
+  name: name
+  'description/value': description
+  'description/format': 'constants/format'
+  weight: weight
