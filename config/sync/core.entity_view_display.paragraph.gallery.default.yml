@@ -5,7 +5,10 @@ dependencies:
   config:
     - field.field.paragraph.gallery.field_headline
     - field.field.paragraph.gallery.field_images
+    - image.style.medium
     - paragraphs.paragraphs_type.gallery
+  module:
+    - media_entity
 id: paragraph.gallery.default
 targetEntityType: paragraph
 bundle: gallery
@@ -22,9 +25,10 @@ content:
     weight: 1
     label: above
     settings:
-      link: true
+      image_style: medium
+      image_link: ''
     third_party_settings: {  }
-    type: entity_reference_label
+    type: media_thumbnail
 hidden:
   created: true
   uid: true

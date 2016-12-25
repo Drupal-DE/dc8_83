@@ -27,7 +27,7 @@ content:
     weight: 2
     label: above
     settings:
-      image_style: ''
+      image_style: large
       image_link: ''
     third_party_settings: {  }
     type: image
