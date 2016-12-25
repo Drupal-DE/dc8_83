@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.text_with_image.field_content
     - field.field.paragraph.text_with_image.field_headline
     - field.field.paragraph.text_with_image.field_image
+    - field.field.paragraph.text_with_image.field_image_orientation
     - paragraphs.paragraphs_type.text_with_image
   module:
     - inline_entity_form
@@ -41,6 +42,11 @@ content:
       override_labels: false
     third_party_settings: {  }
     type: inline_entity_form_complex
+  field_image_orientation:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
 hidden:
   created: true
   status: true

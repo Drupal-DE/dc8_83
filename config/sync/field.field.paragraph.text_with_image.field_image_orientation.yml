@@ -1,0 +1,21 @@
+uuid: f8910e38-c074-4ffe-9829-57a84cd690cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_image_orientation
+    - paragraphs.paragraphs_type.text_with_image
+  module:
+    - options
+id: paragraph.text_with_image.field_image_orientation
+field_name: field_image_orientation
+entity_type: paragraph
+bundle: text_with_image
+label: 'Image orientation'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
