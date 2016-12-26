@@ -1,0 +1,8 @@
+uuid: 95346ba8-4810-47a0-ac26-381b91403312
+langcode: de
+status: true
+dependencies: {  }
+id: content_comment
+label: 'Content comment'
+target_entity_type_id: node
+description: ''
