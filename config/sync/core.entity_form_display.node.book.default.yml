@@ -3,11 +3,13 @@ langcode: de
 status: true
 dependencies:
   config:
+    - field.field.node.book.field_comments
     - field.field.node.book.field_content
     - field.field.node.book.field_drupal_version
     - field.field.node.book.field_legacy_content
     - node.type.book
   module:
+    - comment
     - paragraphs
     - path
     - text
@@ -23,6 +25,11 @@ content:
     weight: 5
     settings: {  }
     third_party_settings: {  }
+  field_comments:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: comment_default
   field_content:
     weight: 2
     settings:
