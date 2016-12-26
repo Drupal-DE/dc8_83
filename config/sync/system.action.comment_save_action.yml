@@ -1,0 +1,13 @@
+uuid: a751e5c4-f493-40ab-af1d-1b3b6b795189
+langcode: de
+status: true
+dependencies:
+  module:
+    - comment
+_core:
+  default_config_hash: TSkg_gUZvk-39yXFrIFnKjsxuEzO0qBH82TdDxOMMr4
+id: comment_save_action
+label: 'Save comment'
+type: comment
+plugin: comment_save_action
+configuration: {  }
