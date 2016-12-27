@@ -9,43 +9,17 @@ dependencies:
     - field.field.node.discussion.field_parent
     - node.type.discussion
   module:
-    - text
     - user
 id: node.discussion.default
 targetEntityType: node
 bundle: discussion
 mode: default
-content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 101
-    settings: {  }
-    third_party_settings: {  }
-  field_discussion_category:
-    weight: 103
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_drupal_version:
-    weight: 102
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_parent:
-    weight: 104
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
+content: {  }
 hidden:
+  body: true
+  discussion_answers: true
+  field_discussion_category: true
+  field_drupal_version: true
+  field_parent: true
   langcode: true
+  links: true

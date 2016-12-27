@@ -20,11 +20,11 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 1
+    weight: 0
     settings: {  }
     third_party_settings: {  }
-  links:
-    weight: 0
+  discussion_answers:
+    weight: 100
     settings: {  }
     third_party_settings: {  }
 hidden:
@@ -32,3 +32,4 @@ hidden:
   field_drupal_version: true
   field_parent: true
   langcode: true
+  links: true

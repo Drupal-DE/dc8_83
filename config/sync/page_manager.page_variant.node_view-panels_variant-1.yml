@@ -4,12 +4,10 @@ status: true
 dependencies:
   config:
     - page_manager.page.node_view
-    - views.view.discussion_answers
   module:
     - ctools
     - dc_discussion
     - panels
-    - views
 id: node_view-panels_variant-1
 label: 'Discussion node'
 variant: panels_variant
@@ -22,21 +20,10 @@ variant_settings:
       label_display: '0'
       view_mode: full
       region: middle
-      weight: 0
+      weight: 1
       uuid: a508c7d0-a095-4f9c-9671-40ef2bf84150
       context_mapping:
         entity: node
-    c8cb638d-4390-4010-85ce-9ee6b5fa85cb:
-      id: 'views_block:discussion_answers-answers'
-      label: ''
-      provider: views
-      label_display: '0'
-      views_label: ''
-      items_per_page: none
-      region: middle
-      weight: 1
-      uuid: c8cb638d-4390-4010-85ce-9ee6b5fa85cb
-      context_mapping: {  }
   id: panels_variant
   uuid: c0671ffe-dee5-4e3c-a96f-8175c7585a2b
   label: null

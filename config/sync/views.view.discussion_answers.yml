@@ -54,7 +54,11 @@ display:
           items_per_page: null
           offset: 0
       style:
-        type: html_list
+        type: default
+        options:
+          row_class: ''
+          default_row_class: false
+          uses_fields: false
       row:
         type: 'entity:node'
         options:

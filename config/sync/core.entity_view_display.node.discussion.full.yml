@@ -20,27 +20,28 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 1
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  discussion_answers:
+    weight: 3
     settings: {  }
     third_party_settings: {  }
   field_discussion_category:
-    weight: 3
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_drupal_version:
     weight: 2
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-  links:
-    weight: 0
-    settings: {  }
+  field_drupal_version:
+    weight: 1
+    label: above
+    settings:
+      link: true
     third_party_settings: {  }
+    type: entity_reference_label
 hidden:
   field_parent: true
   langcode: true
+  links: true
