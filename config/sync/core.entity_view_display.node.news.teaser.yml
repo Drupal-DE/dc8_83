@@ -17,6 +17,7 @@ content:
   links:
     weight: 100
 hidden:
+  field_comments: true
   field_content: true
   field_legacy_content: true
   field_news_category: true

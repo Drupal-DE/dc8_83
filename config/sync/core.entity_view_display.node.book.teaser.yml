@@ -17,6 +17,7 @@ content:
   links:
     weight: 101
 hidden:
+  field_comments: true
   field_content: true
   field_drupal_version: true
   field_legacy_content: true
