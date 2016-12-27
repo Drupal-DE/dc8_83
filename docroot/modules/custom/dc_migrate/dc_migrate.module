@@ -33,3 +33,21 @@ function dc_migrate_migration_plugins_alter(&$definitions) {
     }
   }
 }
+
+/**
+ * Migration process callback to fix php-tags in legacy content.
+ *
+ * @param string $value
+ *   The legacy content.
+ *
+ * @return string
+ *   Content with strings like '<?php ... ?>' transformed to
+ *   '&lt;?php ... ?&gt;'.
+ */
+function dc_migrate_legacy_fix_phptag($value) {
+  if (strpos($value, '<?php') === FALSE) {
+    // No need to do anything here.
+    return $value;
+  }
+  return strtr($value, ['<?php' => '&lt;?php', '?>' => '?&gt;']);
+}

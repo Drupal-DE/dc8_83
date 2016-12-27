@@ -4,10 +4,24 @@
  * @file
  * Contains dc_ui.module.
  */
-
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\ViewExecutable;
 
+/**
+ * Implements hook_editor_js_settings_alter().
+ */
+function dc_ui_editor_js_settings_alter(array &$settings) {
+  foreach (array_keys($settings['editor']['formats']) as $format) {
+    if (empty($settings['editor']['formats'][$format]['editorSettings'])) {
+      continue;
+    }
+    if (empty($settings['editor']['formats'][$format]['editorSettings']['protectedSource'])) {
+      $settings['editor']['formats'][$format]['editorSettings']['protectedSource'] = [];
+    }
+    // Allow php tags.
+    $settings['editor']['formats'][$format]['editorSettings']['protectedSource'][] = '/<\?[\s\S]*?\?>/g';
+  }
+}
 
 /**
  * Implements hook_form_FORM_ID_alter().
