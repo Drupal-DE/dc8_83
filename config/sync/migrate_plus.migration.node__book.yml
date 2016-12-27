@@ -1,0 +1,64 @@
+uuid: 5c3308e3-5270-4d4d-ab71-e98e7a963fc4
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: lCioWBwe1Wg4PdmNanfzjuO68l7AmHLVfo8iuLbojj8
+id: node__book
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Base migration for book nodes'
+source:
+  plugin: dc_node__book
+  constants:
+    bundle: book
+    format: wysiwyg_full
+    language: de
+process:
+  type: constants/bundle
+  title: title
+  status: status
+  langcode: constants/language
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  uid:
+    -
+      plugin: migration
+      migration: user_accounts
+      no_stub: true
+      source: uid
+    -
+      plugin: default_value
+      default_value: 1
+  field_legacy_content/value: body
+  field_legacy_content/format: constants/format
+  field_drupal_version/target_id:
+    -
+      plugin: static_map
+      source: drupal_version
+      map:
+        25: term--version-46
+        26: term--version-47
+        31: term--version-5
+        87: term--version-6
+        245: term--version-47
+        389: term--version-5
+        1122: term--version-7
+        1517: term--version-6
+        1518: term--version-7
+        1519: term--version-8
+        1520: term--version-8
+    -
+      plugin: migration
+      migration: term__drupal_version
+      no_stub: true
+destination:
+  plugin: 'entity:node'
+migration_dependencies:
+  required:
+    - term__drupal_version
+  optional:
+    - user_accounts

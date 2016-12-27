@@ -31,7 +31,7 @@ class DcSqlBaseImage extends DcSqlBaseFile {
   /**
    * {@inheritdoc}
    */
-  protected function alterFields(array $fields = []) {
+  protected function alterFields(array &$fields = []) {
     $fields['image_alt'] = $this->t('Alternative text of image');
     $fields['image_title'] = $this->t('Image title');
     $fields['image_description'] = $this->t('Image description');

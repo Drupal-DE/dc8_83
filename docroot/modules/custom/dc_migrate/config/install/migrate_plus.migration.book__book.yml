@@ -1,5 +1,8 @@
 id: book__book
 label: Books
+migration_group: drupalcenter
+destination:
+  plugin: book
 source:
   plugin: dc_book
 process:
@@ -14,8 +17,6 @@ process:
     -
       plugin: migration
       migration: book__book
-destination:
-  plugin: book
 migration_dependencies:
   required:
     - node__book

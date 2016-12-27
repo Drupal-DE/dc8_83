@@ -58,7 +58,7 @@ abstract class DcSqlBase extends SqlBase {
    * @param array $fields
    *   List of fields available for migration.
    */
-  protected function alterFields(array $fields = []) {
+  protected function alterFields(array &$fields = []) {
 
   }
 

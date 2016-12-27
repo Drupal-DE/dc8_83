@@ -30,9 +30,11 @@ class DcSqlBaseNode extends DcSqlBase {
       throw new MigrateException('You need to specify the bundle in the plugin definition or in the migration.');
     }
 
-    $query = $this->select('node', 'n')
-      ->fields('n', ['nid', 'vid', 'language', 'title', 'uid', 'status', 'created', 'changed', 'promote', 'sticky'])
+    $query = $this->select('node', 'n');
+    $query->join('node_revisions', 'nr', 'n.vid = nr.vid');
+    $query->fields('n', ['nid', 'vid', 'language', 'title', 'uid', 'status', 'created', 'changed', 'promote', 'sticky'])
       ->condition('type', $bundle);
+    $query->addField('nr', 'body');
 
     foreach ($this->getFieldDefinitions() as $key => $field) {
       $alias = $field['alias'];
@@ -64,6 +66,7 @@ class DcSqlBaseNode extends DcSqlBase {
       'changed' => $this->t('Update date'),
       'promote' => $this->t('Promoted to frontpage'),
       'sticky' => $this->t('Sticky at top of lists'),
+      'body' => $this->t('Node body value'),
     ];
 
     foreach ($this->getFieldDefinitions() as $key => $field) {
