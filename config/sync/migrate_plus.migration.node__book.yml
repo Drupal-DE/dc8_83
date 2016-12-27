@@ -1,9 +1,9 @@
-uuid: 5c3308e3-5270-4d4d-ab71-e98e7a963fc4
+uuid: 79539780-9998-4974-9e22-a1e2ff76e842
 langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: lCioWBwe1Wg4PdmNanfzjuO68l7AmHLVfo8iuLbojj8
+  default_config_hash: R2yWCrJbDu_BFIx4UIDr_uf3yKko8QzOPap0JwbyJHw
 id: node__book
 class: null
 migration_tags: null
@@ -26,19 +26,30 @@ process:
   sticky: sticky
   uid:
     -
+      plugin: static_map
+      source: uid
+      bypass: true
+      map:
+        - 1
+    -
       plugin: migration
       migration: user_accounts
       no_stub: true
-      source: uid
     -
       plugin: default_value
       default_value: 1
-  field_legacy_content/value: body
+  field_legacy_content/value:
+    plugin: callback
+    source: body
+    callable: dc_migrate_legacy_fix_phptag
   field_legacy_content/format: constants/format
   field_drupal_version/target_id:
     -
-      plugin: static_map
+      plugin: skip_on_empty
+      method: process
       source: drupal_version
+    -
+      plugin: static_map
       map:
         25: term--version-46
         26: term--version-47

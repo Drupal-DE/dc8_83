@@ -6,8 +6,24 @@ destination:
 source:
   plugin: dc_book
 process:
-  nid: nid
-  'book/bid': bid
+  nid:
+    -
+      plugin: migration
+      migration: node__book
+      source: nid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  'book/bid':
+    -
+      plugin: migration
+      migration: node__book
+      source: bid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
   'book/weight': weight
   'book/pid':
     -
@@ -18,5 +34,5 @@ process:
       plugin: migration
       migration: book__book
 migration_dependencies:
-  required:
+  optional:
     - node__book

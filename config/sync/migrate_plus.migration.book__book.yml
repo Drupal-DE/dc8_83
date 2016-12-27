@@ -1,9 +1,9 @@
-uuid: 8b0e84f7-2f83-48a4-8472-ca13d50b9929
+uuid: 9457119a-9eb9-4474-ba47-e7256e381fbb
 langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: 5O1_4Psy1ynC390cQuZAJi10n-O6yK1Jw1noTd1xmTw
+  default_config_hash: 0Rn4fPuIYliclLvuE5UbUJv1NB6PKHLE6LkBydApvP4
 id: book__book
 class: null
 migration_tags: null
@@ -12,8 +12,24 @@ label: Books
 source:
   plugin: dc_book
 process:
-  nid: nid
-  book/bid: bid
+  nid:
+    -
+      plugin: migration
+      migration: node__book
+      source: nid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  book/bid:
+    -
+      plugin: migration
+      migration: node__book
+      source: bid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
   book/weight: weight
   book/pid:
     -
@@ -26,5 +42,5 @@ process:
 destination:
   plugin: book
 migration_dependencies:
-  required:
+  optional:
     - node__book
