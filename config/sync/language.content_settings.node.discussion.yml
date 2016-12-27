@@ -7,5 +7,5 @@ dependencies:
 id: node.discussion
 target_entity_type_id: node
 target_bundle: discussion
-default_langcode: de
+default_langcode: site_default
 language_alterable: false
