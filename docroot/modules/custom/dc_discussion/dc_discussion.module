@@ -73,4 +73,29 @@ function dc_discussion_form_node_discussion_edit_form_alter(&$form, FormStateInt
   }
 }
 
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function dc_discussion_entity_extra_field_info() {
+  $extra = [];
+  // Add extra fields ot node type discussion.
+  // Add field discussion answers.
+  $extra['node']['discussion']['display']['discussion_answers'] = [
+    'label' => t('Discussion answers'),
+    'weight' => 100
+  ];
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function dc_discussion_node_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  switch ($entity->bundle()) {
+    case 'discussion':
+      // Show view discussion answers with actual node id as parent argument.
+      $build['discussion_answers'] = views_embed_view('discussion_answers', 'answers', $entity->id());
+      break;
+  }
+}
 
