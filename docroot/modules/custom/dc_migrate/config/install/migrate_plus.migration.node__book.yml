@@ -1,0 +1,36 @@
+id: node__book
+label: Base migration for book nodes
+migration_group: drupalcenter
+destination:
+  plugin: entity:node
+source:
+  plugin: node__base
+  bundle: book
+  constants:
+    bundle: 'book'
+    format: 'wysiwyg_full'
+process:
+  type: 'constants/bundle'
+  title: title
+  status: status
+  langcode: language
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  uid:
+    -
+      plugin: migration
+      migration: user_accounts
+      # Do not create a user stub if the author has not been migrated.
+      no_stub: true
+      source: uid
+    -
+      plugin: default_value
+      # Set author to admin if user has not been migrated for any reasons.
+      default_value: 1
+  'field_legacy_content/value': dingens
+  'field_legacy_content/format': 'constants/format'
+migration_dependencies:
+  optional:
+    - user_accounts

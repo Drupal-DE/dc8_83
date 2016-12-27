@@ -1,0 +1,21 @@
+id: book__book
+label: Books
+source:
+  plugin: dc_book
+process:
+  nid: nid
+  'book/bid': bid
+  'book/weight': weight
+  'book/pid':
+    -
+      plugin: skip_on_empty
+      method: process
+      source: plid
+    -
+      plugin: migration
+      migration: book__book
+destination:
+  plugin: book
+migration_dependencies:
+  required:
+    - node__book
