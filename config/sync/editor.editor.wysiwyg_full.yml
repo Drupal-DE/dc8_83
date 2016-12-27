@@ -1,0 +1,73 @@
+uuid: 793ea259-7b8c-48ed-91b5-c428e4cc23e8
+langcode: de
+status: true
+dependencies:
+  config:
+    - filter.format.wysiwyg_full
+  module:
+    - ckeditor
+format: wysiwyg_full
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatierung
+          items:
+            - Bold
+            - Italic
+            - Underline
+            - Strike
+            - '-'
+            - Superscript
+            - Subscript
+            - '-'
+            - Format
+        -
+          name: Ausrichtung
+          items:
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
+            - JustifyBlock
+            - '-'
+            - Outdent
+            - Indent
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Listen
+          items:
+            - BulletedList
+            - NumberedList
+        -
+          name: Medien
+          items:
+            - Blockquote
+            - DrupalImage
+        -
+          name: Werkzeuge
+          items:
+            - Undo
+            - Redo
+            - Source
+            - HorizontalRule
+            - Cut
+            - Copy
+  plugins:
+    language:
+      language_list: un
+    stylescombo:
+      styles: ''
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null

@@ -1,0 +1,15 @@
+uuid: 29236d98-60b1-4e5a-b9be-cb3c950c4037
+langcode: de
+status: true
+dependencies: {  }
+name: 'WYSIWYG full'
+format: wysiwyg_full
+weight: 0
+filters:
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: true
+    weight: 0
+    settings:
+      filter_url_length: 72
