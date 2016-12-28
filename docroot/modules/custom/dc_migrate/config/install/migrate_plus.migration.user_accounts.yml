@@ -51,6 +51,7 @@ process:
         3: forum_member
         4: administrator
         9: forum_moderator
+        10: book_editor
         14: administrator
         15: forum_moderator
       default_value: authenticated
