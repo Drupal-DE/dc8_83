@@ -1,9 +1,9 @@
-uuid: 060390a3-ed81-483b-946e-adfb0e88e80a
+uuid: efec59c0-e997-4069-9c36-8cfca2728ceb
 langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: Wy4GZzfHuMldvm7MLArNBMlG7bKmLDQRGtmD2L0A7j0
+  default_config_hash: A0E0OaQ711jx1Ckh-nPhaEbeAPCqxVFlSRwLrjBNW9k
 id: user_accounts
 class: null
 migration_tags: null
@@ -55,6 +55,7 @@ process:
         3: forum_member
         4: administrator
         9: forum_moderator
+        10: book_editor
         14: administrator
         15: forum_moderator
       default_value: authenticated
