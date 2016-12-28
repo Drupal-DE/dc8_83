@@ -1,0 +1,55 @@
+id: node__news
+label: Base migration for news nodes
+migration_group: drupalcenter
+destination:
+  plugin: entity:node
+source:
+  plugin: dc_node__news
+  constants:
+    bundle: 'news'
+    format: 'wysiwyg_full'
+    language: 'de'
+process:
+  type: 'constants/bundle'
+  title: title
+  status: status
+  langcode: 'constants/language'
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  uid:
+    -
+      plugin: static_map
+      source: uid
+      bypass: true
+      map:
+        0: 1
+    -
+      plugin: migration
+      migration: user_accounts
+      # Do not create a user stub if the author has not been migrated.
+      no_stub: true
+    -
+      plugin: default_value
+      # Set author to admin if user has not been migrated for any reasons.
+      default_value: 1
+  'field_legacy_content/value':
+    plugin: callback
+    source: body
+    callable: dc_migrate_legacy_fix_phptag
+  'field_legacy_content/format': 'constants/format'
+  'field_news_category/target_id':
+    -
+      plugin: skip_on_empty
+      method: process
+      source: category
+    -
+      plugin: migration
+      migration: term__news_category
+      no_stub: true
+migration_dependencies:
+  required:
+    - term__news_category
+  optional:
+    - user_accounts

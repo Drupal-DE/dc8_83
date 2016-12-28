@@ -1,0 +1,61 @@
+uuid: 356307b1-80fb-4e70-870c-52a586da9aac
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: H_ozsqsBDBcGerOImPIPr3_vbG9C_iqRuo5dADtae14
+id: node__news
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Base migration for news nodes'
+source:
+  plugin: dc_node__news
+  constants:
+    bundle: news
+    format: wysiwyg_full
+    language: de
+process:
+  type: constants/bundle
+  title: title
+  status: status
+  langcode: constants/language
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  uid:
+    -
+      plugin: static_map
+      source: uid
+      bypass: true
+      map:
+        - 1
+    -
+      plugin: migration
+      migration: user_accounts
+      no_stub: true
+    -
+      plugin: default_value
+      default_value: 1
+  field_legacy_content/value:
+    plugin: callback
+    source: body
+    callable: dc_migrate_legacy_fix_phptag
+  field_legacy_content/format: constants/format
+  field_news_category/target_id:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: category
+    -
+      plugin: migration
+      migration: term__news_category
+      no_stub: true
+destination:
+  plugin: 'entity:node'
+migration_dependencies:
+  required:
+    - term__news_category
+  optional:
+    - user_accounts

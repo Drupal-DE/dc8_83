@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_display.comment.content_comment.default
     - field.field.node.news.field_comments
     - field.field.node.news.field_content
     - field.field.node.news.field_legacy_content
@@ -28,7 +29,7 @@ content:
     type: comment_default
   field_content:
     weight: 102
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''
@@ -36,7 +37,7 @@ content:
     type: entity_reference_revisions_entity_view
   field_legacy_content:
     weight: 104
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
@@ -49,5 +50,7 @@ content:
     type: entity_reference_label
   links:
     weight: 100
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   langcode: true
