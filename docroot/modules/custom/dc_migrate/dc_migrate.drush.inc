@@ -5,6 +5,7 @@ use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\Site\Settings;
+use Drupal\dc_migrate\MigrateBatchHelper;
 use Drush\Log\LogLevel;
 
 /**
@@ -26,6 +27,30 @@ function dc_migrate_drush_command() {
       'drush config-refresh mymodule' => "Refresh default configuration of a module named 'mymodule'.",
       'drush config-refresh myprofile profile' => "Refresh default configuration of a profile named 'myprofile'.",
     ],
+  ];
+  $commands['dc-migrate-process'] = [
+    'description' => 'Run a custom migration processor.',
+    'core' => ['8+'],
+    'aliases' => ['dc-mp'],
+    'arguments' => [
+      'processor' => dt('Plugin ID of custom migration processor'),
+    ],
+    'options' => [
+      'limit' => dt('The number of items to process. Set to 0 to process all items. Defaults to 0 (all).'),
+      'batch-size' => dt('The number of items to process per batch run. Set to 0 to process all items at once (not recommended). Defaults to 100.'),
+      'refresh-data' => dt('Refresh mapped source data.'),
+    ],
+    'examples' => [
+      'drush dc-migrate-process recipe_ingredients__ingredient' => 'Map ingredients to their corresponding lists.',
+    ],
+  ];
+  $commands['dc-migrate-process-list'] = [
+    'description' => 'List all dc migrate processors.',
+    'examples' => [
+      'drush dc-migrate-process-list' => dt('List all processors.'),
+      'drush dc-mp-l' => dt('Alias to list all processors.'),
+    ],
+    'aliases' => ['dc-mp-l'],
   ];
 
   return $commands;
@@ -125,4 +150,58 @@ function _dc_migrate_config_refresh_get_config(StorageInterface $storage, $colle
     $data = $profile_storage->readMultiple(array_keys($data)) + $data;
   }
   return $data;
+}
+
+/**
+ * Command callback for "dc-migrate-process".
+ *
+ * @param string $processor
+ *   Plugin ID of custom migration processor.
+ */
+function drush_dc_migrate_process($processor) {
+  $refresh_data = drush_get_option('refresh-data', FALSE);
+  $limit = drush_get_option('limit', -1);
+  $batch_size = drush_get_option('batch-size', 500);
+
+  $options = [
+    'batch_size' => $batch_size,
+    'limit' => $limit,
+    'refresh_source_data' => $refresh_data,
+  ];
+
+  try {
+    MigrateBatchHelper::create($processor, $options);
+    drush_backend_batch_process();
+  }
+  catch (Exception $ex) {
+    drush_log(dt("Couldn't create a batch, please check the batch size and limit parameters."), 'error');
+    drush_log($ex->getMessage(), 'error');
+  }
+}
+
+/**
+ * Command callback for "dc-migrate-process-list".
+ */
+function drush_dc_migrate_process_list() {
+  /* @var $manager \Drupal\dc_migrate\DcMigrateProcessorPluginManager */
+  $manager = \Drupal::service('plugin.manager.dc_migrate');
+  $processors = $manager->getProcessors();
+  if (empty($processors)) {
+    drush_log('No processors found.');
+    return;
+  }
+  $rows[] = [
+    dt('ID'),
+    dt('Description'),
+  ];
+
+  /* @var $processor \Drupal\dc_migrate\Plugin\DcMigrateProcessorInterface */
+  foreach ($processors as $plugin_id => $processor) {
+    $rows[] = [
+      $plugin_id,
+      $processor->getDescription(),
+    ];
+  }
+
+  drush_print_table($rows);
 }

@@ -1,0 +1,42 @@
+id: node__discussion
+label: Base migration for discussion nodes
+migration_group: drupalcenter
+destination:
+  plugin: entity:node
+source:
+  plugin: dc_node__base
+  bundle: 'forum'
+  constants:
+    bundle: 'discussion'
+    format: 'wysiwyg_small'
+    language: 'de'
+process:
+  type: 'constants/bundle'
+  title: title
+  status: status
+  langcode: 'constants/language'
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  uid:
+    -
+      plugin: static_map
+      source: uid
+      bypass: true
+      map:
+        0: 1
+    -
+      plugin: migration
+      migration: user_accounts
+      # Do not create a user stub if the author has not been migrated.
+      no_stub: true
+    -
+      plugin: default_value
+      # Set author to admin if user has not been migrated for any reasons.
+      default_value: 1
+  'body/format': 'constants/format'
+  'body/value': body
+migration_dependencies:
+  optional:
+    - user_accounts

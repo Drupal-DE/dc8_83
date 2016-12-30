@@ -3,3 +3,9 @@ services:
     class: Drupal\dc_migrate\StreamWrapper\DcMigrationStream
     tags:
       - { name: stream_wrapper, scheme: dcmigration }
+  plugin.manager.dc_migrate:
+    class: Drupal\dc_migrate\DcMigrateProcessorPluginManager
+    parent: default_plugin_manager
+  dc_migrate.manager:
+    class: Drupal\dc_migrate\DcMigrateManager
+    arguments: ['@plugin.manager.dc_migrate' ]

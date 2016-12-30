@@ -1,0 +1,48 @@
+uuid: 8498f16f-f265-4bc8-babf-8b6b67b183c6
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ldGNsks0cZipUjcVQaC0VUla4c1K6czXLwl5zrQZDts
+id: node__discussion
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Base migration for discussion nodes'
+source:
+  plugin: dc_node__base
+  bundle: forum
+  constants:
+    bundle: discussion
+    format: wysiwyg_small
+    language: de
+process:
+  type: constants/bundle
+  title: title
+  status: status
+  langcode: constants/language
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  uid:
+    -
+      plugin: static_map
+      source: uid
+      bypass: true
+      map:
+        - 1
+    -
+      plugin: migration
+      migration: user_accounts
+      no_stub: true
+    -
+      plugin: default_value
+      default_value: 1
+  body/format: constants/format
+  body/value: body
+destination:
+  plugin: 'entity:node'
+migration_dependencies:
+  optional:
+    - user_accounts
