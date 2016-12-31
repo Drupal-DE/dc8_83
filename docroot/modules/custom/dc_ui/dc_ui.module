@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\ViewExecutable;
 
 
 /**
@@ -73,8 +74,17 @@ function dc_ui_form_node_book_edit_form_alter(&$form, FormStateInterface $form_s
  */
 function _dc_ui_access_legacy_content_field() {
   $user_roles = \Drupal::currentUser()->getRoles();
-  if(in_array("administrator", $user_roles)) {
+  if (in_array('administrator', $user_roles)) {
     return TRUE;
   }
   return FALSE;
+}
+
+/**
+ * Implements hook_views_pre_build().
+ */
+function dc_ui_views_pre_build(ViewExecutable $view) {
+  if ('content_overview' === $view->id()) {
+    $view->element['#attached']['library'][] = 'dc_ui/admin.content_overview';
+  }
 }

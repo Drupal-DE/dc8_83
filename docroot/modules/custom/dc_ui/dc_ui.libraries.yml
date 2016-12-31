@@ -1,0 +1,4 @@
+admin.content_overview:
+  css:
+    theme:
+      css/admin.content_overview.css: {}
