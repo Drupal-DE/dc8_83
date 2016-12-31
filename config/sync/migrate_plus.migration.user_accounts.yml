@@ -1,9 +1,9 @@
-uuid: efec59c0-e997-4069-9c36-8cfca2728ceb
+uuid: 6ac251fc-5221-4699-bfce-ae09a4b2ef7a
 langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: A0E0OaQ711jx1Ckh-nPhaEbeAPCqxVFlSRwLrjBNW9k
+  default_config_hash: 13xRZSwZqXKTYMJPcBO9rV2Xg-a_S5a53e4-cRw2jRs
 id: user_accounts
 class: null
 migration_tags: null
@@ -12,7 +12,9 @@ label: 'User accounts'
 source:
   plugin: dc_user__base
   track_changes: true
-  langcode: de
+  constants:
+    format: wysiwyg_small
+    langcode: de
 process:
   uid:
     plugin: static_map
@@ -61,6 +63,8 @@ process:
       default_value: authenticated
     -
       plugin: array_unique
+  field_signature/format: constants/format
+  field_signature/value: signature
 destination:
   plugin: 'entity:user'
 migration_dependencies: null

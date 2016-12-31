@@ -6,7 +6,9 @@ destination:
 source:
   plugin: 'dc_user__base'
   track_changes: true
-  langcode: 'de'
+  constants:
+    format: 'wysiwyg_small'
+    langcode: 'de'
 process:
   uid:
     plugin: static_map
@@ -57,3 +59,5 @@ process:
       default_value: authenticated
     -
       plugin: array_unique
+  'field_signature/format': 'constants/format'
+  'field_signature/value': signature
