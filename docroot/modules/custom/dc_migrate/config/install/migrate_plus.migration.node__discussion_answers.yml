@@ -1,25 +1,30 @@
-id: node__discussion
-label: Base migration for discussion nodes
+id: node__discussion_answers
+label: Migration for discussion answers
 migration_group: drupalcenter
 destination:
   plugin: entity:node
 source:
-  plugin: dc_node__base
+  plugin: dc_comment__base
   idMap: fastsql
-  bundle: 'forum'
+  bundle: forum
   constants:
     bundle: 'discussion'
     format: 'wysiwyg_small'
     language: 'de'
 process:
   type: 'constants/bundle'
-  title: title
-  status: status
+  title: subject
+  status:
+    plugin: static_map
+    source: status
+    # In Drupal 6 a comment status of "0" means "published".
+    map:
+      0: 1
+      1: 0
+    default: 0
   langcode: 'constants/language'
-  created: created
-  changed: changed
-  promote: promote
-  sticky: sticky
+  created: timestamp
+  changed: timestamp
   uid:
     -
       plugin: static_map
@@ -37,7 +42,8 @@ process:
       # Set author to admin if user has not been migrated for any reasons.
       default_value: 1
   'body/format': 'constants/format'
-  'body/value': body
+  'body/value': comment
 migration_dependencies:
   optional:
     - user_accounts
+    - node__discussion

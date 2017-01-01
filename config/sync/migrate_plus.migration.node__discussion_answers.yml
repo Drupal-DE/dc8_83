@@ -1,16 +1,16 @@
-uuid: 003bb3a8-3482-4dc5-8d4e-877df181c8d0
+uuid: b678687f-998e-41d1-9da9-b0db2da7862e
 langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: 7-8gu0Lv-3INAkGKwQ4KQJeOKSKc4WqIvxMFe3nLVm4
-id: node__discussion
+  default_config_hash: BHvmpOHI8uvuaPc3s-gDjhIUvZgBbCn_w175zMSI5Y4
+id: node__discussion_answers
 class: null
 migration_tags: null
 migration_group: drupalcenter
-label: 'Base migration for discussion nodes'
+label: 'Migration for discussion answers'
 source:
-  plugin: dc_node__base
+  plugin: dc_comment__base
   idMap: fastsql
   bundle: forum
   constants:
@@ -19,13 +19,17 @@ source:
     language: de
 process:
   type: constants/bundle
-  title: title
-  status: status
+  title: subject
+  status:
+    plugin: static_map
+    source: status
+    map:
+      - 1
+      - 0
+    default: 0
   langcode: constants/language
-  created: created
-  changed: changed
-  promote: promote
-  sticky: sticky
+  created: timestamp
+  changed: timestamp
   uid:
     -
       plugin: static_map
@@ -41,9 +45,10 @@ process:
       plugin: default_value
       default_value: 1
   body/format: constants/format
-  body/value: body
+  body/value: comment
 destination:
   plugin: 'entity:node'
 migration_dependencies:
   optional:
     - user_accounts
+    - node__discussion
