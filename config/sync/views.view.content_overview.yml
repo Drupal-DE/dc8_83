@@ -5,7 +5,9 @@ dependencies:
   config:
     - field.storage.node.field_discussion_category
     - field.storage.node.field_drupal_version
+    - field.storage.node.field_news_category
     - field.storage.node.field_parent
+    - field.storage.node.field_showroom_category
   module:
     - node
     - user
@@ -633,6 +635,132 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        field_news_category:
+          id: field_news_category
+          table: node__field_news_category
+          field: field_news_category
+          relationship: none
+          group_type: group
+          admin_label: 'News category'
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_showroom_category:
+          id: field_showroom_category
+          table: node__field_showroom_category
+          field: field_showroom_category
+          relationship: none
+          group_type: group
+          admin_label: 'Showroom category'
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         field_drupal_version:
           id: field_drupal_version
           table: node__field_drupal_version
@@ -707,7 +835,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{% if field_discussion_category and not field_drupal_version %}\n  {{- field_discussion_category -}}\n{% elseif not field_discussion_category and field_drupal_version %}\n  {{- field_drupal_version -}}\n{% elseif field_discussion_category and field_drupal_version %}\n  {{ [field_discussion_category, field_drupal_version]|join(', ')|raw }}\n{% endif %}"
+            text: "{% set categories = [] %}\n{% if field_discussion_category %}\n  {% set categories = categories|merge([field_discussion_category]) %}\n{% endif %}\n{% if field_news_category %}\n  {% set categories = categories|merge([field_news_category]) %}\n{% endif %}\n{% if field_showroom_category %}\n  {% set categories = categories|merge([field_showroom_category]) %}\n{% endif %}\n{% if field_drupal_version %}\n  {% set categories = categories|merge([field_drupal_version]) %}\n{% endif %}\n{{ categories|join(', ')|raw }}\n"
             make_link: false
             path: ''
             absolute: false
@@ -1260,7 +1388,9 @@ display:
       tags:
         - 'config:field.storage.node.field_discussion_category'
         - 'config:field.storage.node.field_drupal_version'
+        - 'config:field.storage.node.field_news_category'
         - 'config:field.storage.node.field_parent'
+        - 'config:field.storage.node.field_showroom_category'
   overview:
     display_plugin: page
     id: overview
@@ -1296,4 +1426,6 @@ display:
       tags:
         - 'config:field.storage.node.field_discussion_category'
         - 'config:field.storage.node.field_drupal_version'
+        - 'config:field.storage.node.field_news_category'
         - 'config:field.storage.node.field_parent'
+        - 'config:field.storage.node.field_showroom_category'
