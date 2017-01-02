@@ -1,0 +1,28 @@
+id: paragraph__text__showroom_modules__contrib
+label: Create "Text" paragraphs for contrib modules in showroom items
+migration_group: drupalcenter
+destination:
+  plugin: entity:paragraph
+source:
+  plugin: 'dc_node__showroom__terms'
+  vid: 12
+  idMap: fastsql
+  constants:
+    bundle: 'text'
+    format: 'wysiwyg_small'
+    langcode: 'de'
+    headline: 'verwendete Contrib-Module'
+process:
+  type: 'constants/bundle'
+  langcode: 'constants/langcode'
+  'field_content/format': 'constants/format'
+  'field_content/value':
+    -
+      plugin: get
+      source: term_names
+    -
+      plugin: skip_on_value
+      # Do not create a paragraph if the field value is empty.
+      method: row
+      value: ''
+  field_headline: 'constants/headline'

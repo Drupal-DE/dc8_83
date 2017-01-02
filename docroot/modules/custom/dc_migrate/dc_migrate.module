@@ -51,3 +51,19 @@ function dc_migrate_legacy_fix_phptag($value) {
   }
   return strtr($value, ['<?php' => '&lt;?php', '?>' => '?&gt;']);
 }
+
+/**
+ * Fix bad URIs.
+ *
+ * @param string $value
+ *   The website URL.
+ *
+ * @return string
+ *   Website URL with correct scheme.
+ */
+function dc_migrate_fix_showroom_url($value) {
+  if (strpos($value, 'http') === 0) {
+    return $value;
+  }
+  return 'http://' . $value;
+}

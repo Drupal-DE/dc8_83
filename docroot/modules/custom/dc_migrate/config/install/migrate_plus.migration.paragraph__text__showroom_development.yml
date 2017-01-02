@@ -1,0 +1,27 @@
+id: paragraph__text__showroom_development
+label: Create "Text" paragraphs for custom development in showroom items
+migration_group: drupalcenter
+destination:
+  plugin: entity:paragraph
+source:
+  plugin: 'dc_paragraph__showroom'
+  idMap: fastsql
+  constants:
+    bundle: 'text'
+    format: 'wysiwyg_small'
+    langcode: 'de'
+    headline: 'Erläuterungen zu Eigenentwicklungen'
+process:
+  type: 'constants/bundle'
+  langcode: 'constants/langcode'
+  'field_content/format': 'constants/format'
+  'field_content/value':
+    -
+      plugin: get
+      source: custom_development
+    -
+      plugin: skip_on_value
+      # Do not create a paragraph if the field value is empty.
+      method: row
+      value: ''
+  field_headline: 'constants/headline'

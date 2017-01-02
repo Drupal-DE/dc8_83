@@ -1,0 +1,33 @@
+uuid: 55d7c90b-2735-4060-b8be-2ebfb3763848
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: tn7o4dFDX9MLQhaBzwZXfwDLd00zEuN3hfjwG7140NE
+id: paragraph__text__showroom_description
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Create "Text" paragraphs for showroom description'
+source:
+  plugin: dc_paragraph__showroom
+  idMap: fastsql
+  constants:
+    bundle: text
+    format: wysiwyg_small
+    langcode: de
+process:
+  type: constants/bundle
+  langcode: constants/langcode
+  field_content/format: constants/format
+  field_content/value:
+    -
+      plugin: get
+      source: description
+    -
+      plugin: skip_on_value
+      method: row
+      value: ''
+destination:
+  plugin: 'entity:paragraph'
+migration_dependencies: null

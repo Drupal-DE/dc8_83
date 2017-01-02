@@ -1,0 +1,36 @@
+uuid: c197c04d-7901-4062-8f7f-7627ddb3ec9a
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: y7ypzRe7Rjd2SSc_EOFO64JJp_-w80ZbdTjMDr6hcVk
+id: paragraph__text__showroom_modules__contrib
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Create "Text" paragraphs for contrib modules in showroom items'
+source:
+  plugin: dc_node__showroom__terms
+  vid: 12
+  idMap: fastsql
+  constants:
+    bundle: text
+    format: wysiwyg_small
+    langcode: de
+    headline: 'verwendete Contrib-Module'
+process:
+  type: constants/bundle
+  langcode: constants/langcode
+  field_content/format: constants/format
+  field_content/value:
+    -
+      plugin: get
+      source: term_names
+    -
+      plugin: skip_on_value
+      method: row
+      value: ''
+  field_headline: constants/headline
+destination:
+  plugin: 'entity:paragraph'
+migration_dependencies: null
