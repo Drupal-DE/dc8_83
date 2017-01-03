@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_display.comment.content_comment.default
+    - field.field.node.showroom.field_comments
     - field.field.node.showroom.field_content
     - field.field.node.showroom.field_drupal_version
     - field.field.node.showroom.field_screenshot
@@ -10,6 +12,7 @@ dependencies:
     - field.field.node.showroom.field_showroom_url
     - node.type.showroom
   module:
+    - comment
     - entity_reference_revisions
     - link
     - user
@@ -18,38 +21,46 @@ targetEntityType: node
 bundle: showroom
 mode: default
 content:
-  field_content:
-    weight: 105
+  field_comments:
+    weight: 6
     label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+  field_content:
+    weight: 4
+    label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
   field_drupal_version:
-    weight: 103
+    weight: 2
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
   field_screenshot:
-    weight: 104
-    label: above
+    weight: 3
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
   field_showroom_category:
-    weight: 102
+    weight: 1
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
   field_showroom_url:
-    weight: 101
-    label: above
+    weight: 0
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -59,6 +70,8 @@ content:
     third_party_settings: {  }
     type: link
   links:
-    weight: 100
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   langcode: true
