@@ -1,0 +1,67 @@
+id: comment__handbook
+label: Base migration for handbook comments
+migration_group: drupalcenter
+destination:
+  plugin: entity:comment
+source:
+  plugin: dc_comment__base
+  bundle: 'book'
+  idMap: fastsql
+  constants:
+    bundle: 'book'
+    comment_type: 'content_comment'
+    entity_type: 'node'
+    field_name: 'field_comments'
+    format: 'wysiwyg_small'
+    language: 'de'
+process:
+  pid:
+    plugin: migration
+    migration: comment__handbook
+    source: pid
+  entity_id:
+    plugin: migration
+    migration: node__book
+    source: nid
+  entity_type: 'constants/entity_type'
+  field_name: 'constants/field_name'
+  comment_type: 'constants/comment_type'
+  subject: subject
+  uid:
+    -
+      plugin: static_map
+      source: uid
+      bypass: true
+      map:
+        0: 1
+    -
+      plugin: migration
+      migration: user_accounts
+      # Do not create a user stub if the author has not been migrated.
+      no_stub: true
+    -
+      plugin: default_value
+      # Set author to admin if user has not been migrated for any reasons.
+      default_value: 1
+  name: name
+  mail: mail
+  homepage: homepage
+  hostname: hostname
+  created: timestamp
+  changed: timestamp
+  status:
+    plugin: static_map
+    source: status
+    # In Drupal 6 a comment status of "0" means "published".
+    map:
+      0: 1
+      1: 0
+    default: 0
+  langcode: 'constants/language'
+  thread: thread
+  'comment_body/value': comment
+  'comment_body/format': 'constants/format'
+migration_dependencies:
+  optional:
+    - node__book
+    - user_accounts
