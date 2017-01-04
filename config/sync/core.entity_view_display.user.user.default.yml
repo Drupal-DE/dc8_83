@@ -3,10 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.field_company
     - field.field.user.user.field_image
+    - field.field.user.user.field_location
     - field.field.user.user.field_real_name
     - field.field.user.user.field_signature
+    - field.field.user.user.field_website
   module:
+    - link
     - text
     - user
 id: user.user.default
@@ -14,6 +18,13 @@ targetEntityType: user
 bundle: user
 mode: default
 content:
+  field_company:
+    weight: 11
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
   field_image:
     weight: 7
     label: above
@@ -21,6 +32,13 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  field_location:
+    weight: 10
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
   field_real_name:
     weight: 8
     label: above
@@ -34,6 +52,17 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+  field_website:
+    weight: 9
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
   member_for:
     weight: 5
 hidden:
