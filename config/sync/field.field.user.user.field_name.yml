@@ -1,16 +1,16 @@
-uuid: 47982e7d-3be0-4129-9442-6f49c4b72ea9
-langcode: en
+uuid: db0e1d98-6897-4c63-8349-f5819137c587
+langcode: de
 status: true
 dependencies:
   config:
-    - field.storage.user.field_real_name
+    - field.storage.user.field_name
   module:
     - user
-id: user.user.field_real_name
-field_name: field_real_name
+id: user.user.field_name
+field_name: field_name
 entity_type: user
 bundle: user
-label: 'Real name'
+label: Name
 description: ''
 required: false
 translatable: false

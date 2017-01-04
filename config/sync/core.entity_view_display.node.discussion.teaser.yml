@@ -24,6 +24,8 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
+  discussion_answers:
+    weight: 100
   links:
     weight: 100
 hidden:

@@ -6,7 +6,7 @@ dependencies:
     - field.field.user.user.field_company
     - field.field.user.user.field_image
     - field.field.user.user.field_location
-    - field.field.user.user.field_real_name
+    - field.field.user.user.field_name
     - field.field.user.user.field_signature
     - field.field.user.user.field_website
   module:
@@ -39,8 +39,8 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-  field_real_name:
-    weight: 8
+  field_name:
+    weight: 12
     label: above
     settings:
       link_to_entity: false
