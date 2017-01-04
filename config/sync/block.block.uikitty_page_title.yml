@@ -1,0 +1,20 @@
+uuid: 507a2749-9167-4418-bf82-32d0fe05bb4d
+langcode: en
+status: true
+dependencies:
+  theme:
+    - uikitty
+_core:
+  default_config_hash: 8yptDf6WrXxeyevUz4nP5vfr7BtxQqCBMninhV2IJ1g
+id: uikitty_page_title
+theme: uikitty
+region: content
+weight: -30
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }
