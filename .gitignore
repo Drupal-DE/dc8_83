@@ -4,6 +4,7 @@ vendor
 bin
 docroot/core
 docroot/modules/contrib
+docroot/themes/contrib
 
 # Ignore Drupal's file directory
 docroot/sites/default/files
