@@ -85,11 +85,14 @@ display:
           description: ''
           columns:
             node_bulk_form: node_bulk_form
+            field_parent: field_parent
             title: title
             uid: uid
             created: created
             type: type
             field_discussion_category: field_discussion_category
+            field_news_category: field_news_category
+            field_showroom_category: field_showroom_category
             field_drupal_version: field_drupal_version
             nothing_1: nothing_1
             status: status
@@ -99,6 +102,13 @@ display:
             operations: operations
           info:
             node_bulk_form:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_parent:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -134,6 +144,18 @@ display:
             field_discussion_category:
               sortable: false
               default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_news_category:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_showroom_category:
               align: ''
               separator: ''
               empty_column: false
@@ -184,7 +206,7 @@ display:
               empty_column: false
               responsive: ''
           default: created
-          empty_table: false
+          empty_table: true
       row:
         type: fields
       fields:
@@ -1368,7 +1390,18 @@ display:
       title: Content
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content: "Kein Inhalt verfügbar.\n"
+          plugin_id: text_custom
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
