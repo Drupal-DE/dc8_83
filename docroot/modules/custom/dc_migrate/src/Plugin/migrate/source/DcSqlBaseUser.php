@@ -69,7 +69,7 @@ class DcSqlBaseUser extends DcSqlBase {
       ->execute()
       ->fetchCol();
 
-    $row->setSourceProperty('data', unserialize($row->getSourceProperty('data')));
+    $row->setSourceProperty('roles', $roles);
     return TRUE;
   }
 
