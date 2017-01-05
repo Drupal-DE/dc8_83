@@ -105,3 +105,9 @@ function dc_discussion_node_view_alter(array &$build, EntityInterface $entity, E
   }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dc_discussion_form_taxonomy_term_discussion_category_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['field_color']['widget'][0]['value']['#field_prefix'] = '#';
+}

@@ -1,4 +1,4 @@
-uuid: b3dec5fa-5501-4399-9535-44af14469e68
+uuid: 8a1a6a47-b97f-45e5-85bc-e8c718c013d0
 langcode: en
 status: true
 dependencies:
@@ -13,26 +13,17 @@ bundle: discussion_category
 mode: default
 content:
   description:
-    type: text_textarea
-    weight: 1
-    settings:
-      placeholder: ''
-      rows: 5
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
     third_party_settings: {  }
   field_color:
-    weight: 2
+    weight: 1
+    label: above
     settings:
-      size: 6
-      placeholder: ''
+      link_to_entity: false
     third_party_settings: {  }
-    type: string_textfield
-  name:
-    type: string_textfield
-    weight: 0
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
+    type: string
 hidden:
   langcode: true
-  path: true
