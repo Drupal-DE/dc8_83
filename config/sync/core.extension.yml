@@ -10,6 +10,7 @@ module:
   config_translation: 0
   contextual: 0
   ctools: 0
+  ctools_views: 0
   dblog: 0
   dc_discussion: 0
   dc_migrate: 0

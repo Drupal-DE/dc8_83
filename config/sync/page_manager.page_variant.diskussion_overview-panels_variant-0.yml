@@ -1,0 +1,41 @@
+uuid: c0b0f584-ac51-48d9-baf4-31e4e50819c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.diskussion_overview
+    - views.view.discussion_categories
+  module:
+    - panels
+    - views
+id: diskussion_overview-panels_variant-0
+label: Overview
+variant: panels_variant
+variant_settings:
+  blocks:
+    a267e404-efa1-410f-aad3-d227f874ae29:
+      id: 'views_block:discussion_categories-overview'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: left
+      weight: 0
+      uuid: a267e404-efa1-410f-aad3-d227f874ae29
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 9d3a5c32-3f8f-4fc1-a6dc-5714a2227824
+  label: null
+  weight: 0
+  layout: twocol_stacked
+  layout_settings: {  }
+  page_title: ''
+  storage_type: page_manager
+  storage_id: diskussion_overview-panels_variant-0
+  builder: standard
+page: diskussion_overview
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }
