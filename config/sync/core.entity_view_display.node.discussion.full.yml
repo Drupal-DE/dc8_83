@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.discussion.field_discussion_category
     - field.field.node.discussion.field_drupal_version
     - field.field.node.discussion.field_parent
+    - field.field.node.discussion.field_topic
     - node.type.discussion
   module:
     - text
@@ -43,5 +44,6 @@ content:
     type: entity_reference_label
 hidden:
   field_parent: true
+  field_topic: true
   langcode: true
   links: true
