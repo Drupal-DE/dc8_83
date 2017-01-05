@@ -5,6 +5,7 @@
  * Contains dc_discussion.module.
  */
 
+use Drupal\Core\Database\Database;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -81,10 +82,15 @@ function dc_discussion_form_node_discussion_edit_form_alter(&$form, FormStateInt
  */
 function dc_discussion_entity_extra_field_info() {
   $extra = [];
-  // Add extra fields ot node type discussion.
+  // Add extra fields to node type discussion.
   // Add field discussion answers.
   $extra['node']['discussion']['display']['discussion_answers'] = [
     'label' => t('Discussion answers'),
+    'weight' => 100,
+  ];
+  // Add field answer count.
+  $extra['node']['discussion']['display']['answer_count'] = [
+    'label' => t('Answer count'),
     'weight' => 100,
   ];
   return $extra;
@@ -101,6 +107,13 @@ function dc_discussion_node_view_alter(array &$build, EntityInterface $entity, E
         $build['discussion_answers'] = views_embed_view('discussion_answers', 'answers', $entity->id());
         $build['discussion_answers']['#weight'] = $answers['weight'];
       }
+      if (($count = $display->getComponent('answer_count')) !== NULL) {
+        $answers = _dc_discussion_discussion_get_answers($entity->id());
+        $build['answer_count'] = [
+          '#markup' => count($answers),
+          '#weight' => $count['weight'],
+        ];
+      }
       break;
   }
 }
@@ -110,4 +123,29 @@ function dc_discussion_node_view_alter(array &$build, EntityInterface $entity, E
  */
 function dc_discussion_form_taxonomy_term_discussion_category_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $form['field_color']['widget'][0]['value']['#field_prefix'] = '#';
+}
+
+/**
+ * Helper function to get all answers (as flat list) for a single discussion.
+ *
+ * @todo: implement as cachable service?
+ *
+ * @param int $id
+ *   Entity ID.
+ *
+ * @return int[]
+ *   List of discussion answer IDs.
+ */
+function _dc_discussion_discussion_get_answers($id) {
+  $query = Database::getConnection()->select('node__field_parent', 'p');
+  $query->condition('field_parent_target_id', $id);
+  $query->fields('p', ['entity_id', 'revision_id']);
+
+  $ids = $query->execute()->fetchAllKeyed();
+
+  foreach (array_keys($ids) as $id) {
+    $ids = array_merge($ids, _dc_discussion_discussion_get_answers($id));
+  }
+
+  return $ids;
 }

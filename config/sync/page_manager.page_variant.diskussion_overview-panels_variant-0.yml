@@ -5,6 +5,7 @@ dependencies:
   config:
     - page_manager.page.diskussion_overview
     - views.view.discussion_categories
+    - views.view.discussions
   module:
     - panels
     - views
@@ -23,6 +24,17 @@ variant_settings:
       region: left
       weight: 0
       uuid: a267e404-efa1-410f-aad3-d227f874ae29
+      context_mapping: {  }
+    909d2225-df3f-4a63-abba-999b3edd9ebf:
+      id: 'views_block:discussions-latest'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: right
+      weight: 0
+      uuid: 909d2225-df3f-4a63-abba-999b3edd9ebf
       context_mapping: {  }
   id: panels_variant
   uuid: 9d3a5c32-3f8f-4fc1-a6dc-5714a2227824

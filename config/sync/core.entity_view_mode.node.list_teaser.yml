@@ -1,0 +1,10 @@
+uuid: 90d7c70c-266f-4940-adbc-0c7441d0c919
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.list_teaser
+label: 'List teaser'
+targetEntityType: node
+cache: true

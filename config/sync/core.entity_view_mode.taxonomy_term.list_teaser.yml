@@ -1,0 +1,10 @@
+uuid: 9be6a3ed-9b11-4620-9f05-cf33965ba093
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.list_teaser
+label: 'List teaser'
+targetEntityType: taxonomy_term
+cache: true
