@@ -32,5 +32,6 @@ hidden:
   discussion_answers: true
   field_drupal_version: true
   field_parent: true
+  field_topic: true
   langcode: true
   links: true
