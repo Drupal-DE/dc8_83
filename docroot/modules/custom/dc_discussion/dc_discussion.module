@@ -4,7 +4,6 @@
  * @file
  * Contains dc_discussion.module.
  */
-
 use Drupal\Core\Database\Database;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -12,7 +11,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
-use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -180,4 +178,41 @@ function dc_discussion_views__discussions_latest__post_build(ViewExecutable $vie
   $query->addExpression('COALESCE(MAX(field_topic_node_field_data.created), MAX(node_field_data.created))', 'dc_discussion_last_update');
   // Order by created date of topic or answer.
   $query->orderBy('dc_discussion_last_update', 'DESC');
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() on behalf of discussion nodes.
+ */
+function dc_discussion_node_presave(EntityInterface $entity) {
+  if ('discussion' !== $entity->bundle()) {
+    return;
+  }
+  /* @var $parent \Drupal\Core\Field\FieldItemListInterface */
+  if (($parent = $entity->get('field_parent')) && !$parent->isEmpty()) {
+    // Node is discussion answer: update field_topic.
+    if ($topic = _dc_discussion_discussion_get_topic($entity)) {
+      $entity->field_topic->setValue($topic->id());
+    }
+  }
+}
+
+/**
+ * Helper function to get the main topic of a discussion.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   Discussion node to get the topic for.
+ */
+function _dc_discussion_discussion_get_topic($entity) {
+  /* @var $parent \Drupal\Core\Field\FieldItemListInterface */
+  while ($entity && ($parent = $entity->get('field_parent')) !== NULL && !$parent->isEmpty()) {
+    try {
+      $item = $parent->get(0);
+      $value = $item->getValue();
+      $entity = Drupal::entityTypeManager()->getStorage('node')->load($value['target_id']);
+    }
+    catch (Exception $exc) {
+      $entity = FALSE;
+    }
+  }
+  return $entity;
 }
