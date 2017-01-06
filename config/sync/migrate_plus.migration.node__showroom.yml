@@ -1,0 +1,52 @@
+uuid: 80b133f0-bf10-4dac-ba28-766e04f49d68
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: bZY7ZoXJqM1UKdhfOcUi_I31XfU3NZY9gT22EZChagc
+id: node__showroom
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Base migration for showroom nodes'
+source:
+  plugin: dc_node__showroom
+  idMap: fastsql
+  constants:
+    bundle: showroom
+    format: wysiwyg_full
+    language: de
+process:
+  type: constants/bundle
+  title: title
+  status: status
+  langcode: constants/language
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  uid:
+    -
+      plugin: static_map
+      source: uid
+      bypass: true
+      map:
+        - 1
+    -
+      plugin: migration
+      migration: user_accounts
+      no_stub: true
+    -
+      plugin: default_value
+      default_value: 1
+  field_showroom_url/uri:
+    plugin: callback
+    source: url
+    callable: dc_migrate_fix_showroom_url
+destination:
+  plugin: 'entity:node'
+migration_dependencies:
+  required:
+    - term__news_category
+  optional:
+    - user_accounts

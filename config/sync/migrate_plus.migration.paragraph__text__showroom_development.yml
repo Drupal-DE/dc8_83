@@ -1,0 +1,35 @@
+uuid: cc1f990d-152d-49fe-a5ca-968d2ce68c90
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 1veS7GM9X4Vv-GDM6D6K-fzLO7Vw7GU592rgV02XoVc
+id: paragraph__text__showroom_development
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Create "Text" paragraphs for custom development in showroom items'
+source:
+  plugin: dc_paragraph__showroom
+  idMap: fastsql
+  constants:
+    bundle: text
+    format: wysiwyg_small
+    langcode: de
+    headline: 'Erläuterungen zu Eigenentwicklungen'
+process:
+  type: constants/bundle
+  langcode: constants/langcode
+  field_content/format: constants/format
+  field_content/value:
+    -
+      plugin: get
+      source: custom_development
+    -
+      plugin: skip_on_value
+      method: row
+      value: ''
+  field_headline: constants/headline
+destination:
+  plugin: 'entity:paragraph'
+migration_dependencies: null

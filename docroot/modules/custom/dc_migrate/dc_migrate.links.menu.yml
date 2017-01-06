@@ -1,0 +1,12 @@
+dc_migrate.admin_structure_migrate_dc:
+  title: 'DrupalCenter'
+  route_name: dc_migrate.settings
+  parent: migrate_tools.menu
+  description: 'Configure settings for DrupalCenter migrations.'
+  weight: 0
+dc_migrate.database_settings:
+  title: 'Database settings'
+  parent: dc_migrate.admin_structure_migrate_dc
+  description: 'Configure database connection settings for DrupalCenter migrations.'
+  route_name: dc_migrate.settings.database
+  weight: 0

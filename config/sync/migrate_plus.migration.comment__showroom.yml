@@ -1,0 +1,72 @@
+uuid: 643eeb8e-4e5e-405e-b45e-d1a887f70585
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: e0Vf3LymyqjUeqjkI7D6ZnUsJWW0PezIvMkGC2JYNKg
+id: comment__showroom
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Base migration for showroom comments'
+source:
+  plugin: dc_comment__base
+  bundle: showroom
+  idMap: fastsql
+  constants:
+    bundle: showroom
+    comment_type: content_comment
+    entity_type: node
+    field_name: field_comments
+    format: wysiwyg_small
+    language: de
+process:
+  pid:
+    plugin: migration
+    migration: comment__showroom
+    source: pid
+  entity_id:
+    plugin: migration
+    migration: node__showroom
+    source: nid
+  entity_type: constants/entity_type
+  field_name: constants/field_name
+  comment_type: constants/comment_type
+  subject: subject
+  uid:
+    -
+      plugin: static_map
+      source: uid
+      bypass: true
+      map:
+        - 1
+    -
+      plugin: migration
+      migration: user_accounts
+      no_stub: true
+    -
+      plugin: default_value
+      default_value: 1
+  name: name
+  mail: mail
+  homepage: homepage
+  hostname: hostname
+  created: timestamp
+  changed: timestamp
+  status:
+    plugin: static_map
+    source: status
+    map:
+      - 1
+      - 0
+    default: 0
+  langcode: constants/language
+  thread: thread
+  comment_body/value: comment
+  comment_body/format: constants/format
+destination:
+  plugin: 'entity:comment'
+migration_dependencies:
+  optional:
+    - node__showroom
+    - user_accounts

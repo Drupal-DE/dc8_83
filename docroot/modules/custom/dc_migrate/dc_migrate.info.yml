@@ -1,0 +1,10 @@
+name: DrupalCenter migrations
+type: module
+description: 'Migrations for DrupalCenter'
+core: 8.x
+package: 'DrupalCenter: migrate'
+dependencies:
+  - migrate
+  - migrate_plus:migrate_plus
+  - migrate_tools:migrate_tools
+  - migrate_source_yaml

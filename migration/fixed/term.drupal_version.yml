@@ -1,0 +1,24 @@
+-
+  _identifier: 'term--version-46'
+  name: '4.6 (oder älter)'
+  weight: 3
+-
+  _identifier: 'term--version-47'
+  name: '4.7.x'
+  weight: 4
+-
+  _identifier: 'term--version-5'
+  name: '5.x'
+  weight: 5
+-
+  _identifier: 'term--version-6'
+  name: '6.x'
+  weight: 6
+-
+  _identifier: 'term--version-7'
+  name: '7.x'
+  weight: 7
+-
+  _identifier: 'term--version-8'
+  name: '8.x'
+  weight: 8

@@ -12,6 +12,7 @@ module:
   ctools: 0
   dblog: 0
   dc_discussion: 0
+  dc_migrate: 0
   dc_ui: 0
   dynamic_page_cache: 0
   editor: 0
@@ -32,6 +33,10 @@ module:
   menu_link_content: 0
   menu_ui: 0
   metatag: 0
+  migrate: 0
+  migrate_plus: 0
+  migrate_source_yaml: 0
+  migrate_tools: 0
   node: 0
   options: 0
   page_cache: 0

@@ -1,0 +1,49 @@
+id: node__discussion_answers
+label: Migration for discussion answers
+migration_group: drupalcenter
+destination:
+  plugin: entity:node
+source:
+  plugin: dc_comment__base
+  idMap: fastsql
+  bundle: forum
+  constants:
+    bundle: 'discussion'
+    format: 'wysiwyg_small'
+    language: 'de'
+process:
+  type: 'constants/bundle'
+  title: subject
+  status:
+    plugin: static_map
+    source: status
+    # In Drupal 6 a comment status of "0" means "published".
+    map:
+      0: 1
+      1: 0
+    default: 0
+  langcode: 'constants/language'
+  created: timestamp
+  changed: timestamp
+  uid:
+    -
+      plugin: static_map
+      source: uid
+      bypass: true
+      map:
+        0: 1
+    -
+      plugin: migration
+      migration: user_accounts
+      # Do not create a user stub if the author has not been migrated.
+      no_stub: true
+    -
+      plugin: default_value
+      # Set author to admin if user has not been migrated for any reasons.
+      default_value: 1
+  'body/format': 'constants/format'
+  'body/value': comment
+migration_dependencies:
+  optional:
+    - user_accounts
+    - node__discussion

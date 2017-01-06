@@ -1,0 +1,38 @@
+id: book__book
+label: Books
+migration_group: drupalcenter
+destination:
+  plugin: book
+source:
+  plugin: dc_book
+process:
+  nid:
+    -
+      plugin: migration
+      migration: node__book
+      source: nid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  'book/bid':
+    -
+      plugin: migration
+      migration: node__book
+      source: bid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  'book/weight': weight
+  'book/pid':
+    -
+      plugin: skip_on_empty
+      method: process
+      source: plid
+    -
+      plugin: migration
+      migration: book__book
+migration_dependencies:
+  optional:
+    - node__book

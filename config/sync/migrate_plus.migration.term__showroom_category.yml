@@ -1,0 +1,28 @@
+uuid: dde87780-7dce-41a8-af79-bee5ca3b05fa
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: sOz_hHD4uia8Eq2WHYAZg2xNysrWz1FFdIU3taIuLsY
+id: term__showroom_category
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Term: Showroom category'
+source:
+  plugin: dc_term__base
+  vid: 10
+  constants:
+    bundle: showroom_category
+    format: wysiwyg_small
+    langcode: de
+process:
+  vid: constants/bundle
+  langcode: constants/langcode
+  name: name
+  description/value: description
+  description/format: constants/format
+  weight: weight
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies: null

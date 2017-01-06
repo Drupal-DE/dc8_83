@@ -1,0 +1,27 @@
+id: term__discussion_category
+label: 'Term: Discussion category'
+migration_group: drupalcenter
+destination:
+  plugin: entity:taxonomy_term
+source:
+  plugin: dc_term__base
+  # Forum == vid:1
+  vid: 1
+  constants:
+    bundle: 'discussion_category'
+    format: 'wysiwyg_small'
+    langcode: 'de'
+process:
+  vid: 'constants/bundle'
+  langcode: 'constants/langcode'
+  name: name
+  parent:
+    plugin: migration
+    migration: term__discussion_category
+    source: parent
+  'description/value': description
+  'description/format': 'constants/format'
+  weight: weight
+migration_dependencies:
+  optional:
+    - term__discussion_category

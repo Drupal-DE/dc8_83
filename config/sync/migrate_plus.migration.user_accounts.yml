@@ -1,0 +1,70 @@
+uuid: 6ac251fc-5221-4699-bfce-ae09a4b2ef7a
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 13xRZSwZqXKTYMJPcBO9rV2Xg-a_S5a53e4-cRw2jRs
+id: user_accounts
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'User accounts'
+source:
+  plugin: dc_user__base
+  track_changes: true
+  constants:
+    format: wysiwyg_small
+    langcode: de
+process:
+  uid:
+    plugin: static_map
+    source: uid
+    bypass: true
+    map:
+      1: 2
+      2: 3
+      3: 4
+      4: 5
+      5: 6
+      6: 7
+      8: 9
+      9: 10
+  name: name
+  pass: pass
+  mail: mail
+  created: created
+  access: access
+  login: login
+  status: status
+  timezone:
+    plugin: static_map
+    source: timezone
+    bypass: true
+    map:
+      7200: Europe/Berlin
+    default: Europe/Berlin
+  langcode: constants/langcode
+  preferred_langcode: constants/langcode
+  preferred_admin_langcode: constants/langcode
+  init: init
+  roles:
+    -
+      plugin: static_map
+      source: roles
+      map:
+        1: anonymous
+        2: authenticated
+        3: forum_member
+        4: administrator
+        9: forum_moderator
+        10: book_editor
+        14: administrator
+        15: forum_moderator
+      default_value: authenticated
+    -
+      plugin: array_unique
+  field_signature/format: constants/format
+  field_signature/value: signature
+destination:
+  plugin: 'entity:user'
+migration_dependencies: null

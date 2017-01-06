@@ -1,0 +1,14 @@
+dc_migrate.settings:
+  path: '/admin/structure/migrate/drupalcenter'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'DKR'
+  requirements:
+    _permission: 'administer migrations'
+dc_migrate.settings.database:
+  path: '/admin/structure/migrate/drupalcenter/database'
+  defaults:
+    _form: '\Drupal\dc_migrate\Form\DcMigrateDatabaseSettingsForm'
+    _title: 'Database settings'
+  requirements:
+    _permission: 'administer migrations'

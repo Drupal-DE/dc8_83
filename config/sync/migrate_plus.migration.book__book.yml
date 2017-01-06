@@ -1,0 +1,46 @@
+uuid: 9457119a-9eb9-4474-ba47-e7256e381fbb
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 0Rn4fPuIYliclLvuE5UbUJv1NB6PKHLE6LkBydApvP4
+id: book__book
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: Books
+source:
+  plugin: dc_book
+process:
+  nid:
+    -
+      plugin: migration
+      migration: node__book
+      source: nid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  book/bid:
+    -
+      plugin: migration
+      migration: node__book
+      source: bid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  book/weight: weight
+  book/pid:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: plid
+    -
+      plugin: migration
+      migration: book__book
+destination:
+  plugin: book
+migration_dependencies:
+  optional:
+    - node__book

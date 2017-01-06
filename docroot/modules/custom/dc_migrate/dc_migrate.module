@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * @file
+ * Main functions for "DrupalCenter migrations".
+ */
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\dc_migrate\StreamWrapper\DcMigrationStream;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dc_migrate_form_system_file_system_settings_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add configuration for custom stream wrapper.
+  $form['file_dc_migration_path'] = [
+    '#type' => 'item',
+    '#title' => t('DrupalCenter migration file system path'),
+    '#markup' => (DcMigrationStream::basePath() ? DcMigrationStream::basePath() : t('Not set')),
+    '#description' => t('An existing local file system path for storing migration files. It must not accessible over the web. This must be changed in settings.php.'),
+  ];
+}
+
+/**
+ * Implements hook_migration_plugins_alter().
+ */
+function dc_migrate_migration_plugins_alter(&$definitions) {
+  foreach ($definitions as $id => $configuration) {
+    if (!empty($configuration['source']['idMap'])) {
+      // Override id map.
+      $definitions[$id]['idMap'] = [
+        'plugin' => $configuration['source']['idMap'],
+      ];
+    }
+  }
+}
+
+/**
+ * Migration process callback to fix php-tags in legacy content.
+ *
+ * @param string $value
+ *   The legacy content.
+ *
+ * @return string
+ *   Content with strings like '<?php ... ?>' transformed to
+ *   '&lt;?php ... ?&gt;'.
+ */
+function dc_migrate_legacy_fix_phptag($value) {
+  if (strpos($value, '<?php') === FALSE) {
+    // No need to do anything here.
+    return $value;
+  }
+  return strtr($value, ['<?php' => '&lt;?php', '?>' => '?&gt;']);
+}
+
+/**
+ * Fix bad URIs.
+ *
+ * @param string $value
+ *   The website URL.
+ *
+ * @return string
+ *   Website URL with correct scheme.
+ */
+function dc_migrate_fix_showroom_url($value) {
+  if (strpos($value, 'http') === 0) {
+    return $value;
+  }
+  return 'http://' . $value;
+}

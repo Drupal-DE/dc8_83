@@ -1,0 +1,69 @@
+id: node__book
+label: Base migration for book nodes
+migration_group: drupalcenter
+destination:
+  plugin: entity:node
+source:
+  plugin: dc_node__book
+  constants:
+    bundle: 'book'
+    format: 'wysiwyg_full'
+    language: 'de'
+process:
+  type: 'constants/bundle'
+  title: title
+  status: status
+  langcode: 'constants/language'
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  uid:
+    -
+      plugin: static_map
+      source: uid
+      bypass: true
+      map:
+        0: 1
+    -
+      plugin: migration
+      migration: user_accounts
+      # Do not create a user stub if the author has not been migrated.
+      no_stub: true
+    -
+      plugin: default_value
+      # Set author to admin if user has not been migrated for any reasons.
+      default_value: 1
+  'field_legacy_content/value':
+    plugin: callback
+    source: body
+    callable: dc_migrate_legacy_fix_phptag
+  'field_legacy_content/format': 'constants/format'
+  'field_drupal_version/target_id':
+    -
+      plugin: skip_on_empty
+      method: process
+      source: drupal_version
+    -
+      plugin: static_map
+      map:
+        25: 'term--version-46'
+        26: 'term--version-47'
+        31: 'term--version-5'
+        87: 'term--version-6'
+        245: 'term--version-47'
+        389: 'term--version-5'
+        1122: 'term--version-7'
+        1517: 'term--version-6'
+        1518: 'term--version-7'
+        1519: 'term--version-8'
+        1520: 'term--version-8'
+    -
+      plugin: migration
+      migration: term__drupal_version
+      no_stub: true
+migration_dependencies:
+  required:
+    - term__drupal_version
+  optional:
+    - user_accounts

@@ -1,0 +1,14 @@
+uuid: 7838565c-0850-43df-b448-6e1a2f54c065
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.book_editor
+  module:
+    - user
+id: user_remove_role_action.book_editor
+label: 'Remove the Handbuch-Redakteur role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: book_editor

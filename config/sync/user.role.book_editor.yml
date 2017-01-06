@@ -1,0 +1,26 @@
+uuid: e605e2f8-8a7e-4231-9830-98fd332afe1a
+langcode: en
+status: true
+dependencies: {  }
+id: book_editor
+label: Handbuch-Redakteur
+weight: 5
+is_admin: null
+permissions:
+  - 'add content to books'
+  - 'administer book outlines'
+  - 'create new books'
+  - 'use text format wysiwyg_full'
+  - 'use text format wysiwyg_small'
+  - 'create media'
+  - 'delete media'
+  - 'update media'
+  - 'view media'
+  - 'create book content'
+  - 'delete any book content'
+  - 'delete own book content'
+  - 'delete book revisions'
+  - 'edit any book content'
+  - 'edit own book content'
+  - 'revert book revisions'
+  - 'view book revisions'

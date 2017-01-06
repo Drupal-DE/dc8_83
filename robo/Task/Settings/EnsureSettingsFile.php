@@ -189,7 +189,7 @@ class EnsureSettingsFile extends BaseTask {
         '$settings[\'file_private_path\'] = \'../private\';',
         '',
         '// Set migration folder.',
-        '$settings[\'file_dkrmigration_path\'] = \'../migration\';',
+        '$settings[\'file_dc_migration_path\'] = \'../migration\';',
         '',
         '/**',
         ' * Override Search API settings.',
