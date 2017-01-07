@@ -6,13 +6,19 @@ core: 8.x
 base theme: uikitty
 libraries:
   - uikitty/global
+  - dc/default
+
+stylesheets-remove:
+  - '@classy/css/components/tabs.css'
+  - core/assets/vendor/normalize-css/normalize.css
 
 regions:
   navigation: 'Navigation'
   header: 'Branding'
+  mainmenu: 'Mainmenu'
   highlighted: 'Highlighted'
   help: 'Help'
   content: 'Content'
-  sidebar_first: 'Primary sidebar'
-  sidebar_second: 'Secondary sidebar'
+  sidebar_first: 'Primary'
+  sidebar_second: 'Secondary'
   footer: 'Footer'
