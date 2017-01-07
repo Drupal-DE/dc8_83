@@ -1,0 +1,23 @@
+.header__full_width_light {
+  background: $color--light-blue;
+  .uk-navbar {
+    background: $color--light-blue;
+  }
+  .uk-search-field {
+    background: $color--white;
+  }
+}
+.header__full_width_dark {
+  background: $color--dark-blue;
+  .uk-navbar {
+    background: $color--dark-blue;
+  }
+  .uk-search-field {
+    background: $color--white;
+  }
+}
+
+.footer__full_width_dark {
+  background: $color--dark-blue;
+  min-height: 100px;
+}
