@@ -1,0 +1,21 @@
+{% set classes = [
+  'uk-panel',
+  'uk-panel-header',
+  'uk-margin-top'
+] %}
+{% set title_classes = [
+  'uk-panel-title',
+  label_display == 'visually_hidden' ? 'visually-hidden',
+] %}
+<section{{ attributes.addClass(classes) }}>
+  {% if comments and not label_hidden %}
+    {{ title_prefix }}
+    <h2{{ title_attributes.addClass(title_classes) }}>{{ label }}</h2>
+    {{ title_suffix }}
+  {% endif %}
+  {{ comments }}
+  {% if comment_form %}
+    <h2 {{ title_attributes.addClass(title_classes) }}>{{ 'Add new comment'|t }}</h2>
+    {{ comment_form }}
+  {% endif %}
+</section>
