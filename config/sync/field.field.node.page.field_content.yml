@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_content
     - node.type.page
+    - paragraphs.paragraphs_type.file_list
     - paragraphs.paragraphs_type.gallery
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.link_list
@@ -31,6 +32,7 @@ settings:
       link_list: link_list
       image: image
       gallery: gallery
+      file_list: file_list
     target_bundles_drag_drop:
       text:
         enabled: true
@@ -47,4 +49,7 @@ settings:
       gallery:
         enabled: true
         weight: -7
+      file_list:
+        enabled: true
+        weight: 7
 field_type: entity_reference_revisions
