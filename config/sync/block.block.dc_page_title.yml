@@ -1,4 +1,4 @@
-uuid: b2c93d3f-ada9-4e7e-b068-2b89dae798b0
+uuid: 2b46b05a-47c1-4df8-8a64-9aca488acea4
 langcode: en
 status: true
 dependencies:
@@ -9,7 +9,7 @@ _core:
 id: dc_page_title
 theme: dc
 region: content
-weight: -4
+weight: -1
 provider: null
 plugin: page_title_block
 settings:
