@@ -6,7 +6,7 @@
       {{ page.header }}
     </div>
   </div>
-  <div class="header__full_width_light">
+  <div class="header__full_width_navy">
     <div class="uk-container uk-container-center">
       <nav class="uk-navbar uk-navbar-attached uk-contrast">
         <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
@@ -14,7 +14,7 @@
         <div class="uk-navbar-flip">
           <div class="uk-navbar-content uk-contrast">
             <form class="uk-search" data-uk-search>
-              <input class="uk-search-field" type="search" placeholder="Search" />
+              <input class="uk-search-field" type="search" placeholder="Search"/>
             </form>
           </div>
         </div>
@@ -34,21 +34,6 @@
 <div class="uk-container uk-container-center">
   {{ page.content }}
 </div>
-
-{% if page.sidebar_first %}
-  <div id="sidebar-first" class="sidebar uk-nav-side">
-    <aside class="section" role="complementary">
-      {{ page.sidebar_first }}
-    </aside>
-  </div>
-{% endif %}
-{% if page.sidebar_first %}
-  <div id="sidebar-second" class="sidebar uk-nav-side">
-    <aside class="section" role="complementary">
-      {{ page.sidebar_second }}
-    </aside>
-  </div>
-{% endif %}
 
 <div id="footer" class="footer__full_width_dark uk-contrast">
   <div class="uk-container uk-container-center uk-margin-large-top">

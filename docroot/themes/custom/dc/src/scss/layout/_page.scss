@@ -7,10 +7,31 @@
     background: $color--white;
   }
 }
+
 .header__full_width_dark {
   background: $color--dark-blue;
   .uk-navbar {
     background: $color--dark-blue;
+  }
+  .uk-search-field {
+    background: $color--white;
+  }
+}
+
+.header__full_width_navy {
+  background: $color--navy-blue;
+  .uk-navbar {
+    background: $color--navy-blue;
+  }
+  .uk-search-field {
+    background: $color--white;
+  }
+}
+
+.header__full_width_light_navy {
+  background: $color--light-navy-blue;
+  .uk-navbar {
+    background: $color--light-navy-blue;
   }
   .uk-search-field {
     background: $color--white;

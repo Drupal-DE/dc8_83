@@ -6,6 +6,7 @@ core: 8.x
 base theme: uikitty
 libraries:
   - uikitty/global
+  - dc/fonts
   - dc/default
 
 stylesheets-remove:
@@ -19,6 +20,4 @@ regions:
   highlighted: 'Highlighted'
   help: 'Help'
   content: 'Content'
-  sidebar_first: 'Primary'
-  sidebar_second: 'Secondary'
   footer: 'Footer'
