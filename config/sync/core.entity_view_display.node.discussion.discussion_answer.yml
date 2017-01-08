@@ -26,6 +26,10 @@ content:
     settings: {  }
     third_party_settings: {  }
   discussion_answers:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  links:
     weight: 2
     settings: {  }
     third_party_settings: {  }
@@ -43,4 +47,3 @@ hidden:
   field_parent: true
   field_topic: true
   langcode: true
-  links: true

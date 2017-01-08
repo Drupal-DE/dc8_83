@@ -31,14 +31,14 @@ content:
     third_party_settings: {  }
   field_discussion_category:
     weight: 2
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
   field_drupal_version:
     weight: 1
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
@@ -50,9 +50,11 @@ content:
     settings:
       view_mode: table_row
       link: false
+  links:
+    weight: 3
+    settings: {  }
     third_party_settings: {  }
 hidden:
   field_parent: true
   field_topic: true
   langcode: true
-  links: true
