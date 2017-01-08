@@ -1,0 +1,16 @@
+{% set classes = [
+  'uk-panel',
+  'uk-panel-box',
+  'uk-panel-box-secondary',
+  'uk-margin-top',
+] %}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h3 class="uk-panel-title">{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>
