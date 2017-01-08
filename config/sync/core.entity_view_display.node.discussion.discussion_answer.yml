@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.discussion.body
     - field.field.node.discussion.field_discussion_category
     - field.field.node.discussion.field_drupal_version
+    - field.field.node.discussion.field_files
     - field.field.node.discussion.field_parent
     - field.field.node.discussion.field_topic
     - node.type.discussion
@@ -25,7 +26,13 @@ content:
     settings: {  }
     third_party_settings: {  }
   discussion_answers:
-    weight: 100
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+  field_files:
+    type: entity_reference_entity_id
+    weight: 1
+    label: above
     settings: {  }
     third_party_settings: {  }
 hidden:

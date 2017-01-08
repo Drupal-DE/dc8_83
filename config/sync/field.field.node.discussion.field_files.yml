@@ -1,0 +1,28 @@
+uuid: 557e71e5-574e-409d-8490-d424ae4a18aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_files
+    - media_entity.bundle.file
+    - node.type.discussion
+id: node.discussion.field_files
+field_name: field_files
+entity_type: node
+bundle: discussion
+label: Files
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      file: file
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
