@@ -1,0 +1,9 @@
+{# Clean template for outputting discussion answers #}
+{% if rows %}
+  {{ rows }}
+{% elseif empty %}
+  {{ empty }}
+{% endif %}
+{% if pager %}
+  {{ pager }}
+{% endif %}
