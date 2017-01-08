@@ -1,0 +1,10 @@
+uuid: 690abcfc-cf6f-42a0-8add-7078c05e19d4
+langcode: en
+status: true
+dependencies:
+  module:
+    - media_entity
+id: media.table_row
+label: 'Table row'
+targetEntityType: media
+cache: true
