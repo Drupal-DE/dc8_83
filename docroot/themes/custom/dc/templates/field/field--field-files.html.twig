@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Theme override for field_files.
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+
+{% if not label_hidden %}
+  <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+{% endif %}
+<table{{ attributes.addClass(classes, 'uk-table') }}>
+  <thead>
+    <tr>
+      <!-- @todo: build header in preprocess -->
+      <th>Name</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  </tbody>
+</table>
