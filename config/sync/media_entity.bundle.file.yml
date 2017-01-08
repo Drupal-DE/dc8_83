@@ -1,0 +1,12 @@
+uuid: 30903fde-00dc-4331-9529-4c49a2be7d2c
+langcode: en
+status: true
+dependencies: {  }
+id: file
+label: File
+description: ''
+type: generic
+queue_thumbnail_downloads: false
+new_revision: false
+type_configuration: {  }
+field_map: {  }
