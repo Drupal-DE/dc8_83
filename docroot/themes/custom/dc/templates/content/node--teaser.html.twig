@@ -5,8 +5,7 @@
   node.isSticky() ? 'node--sticky',
   not node.isPublished() ? 'node--unpublished',
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  'uk-article',
-  'uk-margin-top'
+  'uk-article'
 ] %}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
@@ -16,7 +15,7 @@
   </h2>
   {{ title_suffix }}
   {% if display_submitted %}
-    <header class="uk-article-meta">
+    <header class="uk-article-meta uk-margin-small-bottom">
       {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
       {{ metadata }}
     </header>
