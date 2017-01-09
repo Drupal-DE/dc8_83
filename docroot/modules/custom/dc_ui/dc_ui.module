@@ -110,9 +110,17 @@ function dc_ui_views_pre_build(ViewExecutable $view) {
 function dc_ui_theme_registry_alter(&$theme_registry) {
   // Get all block preprocess functions for block and unset uikitty preprocess
   // cause it's causing errors while working with panels.
-  foreach ($theme_registry['block']['preprocess functions'] as $key => $value) {
-    if ($value == 'uikitty_preprocess_block') {
-      unset($theme_registry['block']['preprocess functions'][$key]);
+  $remove_uikitty_preprocess = [
+    'block',
+    'block__views_block__news_block_news_front',
+  ];
+  foreach ($remove_uikitty_preprocess as $block) {
+    if (isset($theme_registry[$block]['preprocess functions'])) {
+      foreach ($theme_registry[$block]['preprocess functions'] as $key => $value) {
+        if ($value == 'uikitty_preprocess_block') {
+          unset($theme_registry[$block]['preprocess functions'][$key]);
+        }
+      }
     }
   }
 }
