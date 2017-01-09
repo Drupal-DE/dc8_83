@@ -1,0 +1,53 @@
+uuid: 1b4c3d29-74b7-41f2-b0f8-93a4d78092ff
+langcode: de
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.comment.content_comment.default
+    - core.entity_view_mode.node.full
+    - field.field.node.book.field_comments
+    - field.field.node.book.field_content
+    - field.field.node.book.field_drupal_version
+    - field.field.node.book.field_legacy_content
+    - node.type.book
+  module:
+    - comment
+    - entity_reference_revisions
+    - text
+    - user
+_core:
+  default_config_hash: 7UKHHzhlAE0hzKaKG_KHqUXXOp85mAQ1nZTOep8quTc
+id: node.book.full
+targetEntityType: node
+bundle: book
+mode: full
+content:
+  field_comments:
+    weight: 3
+    label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+  field_content:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+  field_legacy_content:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  links:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_drupal_version: true
+  langcode: true

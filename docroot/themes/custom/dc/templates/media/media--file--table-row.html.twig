@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Theme implementation to present a media entity as a table row.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if content %}
+  <tr{{ attributes }}>
+    <td class="file-thumbnail file-name">{{ content.thumbnail }}{{ content.name }}</td>
+    <td class="file-file">{{ content.field_file }}</td>
+  </tr>
+{% endif %}

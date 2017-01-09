@@ -1,0 +1,12 @@
+uuid: 22a3dcc9-4883-4e3d-986e-cf843c14bcf7
+langcode: de
+status: true
+dependencies: {  }
+id: frontpage
+label: Frontpage
+description: ''
+use_admin_theme: false
+path: /front
+access_logic: and
+access_conditions: {  }
+parameters: {  }

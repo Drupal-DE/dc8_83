@@ -1,0 +1,8 @@
+<hr class="uk-article-divider uk-margin-small-top uk-margin-small-bottom"/>
+{% if links %}
+  <div class="uk-clearfix">
+    {% include "@dc/components/links.html.twig" with {
+      attributes: attributes.addClass('uk-float-right', 'uk-text-small')
+    } %}
+  </div>
+{% endif %}

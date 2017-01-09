@@ -3,16 +3,12 @@ langcode: de
 status: true
 dependencies:
   config:
-    - core.entity_view_display.comment.content_comment.default
     - field.field.node.book.field_comments
     - field.field.node.book.field_content
     - field.field.node.book.field_drupal_version
     - field.field.node.book.field_legacy_content
     - node.type.book
   module:
-    - comment
-    - entity_reference_revisions
-    - text
     - user
 _core:
   default_config_hash: 7UKHHzhlAE0hzKaKG_KHqUXXOp85mAQ1nZTOep8quTc
@@ -20,39 +16,11 @@ id: node.book.default
 targetEntityType: node
 bundle: book
 mode: default
-content:
-  field_comments:
-    weight: 4
-    label: above
-    settings:
-      view_mode: default
-      pager_id: 0
-    third_party_settings: {  }
-    type: comment_default
-  field_content:
-    weight: 1
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
-  field_drupal_version:
-    weight: 0
-    label: inline
-    settings:
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_legacy_content:
-    weight: 2
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-  links:
-    weight: 3
-    settings: {  }
-    third_party_settings: {  }
+content: {  }
 hidden:
+  field_comments: true
+  field_content: true
+  field_drupal_version: true
+  field_legacy_content: true
   langcode: true
+  links: true

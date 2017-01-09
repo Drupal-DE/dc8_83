@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+// Global variables.
+@import "variables/colors";
+@import "variables/typography";
+
+// Base styles.
+@import "base/typography";
+
+// Overwrite base theme.
+@import "layout/page";

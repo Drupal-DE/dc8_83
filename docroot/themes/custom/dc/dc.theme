@@ -1,0 +1,11 @@
+<?php
+/**
+ * @file
+ * The primary PHP file for the DrupalCenter v8 sub theme of the UIkitty base theme.
+ */
+
+function dc_preprocess_page(&$vars) {
+  $site_config = \Drupal::config('system.site');
+  $vars['site_name'] = $site_config->get('name');
+  $vars['site_slogan'] = $site_config->get('slogan');
+}

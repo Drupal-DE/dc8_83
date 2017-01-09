@@ -1,0 +1,13 @@
+default:
+  version: 1.x
+  css:
+    theme:
+      dist/css/style.css: {}
+
+fonts:
+  license:
+    name: Ubuntu Font Licence
+    url: http://font.ubuntu.com/licence/
+  css:
+    theme:
+      '//fonts.googleapis.com/css?family=Ubuntu' : { type: external }

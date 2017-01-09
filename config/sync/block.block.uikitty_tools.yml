@@ -1,4 +1,4 @@
-uuid: 2dd55713-f778-4790-9013-8adece67d2b5
+uuid: ac27c027-b6dd-4523-8ee0-ff9dde03293b
 langcode: en
 status: true
 dependencies:
@@ -7,11 +7,11 @@ dependencies:
   module:
     - system
   theme:
-    - bartik
+    - uikitty
 _core:
   default_config_hash: xCOijLdB1-UgXxQ9a0D1_pd8vxNEhfMnxXZc8jYhHjs
-id: bartik_tools
-theme: bartik
+id: uikitty_tools
+theme: uikitty
 region: sidebar_first
 weight: 0
 provider: null

@@ -1,0 +1,26 @@
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  'uk-comment'
+] %}
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+  <header class="uk-comment-header">
+    {# Replace with read user image #}
+    <img class="uk-comment-avatar" src="http://lorempixel.com/50/50/people/" alt=""/>
+    <h3 class="uk-comment-title">{{ label }}</h3>
+    <div class="uk-comment-meta">
+      {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+      {{ metadata }}
+    </div>
+  </header>
+  <div class="uk-comment-body uk-margin-bottom">
+    {{ content.body }}
+    {{ content.field_files }}
+  </div>
+</article>
+

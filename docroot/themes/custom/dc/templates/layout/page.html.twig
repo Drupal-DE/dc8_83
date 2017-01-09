@@ -1,0 +1,42 @@
+{{- attach_library('uikitty/sticky') -}}
+{{- attach_library('uikitty/search') -}}
+<div id="header" data-uk-sticky>
+  <div class="header__full_width_dark">
+    <div class="uk-container uk-container-center uk-contrast">
+      {{ page.header }}
+    </div>
+  </div>
+  <div class="header__full_width_navy">
+    <div class="uk-container uk-container-center">
+      <nav class="uk-navbar uk-navbar-attached uk-contrast">
+        <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
+        {{ page.mainmenu }}
+        <div class="uk-navbar-flip">
+          <div class="uk-navbar-content uk-contrast">
+            <form class="uk-search" data-uk-search>
+              <input class="uk-search-field" type="search" placeholder="Search"/>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+{% if page.highlighted or page.help %}
+  <div class="uk-container uk-container-center">
+    <aside class="layout-container section clearfix" role="complementary">
+      {{ page.highlighted }}
+      {{ page.help }}
+    </aside>
+  </div>
+{% endif %}
+
+<div class="uk-container uk-container-center">
+  {{ page.content }}
+</div>
+
+<div id="footer" class="footer__full_width_dark uk-contrast">
+  <div class="uk-container uk-container-center uk-margin-large-top">
+    {{ page.footer }}
+  </div>
+</div>

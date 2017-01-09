@@ -1,15 +1,15 @@
-uuid: ad31209d-180c-44c0-b3ae-eba5b147aaff
+uuid: 03f4f7dd-d97d-4d2f-a8da-ba86756ea009
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - bartik
+    - dc
 _core:
   default_config_hash: 5MNdk3fpMKx_xxBTcz2T11DL4XEU1H5SgHl8BsYdFsA
-id: bartik_messages
-theme: bartik
+id: dc_messages
+theme: dc
 region: highlighted
 weight: 0
 provider: null

@@ -1,0 +1,23 @@
+name: DrupalCenter v8
+type: theme
+description: DrupalCenter theme based on uikitty.
+package: DrupalCenter
+core: 8.x
+base theme: uikitty
+libraries:
+  - uikitty/global
+  - dc/fonts
+  - dc/default
+
+stylesheets-remove:
+  - '@classy/css/components/tabs.css'
+  - core/assets/vendor/normalize-css/normalize.css
+
+regions:
+  navigation: 'Navigation'
+  header: 'Branding'
+  mainmenu: 'Mainmenu'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  footer: 'Footer'

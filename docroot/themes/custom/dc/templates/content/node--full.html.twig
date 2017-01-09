@@ -1,0 +1,28 @@
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  'uk-article'
+] %}
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+  <header>
+    {{ title_prefix }}
+    <h2{{ title_attributes.addClass('uk-article-title') }}>{{ label }}</h2>
+    {{ title_suffix }}
+    {% if display_submitted %}
+      <p class="uk-article-meta">{% trans %} Submitted by {{ author_name }} on {{ date }}{% endtrans %}</p>
+    {% endif %}
+  </header>
+  {# @toDo check for filled legacy content / paragraph content #}
+  <div class="uk-margin-bottom">
+    {{ content.field_legacy_content }}
+    {{ content.field_content }}
+  </div>
+  {% block article_footer %}
+    {{ content.field_comments }}
+  {% endblock %}
+</article>

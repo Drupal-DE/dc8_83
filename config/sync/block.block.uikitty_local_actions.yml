@@ -1,13 +1,13 @@
-uuid: 929c6daf-9c33-444e-91fd-fb2510f1ce16
+uuid: ceea5a2b-212f-43d6-aeba-01eb02066b16
 langcode: en
 status: true
 dependencies:
   theme:
-    - bartik
+    - uikitty
 _core:
   default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
-id: bartik_local_actions
-theme: bartik
+id: uikitty_local_actions
+theme: uikitty
 region: content
 weight: -10
 provider: null
