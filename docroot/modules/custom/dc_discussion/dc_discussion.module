@@ -110,7 +110,7 @@ function dc_discussion_node_view_alter(array &$build, EntityInterface $entity, E
       if (($count = $display->getComponent('answer_count')) !== NULL) {
         $answers = _dc_discussion_discussion_get_answers($entity->id());
         $build['answer_count'] = [
-          '#markup' => count($answers),
+          '#markup' => $answers,
           '#weight' => $count['weight'],
         ];
       }
