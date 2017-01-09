@@ -6,6 +6,8 @@
 
 // Base styles.
 @import "base/typography";
+// Overwrite uikit styles.
+@import "base/overwrite-ui-kit";
 
 // Overwrite base theme.
 @import "layout/page";
