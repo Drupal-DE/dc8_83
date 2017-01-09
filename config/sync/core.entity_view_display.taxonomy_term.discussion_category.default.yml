@@ -1,0 +1,23 @@
+uuid: 8a1a6a47-b97f-45e5-85bc-e8c718c013d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.discussion_category.field_color
+    - taxonomy.vocabulary.discussion_category
+  module:
+    - text
+id: taxonomy_term.discussion_category.default
+targetEntityType: taxonomy_term
+bundle: discussion_category
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_color: true
+  langcode: true

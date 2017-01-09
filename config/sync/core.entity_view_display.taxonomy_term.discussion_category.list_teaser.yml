@@ -1,0 +1,24 @@
+uuid: 677dbcf9-3ec8-43a8-8c11-2e16bf6c752c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.list_teaser
+    - field.field.taxonomy_term.discussion_category.field_color
+    - taxonomy.vocabulary.discussion_category
+  module:
+    - text
+id: taxonomy_term.discussion_category.list_teaser
+targetEntityType: taxonomy_term
+bundle: discussion_category
+mode: list_teaser
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_color: true
+  langcode: true

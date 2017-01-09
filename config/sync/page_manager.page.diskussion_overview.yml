@@ -1,0 +1,12 @@
+uuid: 71a85066-0502-4bb8-a6fe-9b9c6a989969
+langcode: en
+status: true
+dependencies: {  }
+id: diskussion_overview
+label: 'Diskussion overview'
+description: ''
+use_admin_theme: false
+path: /discussions
+access_logic: and
+access_conditions: {  }
+parameters: {  }

@@ -4,13 +4,14 @@
  * @file
  * Contains dc_discussion.module.
  */
-
+use Drupal\Core\Database\Database;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_help().
@@ -81,10 +82,15 @@ function dc_discussion_form_node_discussion_edit_form_alter(&$form, FormStateInt
  */
 function dc_discussion_entity_extra_field_info() {
   $extra = [];
-  // Add extra fields ot node type discussion.
+  // Add extra fields to node type discussion.
   // Add field discussion answers.
   $extra['node']['discussion']['display']['discussion_answers'] = [
     'label' => t('Discussion answers'),
+    'weight' => 100,
+  ];
+  // Add field answer count.
+  $extra['node']['discussion']['display']['answer_count'] = [
+    'label' => t('Answer count'),
     'weight' => 100,
   ];
   return $extra;
@@ -101,7 +107,112 @@ function dc_discussion_node_view_alter(array &$build, EntityInterface $entity, E
         $build['discussion_answers'] = views_embed_view('discussion_answers', 'answers', $entity->id());
         $build['discussion_answers']['#weight'] = $answers['weight'];
       }
+      if (($count = $display->getComponent('answer_count')) !== NULL) {
+        $answers = _dc_discussion_discussion_get_answers($entity->id());
+        $build['answer_count'] = [
+          '#markup' => count($answers),
+          '#weight' => $count['weight'],
+        ];
+      }
       break;
   }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dc_discussion_form_taxonomy_term_discussion_category_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['field_color']['widget'][0]['value']['#field_prefix'] = '#';
+}
+
+/**
+ * Helper function to get all answers (as flat list) for a single discussion.
+ *
+ * @todo: implement as cachable service?
+ *
+ * @param int $id
+ *   Entity ID.
+ *
+ * @return int[]
+ *   List of discussion answer IDs.
+ */
+function _dc_discussion_discussion_get_answers($id) {
+  $query = Database::getConnection()->select('node__field_topic', 'p');
+  $query->condition('field_topic_target_id', $id);
+
+  return $query->countQuery()->execute()->fetchField();
+}
+
+/**
+ * Implements hook_views_post_build().
+ */
+function dc_discussion_views_post_build(ViewExecutable $view) {
+  $functions = [];
+  $functions[] = sprintf('dc_discussion_views__%s__post_build', $view->id());
+  $functions[] = sprintf('dc_discussion_views__%s_%s__post_build', $view->id(), $view->current_display);
+
+  foreach ($functions as $callback) {
+    if (!is_callable($callback)) {
+      continue;
+    }
+    call_user_func_array($callback, [$view]);
+  }
+}
+
+/**
+ * Implement hook_views_post_build() on behalf of view "discussions" and
+ * display "latest".
+ */
+function dc_discussion_views__discussions_latest__post_build(ViewExecutable $view) {
+  /* @var $query Drupal\Core\Database\Driver\mysql\Select */
+  $query = $view->build_info['query'];
+  // Alter expression so we get the *last* answer.
+  $expressions = &$query->getExpressions();
+  if (empty($expressions) || empty($expressions['field_topic_node_field_data_nid'])) {
+    // We need this.
+    return;
+  }
+  $expressions['field_topic_node_field_data_nid']['expression'] = str_replace('MIN(', 'MAX(', $expressions['field_topic_node_field_data_nid']['expression']);
+
+  // Add expression to get latest update (looks strange, but works).
+  $query->addExpression('COALESCE(MAX(field_topic_node_field_data.created), MAX(node_field_data.created))', 'dc_discussion_last_update');
+  // Order by created date of topic or answer.
+  $query->orderBy('dc_discussion_last_update', 'DESC');
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() on behalf of discussion nodes.
+ */
+function dc_discussion_node_presave(EntityInterface $entity) {
+  if ('discussion' !== $entity->bundle()) {
+    return;
+  }
+  /* @var $parent \Drupal\Core\Field\FieldItemListInterface */
+  if (($parent = $entity->get('field_parent')) && !$parent->isEmpty()) {
+    // Node is discussion answer: update field_topic.
+    if ($topic = _dc_discussion_discussion_get_topic($entity)) {
+      $entity->field_topic->setValue($topic->id());
+    }
+  }
+}
+
+/**
+ * Helper function to get the main topic of a discussion.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   Discussion node to get the topic for.
+ */
+function _dc_discussion_discussion_get_topic($entity) {
+  /* @var $parent \Drupal\Core\Field\FieldItemListInterface */
+  while ($entity && ($parent = $entity->get('field_parent')) !== NULL && !$parent->isEmpty()) {
+    try {
+      $item = $parent->get(0);
+      $value = $item->getValue();
+      $entity = Drupal::entityTypeManager()->getStorage('node')->load($value['target_id']);
+    }
+    catch (Exception $exc) {
+      $entity = FALSE;
+    }
+  }
+  return $entity;
+}

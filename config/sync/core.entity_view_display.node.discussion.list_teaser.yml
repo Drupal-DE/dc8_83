@@ -1,22 +1,25 @@
-uuid: bd01b6f2-c4cd-40ca-9835-9339a6c0de06
+uuid: c3bae957-cdaa-4d8f-b9ab-b6c5e498b107
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.list_teaser
     - field.field.node.discussion.body
     - field.field.node.discussion.field_discussion_category
     - field.field.node.discussion.field_drupal_version
-    - field.field.node.discussion.field_files
     - field.field.node.discussion.field_parent
-    - field.field.node.discussion.field_topic
     - node.type.discussion
   module:
     - user
-id: node.discussion.default
+id: node.discussion.list_teaser
 targetEntityType: node
 bundle: discussion
-mode: default
+mode: list_teaser
 content:
+  answer_count:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
   field_discussion_category:
     type: entity_reference_label
     weight: 0
@@ -25,11 +28,9 @@ content:
       link: true
     third_party_settings: {  }
 hidden:
-  answer_count: true
   body: true
   discussion_answers: true
   field_drupal_version: true
-  field_files: true
   field_parent: true
   field_topic: true
   langcode: true

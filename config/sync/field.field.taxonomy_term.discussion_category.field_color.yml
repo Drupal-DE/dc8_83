@@ -1,0 +1,19 @@
+uuid: 572f9e3c-fb3c-4209-8c7b-2a30cac9ef38
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_color
+    - taxonomy.vocabulary.discussion_category
+id: taxonomy_term.discussion_category.field_color
+field_name: field_color
+entity_type: taxonomy_term
+bundle: discussion_category
+label: Color
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
