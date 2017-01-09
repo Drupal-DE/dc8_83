@@ -1,3 +1,10 @@
+.uk-container {
+  max-width: 900px;
+  @media (min-width: 1110px) {
+    max-width: 1110px;
+  }
+}
+
 .uk-comment-header {
   border-radius: 0px;
 }
