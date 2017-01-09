@@ -10,4 +10,4 @@ fonts:
     url: http://font.ubuntu.com/licence/
   css:
     theme:
-      '//fonts.googleapis.com/css?family=Ubuntu' : { type: external }
+      '//fonts.googleapis.com/css?family=Ubuntu:300,400,500' : { type: external }

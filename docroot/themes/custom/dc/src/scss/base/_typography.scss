@@ -5,9 +5,14 @@ html {
 
 body {
   font-family: $base-font-family;
-  font-weight: normal;
+  font-weight: $base-font-weight;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $base-font-family;
+  font-weight: $headline-font-weight;
+}
+
+strong {
+  font-weight: $strong-font-weight;
 }
