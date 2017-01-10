@@ -1,0 +1,28 @@
+{%
+set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class
+]
+%}
+{{ attach_library('classy/node') }}
+<div{{- attributes.addClass(classes) -}}>
+  {# Replace with real user image #}
+  <img class="uk-comment-avatar uk-border-circle uk-position-left" src="http://lorempixel.com/50/50/people/" alt=""/>
+  <div class="uk-comment-body uk-margin-bottom uk-position-center">
+    {{ title_prefix }}
+    <h3{{ title_attributes.addClass('uk-comment-title', 'uk-margin-small-bottom') }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h3>
+    {{ title_suffix }}
+    {{- content.body -}}
+    {{- content.field_discussion_category -}}
+  </div>
+  <div class="uk-comment-meta uk-position-right">
+    {{- content.answer_count -}}
+  </div>
+</div>
+
