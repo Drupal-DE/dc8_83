@@ -31,6 +31,7 @@ hidden:
   body: true
   discussion_answers: true
   field_drupal_version: true
+  field_files: true
   field_parent: true
   field_topic: true
   langcode: true

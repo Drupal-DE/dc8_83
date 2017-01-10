@@ -161,6 +161,14 @@ function dc_discussion_views_post_build(ViewExecutable $view) {
 
 /**
  * Implement hook_views_post_build() on behalf of view "discussions" and
+ * display "latest_full".
+ */
+function dc_discussion_views__discussions_latest_full__post_build(ViewExecutable $view) {
+  call_user_func_array('dc_discussion_views__discussions_latest__post_build', [$view]);
+}
+
+/**
+ * Implement hook_views_post_build() on behalf of view "discussions" and
  * display "latest".
  */
 function dc_discussion_views__discussions_latest__post_build(ViewExecutable $view) {
@@ -215,4 +223,24 @@ function _dc_discussion_discussion_get_topic($entity) {
     }
   }
   return $entity;
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function dc_discussion_views_data_alter(array &$data) {
+  // Provide an integration for discussion nodes.
+  foreach (\Drupal::entityManager()->getDefinitions() as $entity_type_id => $entity_type) {
+    if ('node' !== $entity_type_id || !$entity_type->isSubclassOf('\Drupal\Core\Entity\ContentEntityInterface') || !$entity_type->getBaseTable()) {
+      continue;
+    }
+    $base_table = $entity_type->getDataTable() ?: $entity_type->getBaseTable();
+    $data[$base_table]['dc_answer_count'] = [
+      'title' => t('Number of answers'),
+      'help' => t('The number of answers on the discussion.'),
+      'field' => [
+        'id' => 'node_dc_answer_count',
+      ],
+    ];
+  }
 }

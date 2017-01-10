@@ -42,9 +42,9 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  answer_count: true
   field_discussion_category: true
   field_drupal_version: true
-  answer_count: true
   field_parent: true
   field_topic: true
   langcode: true

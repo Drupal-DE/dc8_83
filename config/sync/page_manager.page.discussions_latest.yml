@@ -1,0 +1,12 @@
+uuid: c4f98509-328b-4f6b-bc83-6661c86dcf22
+langcode: en
+status: true
+dependencies: {  }
+id: discussions_latest
+label: 'latest discussions'
+description: ''
+use_admin_theme: false
+path: /discussions/latest
+access_logic: and
+access_conditions: {  }
+parameters: {  }
