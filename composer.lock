@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3bea094c823fc5d623d2bebc6586acfd",
+    "content-hash": "5066d56d0e97820e6b4fe5e9bbf0a95c",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2500,45 +2500,20 @@
         },
         {
             "name": "drupal/uikitty",
-            "version": "1.22.0",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/uikitty",
-                "reference": "8.x-1.22"
+                "url": "https://gitlab.com/steffen.r/uikitty.git",
+                "reference": "e0639fc62956f780bbda154820bb543a0d8591ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/uikitty-8.x-1.22.zip",
-                "reference": "8.x-1.22",
-                "shasum": "3f0fc764c172ca7d2591bf6eafd2563ca4f45761"
-            },
-            "require": {
-                "drupal/core": "~8.0"
+                "url": "https://gitlab.com/api/v3/projects/steffen%2Er%2Fuikitty/repository/archive.zip?sha=e0639fc62956f780bbda154820bb543a0d8591ce",
+                "reference": "e0639fc62956f780bbda154820bb543a0d8591ce",
+                "shasum": ""
             },
             "type": "drupal-theme",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.22",
-                    "datestamp": "1480407183"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "isaachorton",
-                    "homepage": "https://www.drupal.org/user/39972"
-                }
-            ],
-            "homepage": "https://www.drupal.org/project/uikitty",
-            "support": {
-                "source": "http://cgit.drupalcode.org/uikitty"
-            }
+            "time": "2017-01-10 21:00:59"
         },
         {
             "name": "drush/drush",
@@ -6030,7 +6005,8 @@
         "drupal/migrate_source_yaml": 20,
         "drupal/migrate_tools": 20,
         "drupal/page_manager": 20,
-        "drupal/panels": 20
+        "drupal/panels": 20,
+        "drupal/uikitty": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

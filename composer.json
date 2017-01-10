@@ -22,6 +22,11 @@
             "type": "vcs",
             "name": "drupal/migrate_source_yaml",
             "url": "https://git.drupal.org/sandbox/stborchert/2808617.git"
+        },
+        {
+            "type": "vcs",
+            "name": "drupal/uikitty",
+            "url": "https://gitlab.com/steffen.r/uikitty.git"
         }
     ],
     "require": {
@@ -45,7 +50,7 @@
         "drupal/paragraphs": "^1.0",
         "drupal/pathauto": "^1.0",
         "drupal/token": "^1.0",
-        "drupal/uikitty": "^1.2",
+        "drupal/uikitty": "3.x-dev",
         "drush/drush": "~8.0"
     },
     "conflict": {
