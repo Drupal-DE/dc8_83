@@ -1,11 +1,56 @@
 <?php
+
 /**
  * @file
  * The primary PHP file for the DrupalCenter v8 sub theme of the UIkitty base theme.
  */
 
+/**
+ * Override variables used in page.html.twig.
+ */
 function dc_preprocess_page(&$vars) {
   $site_config = \Drupal::config('system.site');
   $vars['site_name'] = $site_config->get('name');
   $vars['site_slogan'] = $site_config->get('slogan');
+}
+
+/**
+ * Override variables used in views-view-unformatted--discussion-categories.html.twig.
+ */
+function dc_preprocess_views_view_unformatted__discussion_categories(&$vars) {
+  foreach ($vars['rows'] as $delta => $row) {
+    /* @var $item \Drupal\views\ResultRow */
+    $item = $row['content']['#row'];
+    if (!$item->_entity->hasField('field_color')) {
+      continue;
+    }
+    $color = $item->_entity->field_color->getValue();
+    if (empty($color[0]['value'])) {
+      // Try to load color from parent term.
+      /* @var $storage \Drupal\taxonomy\TermStorage */
+      $storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+      $parents = $storage->loadParents($item->_entity->id());
+      if (!empty($parents)) {
+        $parent = reset($parents);
+        $color = $parent->field_color->getValue();
+      }
+    }
+    $color_code = isset($color[0]['value']) ? '#' . $color[0]['value'] : 'transparent';
+    $vars['rows'][$delta]['attributes']->setAttribute('style', sprintf('border-left-color: %s;', $color_code));
+  }
+}
+
+/**
+ * Implements hook_theme_suggestion_HOOK_alter().
+ *
+ * @param array $suggestions
+ *   Existing suggestions.
+ * @param array $vars
+ *   Additional variables.
+ */
+function dc_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $vars) {
+  $elements = $vars['elements'];
+
+  $suggestions[] = 'taxonomy_term__' . $elements['#view_mode'];
+  $suggestions[] = 'taxonomy_term__' . $elements['#taxonomy_term']->bundle() . '__' . $elements['#view_mode'];
 }

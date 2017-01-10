@@ -1,0 +1,16 @@
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+{% for row in rows %}
+  {%
+    set row_classes = [
+      default_row_class ? 'views-row',
+      'views-row--colored',
+    ]
+  %}
+  <div{{ row.attributes.addClass(row_classes) }}>
+    <div class="row-content">
+      {{ row.content }}
+    </div>
+  </div>
+{% endfor %}

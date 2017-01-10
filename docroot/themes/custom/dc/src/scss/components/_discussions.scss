@@ -1,0 +1,28 @@
+.view-discussion-categories {
+  .category-group {
+    border-bottom: 2px solid $color--light-grey;
+    margin: 0;
+    padding: 15px 0 0 0;
+  }
+  .views-row--colored {
+    border-left: 5px solid transparent;
+  }
+
+  .views-row {
+    .row-content {
+      border-bottom: 1px solid $color--light-grey;
+      margin: 0;
+      padding: 10px;
+
+    }
+    .row-content--inline {
+      display: inline-block;
+    }
+    p {
+      margin-bottom: 0;
+    }
+    h3 {
+      margin-bottom: 10px;
+    }
+  }
+}

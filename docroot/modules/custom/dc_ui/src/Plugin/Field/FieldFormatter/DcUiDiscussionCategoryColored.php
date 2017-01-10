@@ -42,6 +42,16 @@ class DcUiDiscussionCategoryColored extends EntityReferenceLabelFormatter {
       }
 
       $color = $entity->field_color->getValue();
+      if (empty($color[0]['value'])) {
+        // Try to load color from parent term.
+        /* @var $storage \Drupal\taxonomy\TermStorage */
+        $storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+        $parents = $storage->loadParents($entity->id());
+        if (!empty($parents)) {
+          $parent = reset($parents);
+          $color = $parent->field_color->getValue();
+        }
+      }
       $color_code = isset($color[0]['value']) ? '#' . $color[0]['value'] : 'transparent';
       $marker = [
         '#type' => 'html_tag',

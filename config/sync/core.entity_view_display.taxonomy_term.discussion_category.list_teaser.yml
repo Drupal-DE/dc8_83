@@ -19,6 +19,10 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+  term_children:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   field_color: true
   langcode: true

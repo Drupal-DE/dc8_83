@@ -93,6 +93,13 @@ function dc_discussion_entity_extra_field_info() {
     'label' => t('Answer count'),
     'weight' => 100,
   ];
+
+  // Add extra fields to taxonomy bundle discussion_category.
+  // Add field for term children.
+  $extra['taxonomy_term']['discussion_category']['display']['term_children'] = [
+    'label' => t('Term children'),
+    'weight' => 100,
+  ];
   return $extra;
 }
 
@@ -113,6 +120,21 @@ function dc_discussion_node_view_alter(array &$build, EntityInterface $entity, E
           '#markup' => $answers,
           '#weight' => $count['weight'],
         ];
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function dc_discussion_taxonomy_term_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  switch ($entity->bundle()) {
+    case 'discussion_category':
+      if (($children = $display->getComponent('term_children')) !== NULL) {
+        // Show view discussion answers with actual node id as parent argument.
+        $build['term_children'] = views_embed_view('discussion_categories', 'children', $entity->id());
+        $build['term_children']['#weight'] = $children['weight'];
       }
       break;
   }
