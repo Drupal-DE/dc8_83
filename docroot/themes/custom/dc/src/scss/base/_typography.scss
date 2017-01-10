@@ -4,12 +4,11 @@ html {
 }
 
 body {
-  font-family: $base-font-family;
   font-weight: $base-font-weight;
+  letter-spacing: $base-letter-spacing;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $base-font-family;
   font-weight: $headline-font-weight;
 }
 
