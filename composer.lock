@@ -1583,9 +1583,6 @@
             "require": {
                 "drupal/core": "~8.0"
             },
-            "suggest": {
-                "drupal/core": "Required by drupal/ctools_views"
-            },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
@@ -1724,8 +1721,8 @@
             "require": {
                 "drupal/core": "~8.0"
             },
-            "suggest": {
-                "drupal/diff": "Required by drupal/entity_reference_revisions"
+            "require-dev": {
+                "drupal/diff": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -1778,8 +1775,8 @@
             "require": {
                 "drupal/core": "~8.0"
             },
-            "suggest": {
-                "drupal/entity_reference_revisions": "Required by drupal/inline_entity_form"
+            "require-dev": {
+                "drupal/entity_reference_revisions": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -1891,9 +1888,9 @@
                 "drupal/core": "~8.1",
                 "drupal/entity": "^1.0.0-alpha3"
             },
-            "suggest": {
-                "drupal/entity": "Required by drupal/media_entity",
-                "drupal/inline_entity_form": "Required by drupal/media_entity"
+            "require-dev": {
+                "drupal/entity": "*",
+                "drupal/inline_entity_form": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -1939,6 +1936,14 @@
                     "homepage": "https://www.drupal.org/user/210762"
                 },
                 {
+                    "name": "katzilla",
+                    "homepage": "https://www.drupal.org/user/260398"
+                },
+                {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
+                },
+                {
                     "name": "seanB",
                     "homepage": "https://www.drupal.org/user/545912"
                 },
@@ -1975,8 +1980,8 @@
                 "drupal/core": "~8.1",
                 "drupal/media_entity": "~1.0 || ~8.1.0"
             },
-            "suggest": {
-                "drupal/entity_browser": "Required by drupal/media_entity_image"
+            "require-dev": {
+                "drupal/entity_browser": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -2043,7 +2048,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-beta11",
-                    "datestamp": "1478265227"
+                    "datestamp": "1483477143"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2249,7 +2254,6 @@
                 "drupal/layout_plugin": ">=1.0.0-alpha22"
             },
             "require-dev": {
-                "drupal/core": "*",
                 "drupal/page_manager": "*",
                 "drupal/panelizer": "*"
             },
@@ -2332,12 +2336,11 @@
                 "drupal/core": "~8.0",
                 "drupal/entity_reference_revisions": "*"
             },
-            "suggest": {
-                "drupal/core": "Required by drupal/paragraphs_demo",
-                "drupal/diff": "Required by drupal/paragraphs",
-                "drupal/replicate": "Required by drupal/paragraphs",
-                "drupal/search_api": "Required by drupal/paragraphs_demo",
-                "drupal/search_api_db": "Required by drupal/paragraphs_demo"
+            "require-dev": {
+                "drupal/diff": "*",
+                "drupal/replicate": "*",
+                "drupal/search_api": "*",
+                "drupal/search_api_db": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -2458,7 +2461,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-beta2",
-                    "datestamp": "1474367039"
+                    "datestamp": "1483290542"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2504,16 +2507,16 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/steffen.r/uikitty.git",
-                "reference": "e0639fc62956f780bbda154820bb543a0d8591ce"
+                "reference": "72e4955e64d274d52987818937df3bd7c015b69e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v3/projects/steffen%2Er%2Fuikitty/repository/archive.zip?sha=e0639fc62956f780bbda154820bb543a0d8591ce",
-                "reference": "e0639fc62956f780bbda154820bb543a0d8591ce",
+                "url": "https://gitlab.com/api/v3/projects/steffen%2Er%2Fuikitty/repository/archive.zip?sha=72e4955e64d274d52987818937df3bd7c015b69e",
+                "reference": "72e4955e64d274d52987818937df3bd7c015b69e",
                 "shasum": ""
             },
             "type": "drupal-theme",
-            "time": "2017-01-10 21:00:59"
+            "time": "2017-01-10 22:28:50"
         },
         {
             "name": "drush/drush",
