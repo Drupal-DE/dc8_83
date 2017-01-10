@@ -5,6 +5,7 @@
  * Contains dc_ui.module.
  */
 
+use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\ViewExecutable;
 
@@ -123,4 +124,13 @@ function dc_ui_theme_registry_alter(&$theme_registry) {
       }
     }
   }
+}
+
+/**
+ * Implements hook_js_alter().
+ */
+function dc_ui_js_alter(&$javascript, AttachedAssetsInterface $assets) {
+  // Move jquery to header.
+  $javascript['core/assets/vendor/jquery/jquery.min.js']['scope'] = 'header';
+  $javascript['core/assets/vendor/jquery/jquery.min.js']['weight'] = -20;
 }
