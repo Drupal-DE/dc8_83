@@ -1,11 +1,11 @@
 name: DrupalCenter v8
 type: theme
-description: DrupalCenter theme based on uikitty.
+description: DrupalCenter theme based on uikit3.
 package: DrupalCenter
 core: 8.x
-base theme: uikitty
+base theme: uikit3
 libraries:
-  - uikitty/global
+  - uikit3/global
   - dc/fonts
   - dc/default
 
