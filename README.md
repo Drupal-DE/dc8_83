@@ -49,7 +49,7 @@ There might be changes to the make file.
 We use sass for overwriting / extending styles of the uikitty base theme.
 Right now the build script only supports compiling of scss files.
 
-Install dependencies with
+Install node dependencies in **/docroot/themes/custom/dc**
     
       npm install
 Run build task for compiling SCSS to CSS
