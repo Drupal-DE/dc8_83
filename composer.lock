@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "88e783f38c919de1559fc4852042edeb",
+    "content-hash": "e63d19df97c6792e6af588d9be360007",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2503,20 +2503,44 @@
         },
         {
             "name": "drupal/uikit3",
-            "version": "1.x-dev",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
-                "url": "https://gitlab.com/uikit3/uikit3.git",
-                "reference": "5422f912e59d9e2fb49d91f147241e3ca8764eca"
+                "url": "https://git.drupal.org/project/uikit3",
+                "reference": "daf32ad9db16e9fb5288ec86d0dfb1a54ed8bd60"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://gitlab.com/api/v3/projects/uikit3%2Fuikit3/repository/archive.zip?sha=5422f912e59d9e2fb49d91f147241e3ca8764eca",
-                "reference": "5422f912e59d9e2fb49d91f147241e3ca8764eca",
-                "shasum": ""
+            "require": {
+                "drupal/core": "~8.0"
             },
             "type": "drupal-theme",
-            "time": "2017-01-11 21:44:54"
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1484177584"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "SteffenR",
+                    "homepage": "https://www.drupal.org/user/244597"
+                },
+                {
+                    "name": "isaachorton",
+                    "homepage": "https://www.drupal.org/user/39972"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/uikit3",
+            "support": {
+                "source": "http://cgit.drupalcode.org/uikit3"
+            },
+            "time": "2017-01-11 23:29:15"
         },
         {
             "name": "drush/drush",

@@ -22,11 +22,6 @@
             "type": "vcs",
             "name": "drupal/migrate_source_yaml",
             "url": "https://git.drupal.org/sandbox/stborchert/2808617.git"
-        },
-        {
-            "type": "vcs",
-            "name": "drupal/uikit3",
-            "url": "https://gitlab.com/uikit3/uikit3.git"
         }
     ],
     "require": {
