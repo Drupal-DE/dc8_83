@@ -7,14 +7,16 @@
   </div>
   <div class="header__full_width_navy">
     <div class="uk-container uk-container-center">
-      <nav class="uk-navbar uk-navbar-attached uk-contrast">
+      <nav class="uk-navbar uk-contrast">
         <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
         {{ page.mainmenu }}
-        <div class="uk-navbar-flip">
+        <div class="uk-navbar-right">
           <div class="uk-navbar-content uk-contrast">
-            <form class="uk-search" data-uk-search>
-              <input class="uk-search-field" type="search" placeholder="Search"/>
-            </form>
+            <form>
+              <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: search"></span>
+                <input class="uk-input uk-form-width-medium" type="text" placeholder="Search dummy">
+              </div>
           </div>
         </div>
       </nav>
