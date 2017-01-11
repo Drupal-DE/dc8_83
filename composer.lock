@@ -2507,16 +2507,16 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/steffen.r/uikitty.git",
-                "reference": "72e4955e64d274d52987818937df3bd7c015b69e"
+                "reference": "0201366e454909aa3c8dd786e92893cdd4ded0c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v3/projects/steffen%2Er%2Fuikitty/repository/archive.zip?sha=72e4955e64d274d52987818937df3bd7c015b69e",
-                "reference": "72e4955e64d274d52987818937df3bd7c015b69e",
+                "url": "https://gitlab.com/api/v3/projects/steffen%2Er%2Fuikitty/repository/archive.zip?sha=0201366e454909aa3c8dd786e92893cdd4ded0c9",
+                "reference": "0201366e454909aa3c8dd786e92893cdd4ded0c9",
                 "shasum": ""
             },
             "type": "drupal-theme",
-            "time": "2017-01-10 22:28:50"
+            "time": "2017-01-11 10:18:13"
         },
         {
             "name": "drush/drush",
