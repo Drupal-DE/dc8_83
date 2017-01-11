@@ -25,8 +25,8 @@
         },
         {
             "type": "vcs",
-            "name": "drupal/uikitty",
-            "url": "https://gitlab.com/steffen.r/uikitty.git"
+            "name": "drupal/uikit3",
+            "url": "https://gitlab.com/uikit3/uikit3.git"
         }
     ],
     "require": {
@@ -50,7 +50,7 @@
         "drupal/paragraphs": "^1.0",
         "drupal/pathauto": "^1.0",
         "drupal/token": "^1.0",
-        "drupal/uikitty": "3.x-dev",
+        "drupal/uikit3": "1.x-dev",
         "drush/drush": "~8.0"
     },
     "conflict": {

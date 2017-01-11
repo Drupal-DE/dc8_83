@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5066d56d0e97820e6b4fe5e9bbf0a95c",
+    "content-hash": "88e783f38c919de1559fc4852042edeb",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2502,21 +2502,21 @@
             }
         },
         {
-            "name": "drupal/uikitty",
-            "version": "3.x-dev",
+            "name": "drupal/uikit3",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://gitlab.com/steffen.r/uikitty.git",
-                "reference": "0201366e454909aa3c8dd786e92893cdd4ded0c9"
+                "url": "https://gitlab.com/uikit3/uikit3.git",
+                "reference": "5422f912e59d9e2fb49d91f147241e3ca8764eca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v3/projects/steffen%2Er%2Fuikitty/repository/archive.zip?sha=0201366e454909aa3c8dd786e92893cdd4ded0c9",
-                "reference": "0201366e454909aa3c8dd786e92893cdd4ded0c9",
+                "url": "https://gitlab.com/api/v3/projects/uikit3%2Fuikit3/repository/archive.zip?sha=5422f912e59d9e2fb49d91f147241e3ca8764eca",
+                "reference": "5422f912e59d9e2fb49d91f147241e3ca8764eca",
                 "shasum": ""
             },
             "type": "drupal-theme",
-            "time": "2017-01-11 10:18:13"
+            "time": "2017-01-11 21:44:54"
         },
         {
             "name": "drush/drush",
@@ -6009,7 +6009,7 @@
         "drupal/migrate_tools": 20,
         "drupal/page_manager": 20,
         "drupal/panels": 20,
-        "drupal/uikitty": 20
+        "drupal/uikit3": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
