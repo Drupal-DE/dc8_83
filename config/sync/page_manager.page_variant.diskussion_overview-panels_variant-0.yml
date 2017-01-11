@@ -18,7 +18,7 @@ variant_settings:
       id: 'views_block:discussion_categories-overview'
       label: ''
       provider: views
-      label_display: '0'
+      label_display: visible
       views_label: ''
       items_per_page: none
       region: left
@@ -29,7 +29,7 @@ variant_settings:
       id: 'views_block:discussions-latest'
       label: ''
       provider: views
-      label_display: '0'
+      label_display: visible
       views_label: ''
       items_per_page: none
       region: right

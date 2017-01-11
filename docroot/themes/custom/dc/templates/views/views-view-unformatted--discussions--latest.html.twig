@@ -2,12 +2,9 @@
   {%
     set row_classes = [
       default_row_class ? 'views-row',
-      'views-row--colored',
     ]
   %}
   <div{{ row.attributes.addClass(row_classes) }}>
-    <div class="row-content">
-      {{ row.content }}
-    </div>
+    {{ row.content }}
   </div>
 {% endfor %}

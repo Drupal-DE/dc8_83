@@ -7,9 +7,12 @@ dependencies:
     - field.field.node.discussion.body
     - field.field.node.discussion.field_discussion_category
     - field.field.node.discussion.field_drupal_version
+    - field.field.node.discussion.field_files
     - field.field.node.discussion.field_parent
+    - field.field.node.discussion.field_topic
     - node.type.discussion
   module:
+    - dc_ui
     - user
 id: node.discussion.list_teaser
 targetEntityType: node
@@ -21,7 +24,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_discussion_category:
-    type: entity_reference_label
+    type: dc_ui_discussion_category_colored
     weight: 0
     label: hidden
     settings:

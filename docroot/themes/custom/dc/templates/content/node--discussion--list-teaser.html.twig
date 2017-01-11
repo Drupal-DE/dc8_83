@@ -5,14 +5,18 @@ set classes = [
   node.isPromoted() ? 'node--promoted',
   node.isSticky() ? 'node--sticky',
   not node.isPublished() ? 'node--unpublished',
-  view_mode ? 'node--view-mode-' ~ view_mode|clean_class
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  'uk-grid-small',
+  'uk-flex-center'
 ]
 %}
 {{ attach_library('classy/node') }}
-<div{{- attributes.addClass(classes) -}}>
+<div{{- attributes.addClass(classes) -}} uk-grid>
   {# Replace with real user image #}
-  <img class="uk-comment-avatar uk-border-circle" src="http://lorempixel.com/50/50/people/" alt=""/>
-  <div class="uk-comment-body uk-margin-bottom">
+  <div>
+    <img class="uk-comment-avatar uk-border-circle" src="http://lorempixel.com/50/50/people/" alt=""/>
+  </div>
+  <div class="uk-comment-body uk-margin-bottom uk-width-expand@m">
     {{ title_prefix }}
     <h3{{ title_attributes.addClass('uk-comment-title', 'uk-margin-small-bottom') }}>
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>
