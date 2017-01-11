@@ -11,8 +11,8 @@ set classes = [
 {{ attach_library('classy/node') }}
 <div{{- attributes.addClass(classes) -}}>
   {# Replace with real user image #}
-  <img class="uk-comment-avatar uk-border-circle uk-position-left" src="http://lorempixel.com/50/50/people/" alt=""/>
-  <div class="uk-comment-body uk-margin-bottom uk-position-center">
+  <img class="uk-comment-avatar uk-border-circle" src="http://lorempixel.com/50/50/people/" alt=""/>
+  <div class="uk-comment-body uk-margin-bottom">
     {{ title_prefix }}
     <h3{{ title_attributes.addClass('uk-comment-title', 'uk-margin-small-bottom') }}>
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>
@@ -21,7 +21,7 @@ set classes = [
     {{- content.body -}}
     {{- content.field_discussion_category -}}
   </div>
-  <div class="uk-comment-meta uk-position-right">
+  <div class="uk-comment-meta">
     {{- content.answer_count -}}
   </div>
 </div>
