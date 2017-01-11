@@ -17,6 +17,8 @@ targetEntityType: node
 bundle: discussion
 mode: teaser
 content:
+  answer_count:
+    weight: 100
   body:
     label: hidden
     type: text_summary_or_trimmed
@@ -31,5 +33,7 @@ content:
 hidden:
   field_discussion_category: true
   field_drupal_version: true
+  field_files: true
   field_parent: true
+  field_topic: true
   langcode: true
