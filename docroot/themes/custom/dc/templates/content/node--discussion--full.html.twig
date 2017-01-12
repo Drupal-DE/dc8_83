@@ -1,24 +1,29 @@
 {% set classes = [
   'uk-article',
-  'uk-panel',
-  'uk-panel-box',
-  'uk-panel-box-secondary',
-  'uk-margin-right'
+  'uk-margin-bottom-small'
 ] %}
 
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
-  <h2{{ title_attributes.addClass('uk-panel-title') }}>
+  <h2{{ title_attributes.addClass('uk-margin-small-bottom') }}>
     {{ label }}
   </h2>
   {{ title_suffix }}
-  <header class="uk-comment-header">
-    {# Replace with read user image #}
-    <img class="uk-comment-avatar" src="http://lorempixel.com/50/50/people/" alt=""/>
-    <div class="uk-comment-meta">
-      {% trans %}Submitted by {{ author_name }}{% endtrans %}<br />
-      {% trans %}on {{ date }} in{% endtrans %}{{ content.field_discussion_category }} {{ content.field_drupal_version }}
+  <header class="uk-comment-header uk-grid-medium uk-flex-middle uk-background-muted" uk-grid>
+    <div class="uk-width-auto">
+      <img class="uk-comment-avatar" src="http://lorempixel.com/65/65/people/" alt=""/>
+    </div>
+    <div class="uk-width-expand">
+      {% if title %}
+        {{ title_prefix }}
+        <h4{{ title_attributes.addClass('uk-comment-title') }}>{{ label }}</h4>
+        {{ title_suffix }}
+      {% endif %}
+      <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-small">
+        <li>{% trans %}Submitted by {{ author_name }}{% endtrans %}</li>
+        <li>{% trans %}on {{ date }} in{% endtrans %}{{ content.field_discussion_category }} {{ content.field_drupal_version }}</li>
+      </ul>
     </div>
   </header>
   <div class="uk-comment-body">
@@ -27,8 +32,6 @@
     {{ content.links }}
   </div>
 </article>
-<div class="uk-panel uk-panel-header">
-  <div class="uk-panel-body">
-    {{ content.discussion_answers }}
-  </div>
-</div>
+{% if content.discussion_answers is not empty %}
+  {{ content.discussion_answers }}
+{% endif %}

@@ -5,13 +5,14 @@
   node.isSticky() ? 'node--sticky',
   not node.isPublished() ? 'node--unpublished',
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  'uk-comment'
+  'uk-comment',
+  'uk-margin-left'
 ] %}
 
 <article role="article"{{ attributes.addClass(classes)|without('role') }}>
-  <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+  <header class="uk-comment-header uk-grid-medium uk-flex-middle uk-background-muted" uk-grid>
     <div class="uk-width-auto">
-      <img class="uk-comment-avatar" src="http://lorempixel.com/85/85/people/" alt=""/>
+      <img class="uk-comment-avatar" src="http://lorempixel.com/65/65/people/" alt=""/>
     </div>
     <div class="uk-width-expand">
       {% if title %}
