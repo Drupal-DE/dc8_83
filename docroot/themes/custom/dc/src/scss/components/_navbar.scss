@@ -1,0 +1,40 @@
+.header__navbar_main_menu {
+  .uk-navbar-item,
+  .uk-navbar-nav>li>a,
+  .uk-navbar-toggle {
+    height: $height--navbar-main-menu;
+  }
+
+  .uk-navbar-nav>li>a {
+    color: #999;
+    text-transform: uppercase;
+  }
+
+  a,
+  .uk-navbar-nav>li>a {
+    color: $color--white;
+    font-size: 1rem;
+    text-transform: none;
+    &:hover {
+      color: $color--light-blue-header;
+    }
+  }
+  .uk-navbar-toggle {
+    &.uk-open,
+    &:focus,
+    &:hover {
+      color: $color--light-blue-header;
+    }
+  }
+  .uk-search-input {
+    background: $color--light-blue-header;
+    color: $color--grey;
+    height: auto;
+    padding: 0 15px;;
+  }
+
+  .uk-border-circle {
+    border: 2px solid $color--white;
+  }
+
+}

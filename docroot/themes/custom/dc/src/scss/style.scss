@@ -2,6 +2,7 @@
 
 // Global variables.
 @import "variables/colors";
+@import "variables/sizes";
 @import "variables/typography";
 
 // Base styles.
@@ -12,6 +13,9 @@
 // Overwrite base theme.
 @import "layout/page";
 
+// Overwrite uikit components / custom stuff.
+@import "components/breadcrumb";
 @import "components/comments";
 @import "components/discussions";
 @import "components/marker";
+@import "components/navbar";

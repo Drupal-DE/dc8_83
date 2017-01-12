@@ -10,6 +10,7 @@
 
 .header__full_width_dark {
   background: $color--dark-blue;
+  border-bottom: 1px solid $color--light-blue;
   .uk-navbar {
     background: $color--dark-blue;
   }
@@ -30,6 +31,7 @@
 
 .header__full_width_light_navy {
   background: $color--light-navy-blue;
+  border-bottom: 1px solid $color--light-blue;
   .uk-navbar {
     background: $color--light-navy-blue;
   }
@@ -38,7 +40,6 @@
   }
 }
 
-.footer__full_width_dark {
-  background: $color--dark-blue;
-  min-height: 100px;
+.footer__full_width_grey {
+  background: $color--light-grey;
 }

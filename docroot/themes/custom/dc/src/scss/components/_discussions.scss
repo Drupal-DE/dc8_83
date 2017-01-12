@@ -13,11 +13,13 @@
   }
 
   .views-row {
+    &:hover {
+      background: $color--light-grey;
+    }
     .row-content {
       border-bottom: 1px solid $color--light-grey;
       margin: 0;
       padding: 10px;
-
     }
     .row-content--inline {
       display: inline-block;
@@ -28,5 +30,13 @@
     h3 {
       margin-bottom: 10px;
     }
+  }
+}
+
+// global link styling for discussions page
+.view-discussions,
+.view-discussion-categories {
+  a {
+    color: $color--black;
   }
 }

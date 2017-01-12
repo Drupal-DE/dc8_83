@@ -1,0 +1,10 @@
+.uk-breadcrumb {
+  a,
+  &>:last-child>* {
+    color: $color--white;
+    font-size: 0.8rem;
+    &:hover {
+      color: $color--light-blue-header;
+    }
+  }
+}
