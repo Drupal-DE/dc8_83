@@ -3,3 +3,58 @@ default:
   css:
     theme:
       dist/css/style.css: {}
+
+uikit3_base:
+  version: 1.x
+  header: true
+  css:
+    theme:
+      dist/uikit3/css/uikit.min.css: {}
+  js:
+    dist/uikit3/js/uikit.min.js: {}
+  dependencies:
+    - core/jquery
+
+uikit3_iconnav:
+  css:
+    theme:
+      dist/uikit3/css/components/iconnav.min.css: {}
+
+uikit3_lightbox:
+  js:
+    dist/uikit3/js/components/lightbox.min.js: {}
+
+uikit3_notification:
+  css:
+    theme:
+      dist/uikit3/css/components/notification.min.css: {}
+  js:
+    dist/uikit3/js/components/notification.min.js: {}
+
+uikit3_placeholder:
+  css:
+    theme:
+      dist/uikit3/css/components/placeholder.min.css: {}
+
+uikit3_progress:
+  css:
+    theme:
+      dist/uikit3/css/components/progress.min.css: {}
+
+uikit3_sortable:
+  css:
+    theme:
+      dist/uikit3/css/components/sortable.min.css: {}
+  js:
+    dist/uikit3/js/components/sortable.min.js: {}
+
+uikit3_tooltip:
+  css:
+    theme:
+      dist/uikit3/css/components/tooltip.min.css: {}
+  js:
+    dist/uikit3/js/components/tooltip.min.js: {}
+
+uikit3_upload:
+  js:
+    dist/uikit3/js/components/upload.min.js: {}

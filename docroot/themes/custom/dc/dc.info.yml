@@ -3,9 +3,9 @@ type: theme
 description: DrupalCenter theme based on uikit3.
 package: DrupalCenter
 core: 8.x
-base theme: uikit3
+base theme: classy
 libraries:
-  - uikit3/global
+  - dc/uikit3_base
   - dc/fonts
   - dc/default
 
