@@ -33,8 +33,19 @@
     padding: 0 15px;;
   }
 
+  .dc-icon-user-login,
   .uk-border-circle {
     border: 2px solid $color--white;
   }
-
+  .dc-icon-user-login {
+    background: none;
+    color: $color--white;
+    height: $picture--user-login;
+    width: $picture--user-login;
+    &.uk-open,
+    &:hover {
+      background: $color--white;
+      color: $color--dark-blue;
+    }
+  }
 }
