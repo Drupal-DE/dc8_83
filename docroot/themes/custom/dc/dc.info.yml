@@ -16,6 +16,7 @@ stylesheets-remove:
 regions:
   navigation: 'Navigation'
   header: 'Branding'
+  breadcrumb: 'Breadcrumb'
   mainmenu: 'Mainmenu'
   highlighted: 'Highlighted'
   help: 'Help'

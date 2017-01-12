@@ -1,29 +1,54 @@
-{{- attach_library('uikit3/search') -}}
 <div id="header">
   <div class="header__full_width_dark">
-    <div class="uk-container uk-container-center uk-contrast">
-      {{ page.header }}
-    </div>
-  </div>
-  <div class="header__full_width_navy">
     <div class="uk-container uk-container-center">
-      <nav class="uk-navbar uk-contrast">
-        <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
-        {{ page.mainmenu }}
+      <nav class="uk-navbar-container header__navbar_main_menu" uk-navbar>
+        <div class="uk-navbar-left">
+          <a class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon href="#"></a>
+          {{ page.mainmenu }}
+          <ul class="uk-navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Handbuch</a></li>
+            <li><a href="/discussions">Forum</a></li>
+            <li><a href="#">Showroom</a></li>
+          </ul>
+        </div>
         <div class="uk-navbar-right">
-          <div class="uk-navbar-content uk-contrast">
-            <form>
-              <div class="uk-inline">
-                <span class="uk-form-icon" uk-icon="icon: search"></span>
-                <input class="uk-input uk-form-width-medium" type="text" placeholder="Search dummy">
-              </div>
-            </form>
+          <div>
+            <a class="uk-navbar-toggle" uk-search-icon="ratio: 1.5" href="#"></a>
+            <div uk-drop="mode: click; pos: left-center; offset: 0">
+              <form class="uk-search uk-search-navbar uk-width-1-1">
+                <input class="uk-search-input" type="search" placeholder="Search..." autofocus>
+              </form>
+            </div>
+          </div>
+          <img class="uk-border-circle" src="http://lorempixel.com/45/45/people/" alt=""/>
+          <div uk-dropdown="pos: bottom-right">
+            <ul class="uk-nav uk-dropdown-nav">
+              <li><a href="#">My Dashboard</a></li>
+              <li><a href="#">My Account</a></li>
+              <li class="uk-nav-divider"></li>
+              <li><a href="/user/logout">Logout</a></li>
+            </ul>
           </div>
         </div>
       </nav>
     </div>
   </div>
+
+
+  <div class="header__full_width_light_navy">
+    <div class="uk-container uk-container-center">
+      {{ page.header }}
+    </div>
+  </div>
+
+  <div class="header__full_width_navy">
+    <div class="uk-container uk-container-center">
+      {{ page.breadcrumb }}
+    </div>
+  </div>
 </div>
+
 {% if page.highlighted or page.help %}
   <div class="uk-container uk-container-center">
     <aside class="layout-container section clearfix" role="complementary">
@@ -37,8 +62,8 @@
   {{ page.content }}
 </div>
 
-<div id="footer" class="footer__full_width_dark uk-contrast">
-  <div class="uk-container uk-container-center uk-margin-large-top">
+<div id="footer" class="footer__full_width_grey ">
+  <div class="uk-container uk-container-center uk-padding-large uk-margin-large-top">
     {{ page.footer }}
   </div>
 </div>

@@ -11,11 +11,17 @@
 {% if breadcrumb %}
   <nav role="navigation" aria-labelledby="system-breadcrumb">
     <h2 class="uk-hidden">{{ 'Breadcrumb'|t }}</h2>
-    <ul class="uk-breadcrumb">
+    <ul class="uk-breadcrumb uk-iconnav uk-margin-small-left uk-margin-small">
       {% for item in breadcrumb %}
         <li{{ attributes.addClass(is_active ? 'uk-active') }}>
           {% if item.url %}
-            <a href="{{ item.url }}">{{ item.text }}</a>
+            <a href="{{ item.url }}">
+              {# add home icon to first link #}
+              {% if loop.index == 1 %}
+                <span uk-icon="icon: home; ratio: 0.85"></span>
+              {% endif %}
+              {{ item.text }}
+            </a>
           {% else %}
             {{ item.text }}
           {% endif %}
