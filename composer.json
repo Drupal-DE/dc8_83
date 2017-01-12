@@ -45,7 +45,6 @@
         "drupal/paragraphs": "^1.0",
         "drupal/pathauto": "^1.0",
         "drupal/token": "^1.0",
-        "drupal/uikit3": "1.x-dev",
         "drush/drush": "~8.0"
     },
     "conflict": {
