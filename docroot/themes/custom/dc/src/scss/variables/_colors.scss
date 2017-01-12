@@ -1,10 +1,29 @@
-// Blue.
+/**
+ * Colors from Drupal styleguide
+ * https://www.drupal.org/drupalorg/style-guide/colors
+ */
+// Primary Colors.
 $color--dark-blue: #0678BE;
 $color--light-blue: #53B0EB;
+$color--lime-green: #96BC44;
+
+// Secondary Colors.
 $color--navy-blue: #064771;
 $color--light-navy-blue: #0D7DC1;
+$color--pale-gray: #F6F6F2;
+$color--light-yellow: #E6FCB6;
+$color--grey: #666666;
+$color--black: #222222;
+
+// Messages.
+$color--notice: #D4EFCC;
+$color--warning: #FFE69F;
+$color--error: #EBCCCC;
+
+/**
+ * Custom colors used by dc theme
+ */
 
 // White
 $color--white: #ffffff;
-
-$color--light-grey: #eeeeee;
+$color--light-grey: $color--pale-gray;
