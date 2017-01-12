@@ -1,0 +1,24 @@
+uuid: afd9c255-38b9-47f3-936a-49ac1ecb886c
+langcode: de
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - dc
+id: header_user_menu
+theme: dc
+region: header_user_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: Benutzermenü
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility: {  }
