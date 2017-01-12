@@ -8,7 +8,7 @@ dependencies:
     - dc
 id: dc_breadcrumbs
 theme: dc
-region: content
+region: breadcrumb
 weight: -2
 provider: null
 plugin: system_breadcrumb_block
