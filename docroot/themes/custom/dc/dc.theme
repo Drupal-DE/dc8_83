@@ -83,6 +83,8 @@ function dc_theme_suggestions_menu_alter(array &$suggestions, array $variables) 
  */
 function dc_js_alter(&$javascript, AttachedAssetsInterface $assets) {
   // Move jquery to header - otherwise uikit3 is not working correctly
-  $javascript['core/assets/vendor/jquery/jquery.min.js']['scope'] = 'header';
-  $javascript['core/assets/vendor/jquery/jquery.min.js']['weight'] = -20;
+  if (isset($javascript['core/assets/vendor/jquery/jquery.min.js'])) {
+    $javascript['core/assets/vendor/jquery/jquery.min.js']['scope'] = 'header';
+    $javascript['core/assets/vendor/jquery/jquery.min.js']['weight'] = -20;
+  }
 }
