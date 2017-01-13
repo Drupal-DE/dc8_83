@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1880d14c89cdcb3bbf9cc0f65025b8b1",
+    "content-hash": "55817afef624ebd179961b05ad7eeef0",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2500,6 +2500,27 @@
                 "source": "http://cgit.drupalcode.org/token",
                 "issues": "https://www.drupal.org/project/issues/token"
             }
+        },
+        {
+            "name": "drupal/views_lazy_load",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stborchert/views_lazy_load.git",
+                "reference": "dc998e6c26392eae1dae7cf8e508c04658748e4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stborchert/views_lazy_load/zipball/dc998e6c26392eae1dae7cf8e508c04658748e4b",
+                "reference": "dc998e6c26392eae1dae7cf8e508c04658748e4b",
+                "shasum": ""
+            },
+            "type": "drupal/module",
+            "support": {
+                "source": "https://github.com/stborchert/views_lazy_load/tree/8.x-1.x",
+                "issues": "https://github.com/stborchert/views_lazy_load/issues"
+            },
+            "time": "2017-01-13 07:08:22"
         },
         {
             "name": "drush/drush",
@@ -5991,7 +6012,8 @@
         "drupal/migrate_source_yaml": 20,
         "drupal/migrate_tools": 20,
         "drupal/page_manager": 20,
-        "drupal/panels": 20
+        "drupal/panels": 20,
+        "drupal/views_lazy_load": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
