@@ -1,4 +1,5 @@
-display_extenders: {  }
+display_extenders:
+  views_lazy_load: views_lazy_load
 skip_cache: false
 sql_signature: false
 ui:

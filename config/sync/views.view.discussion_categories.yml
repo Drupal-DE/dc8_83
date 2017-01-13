@@ -390,7 +390,9 @@ display:
     display_title: Overview
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        views_lazy_load:
+          views_lazy_load_enabled: false
       display_description: ''
       filters:
         vid:
@@ -477,6 +479,7 @@ display:
         filter_groups: false
         relationships: false
         fields: false
+        title: false
       filter_groups:
         operator: AND
         groups:
@@ -619,6 +622,7 @@ display:
           view_mode: list_teaser
           entity_type: taxonomy_term
           plugin_id: rendered_entity
+      title: Categories
     cache_metadata:
       max-age: -1
       contexts:
