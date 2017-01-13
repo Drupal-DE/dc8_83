@@ -291,6 +291,7 @@ display:
     display_options:
       path: node
       display_extenders: {  }
+      enabled: false
     display_plugin: page
     display_title: Seite
     id: page_1
