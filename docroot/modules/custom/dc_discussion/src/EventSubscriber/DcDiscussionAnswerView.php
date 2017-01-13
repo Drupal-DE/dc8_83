@@ -57,7 +57,7 @@ class DcDiscussionAnswerView implements EventSubscriberInterface {
       // Redirect to topic of node if parent is available.
       if ($node->hasField('field_topic') && !empty($node->field_topic->target_id)) {
         $target_nid = $node->field_topic->target_id;
-        $event->setResponse(new CacheableRedirectResponse('/node/' . $target_nid .'#answer-' . $node->id()));
+        $event->setResponse(new CacheableRedirectResponse('/node/' . $target_nid .'#' . $node->id()));
       }
     }
   }
