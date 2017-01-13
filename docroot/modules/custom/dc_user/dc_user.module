@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains dc_user.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dc_user_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dc_user module.
+    case 'help.page.dc_user':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DrupalCenter user related tweaks.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

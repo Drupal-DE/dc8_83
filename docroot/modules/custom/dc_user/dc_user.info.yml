@@ -1,0 +1,7 @@
+name: dc_user
+type: module
+description: DrupalCenter user related tweaks.
+core: 8.x
+package: DrupalCenter
+dependencies:
+  - user
