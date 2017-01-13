@@ -37,7 +37,18 @@
 
   <div class="header__full_width_navy">
     <div class="uk-container uk-container-center">
-      {{ page.breadcrumb }}
+      {% if page.header_login is not empty %}
+        <div class="uk-child-width-expand@s" uk-grid>
+          <div>
+            {{ page.breadcrumb }}
+          </div>
+          <div class="uk-padding-small uk-padding-remove-horizontal uk-text-right">
+            {{ page.header_login }}
+          </div>
+        </div>
+      {% else %}
+        {{ page.breadcrumb }}
+      {% endif %}
     </div>
   </div>
 </div>
