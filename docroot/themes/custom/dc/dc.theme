@@ -79,6 +79,13 @@ function dc_theme_suggestions_menu_alter(array &$suggestions, array $variables) 
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function dc_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#form_id'];
+}
+
+/**
  * Implements hook_js_alter().
  */
 function dc_js_alter(&$javascript, AttachedAssetsInterface $assets) {
