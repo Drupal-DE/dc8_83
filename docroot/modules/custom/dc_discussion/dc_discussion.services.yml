@@ -6,3 +6,9 @@ services:
       - { name: path_processor_outbound, priority: 300 }
     arguments: []
 
+  dc_discussion.answer_view:
+    class: Drupal\dc_discussion\EventSubscriber\DcDiscussionAnswerView
+    arguments: ['@current_route_match']
+    tags:
+      - { name: event_subscriber }
+
