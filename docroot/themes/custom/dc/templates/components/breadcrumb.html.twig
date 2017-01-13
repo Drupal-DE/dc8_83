@@ -7,11 +7,15 @@
  * - breadcrumb: Breadcrumb trail items.
  */
 #}
+{# special styling for logged in status, cause title bar contains login form #}
+{% if logged_in %}
+  {% set breadcrumb_classes = "uk-margin-small-top uk-margin-small-bottom" %}
+{% endif %}
 
 {% if breadcrumb %}
   <nav role="navigation" aria-labelledby="system-breadcrumb">
     <h2 class="uk-hidden">{{ 'Breadcrumb'|t }}</h2>
-    <ul class="uk-breadcrumb uk-iconnav uk-margin-small-left uk-margin-small">
+    <ul class="uk-breadcrumb uk-iconnav uk-margin-small-left {{ breadcrumb_classes }}">
       {% for item in breadcrumb %}
         <li{{ attributes.addClass(is_active ? 'uk-active') }}>
           {% if item.url %}
