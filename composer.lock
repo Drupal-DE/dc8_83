@@ -2507,20 +2507,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stborchert/views_lazy_load.git",
-                "reference": "dc998e6c26392eae1dae7cf8e508c04658748e4b"
+                "reference": "5909e4b290f8876fba64f40706be73b79b1cecf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stborchert/views_lazy_load/zipball/dc998e6c26392eae1dae7cf8e508c04658748e4b",
-                "reference": "dc998e6c26392eae1dae7cf8e508c04658748e4b",
+                "url": "https://api.github.com/repos/stborchert/views_lazy_load/zipball/5909e4b290f8876fba64f40706be73b79b1cecf9",
+                "reference": "5909e4b290f8876fba64f40706be73b79b1cecf9",
                 "shasum": ""
             },
-            "type": "drupal/module",
+            "type": "drupal-module",
             "support": {
                 "source": "https://github.com/stborchert/views_lazy_load/tree/8.x-1.x",
                 "issues": "https://github.com/stborchert/views_lazy_load/issues"
             },
-            "time": "2017-01-13 07:08:22"
+            "time": "2017-01-13 08:11:48"
         },
         {
             "name": "drush/drush",
