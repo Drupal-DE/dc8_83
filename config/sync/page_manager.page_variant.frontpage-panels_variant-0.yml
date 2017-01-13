@@ -7,22 +7,12 @@ dependencies:
     - views.view.news
   module:
     - panels
-    - user
     - views
 id: frontpage-panels_variant-0
 label: Frontpage
 variant: panels_variant
 variant_settings:
   blocks:
-    71151969-2155-4130-8241-3a54d8210243:
-      id: user_login_block
-      label: Benutzeranmeldung
-      provider: user
-      label_display: visible
-      region: middle
-      weight: 0
-      uuid: 71151969-2155-4130-8241-3a54d8210243
-      context_mapping: {  }
     a1dea6e7-1782-446e-b989-7aef0c4bdc38:
       id: 'views_block:news-block_news_front'
       label: ''
