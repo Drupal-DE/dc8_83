@@ -17,6 +17,7 @@ regions:
   navigation: 'Navigation'
   header: 'Branding'
   header_user_menu: 'Header user menu'
+  header_search: 'Header search'
   breadcrumb: 'Breadcrumb'
   mainmenu: 'Mainmenu'
   highlighted: 'Highlighted'
