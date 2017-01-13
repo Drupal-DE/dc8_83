@@ -341,7 +341,7 @@ display:
       use_more_always: false
       use_more_text: 'more discussions'
       link_display: custom_url
-      link_url: discussion/latest
+      link_url: discussions/latest
       title: 'Latest discussions'
     cache_metadata:
       max-age: -1
@@ -357,7 +357,9 @@ display:
     display_title: 'Latest (full)'
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        views_lazy_load:
+          views_lazy_load_enabled: 1
       display_description: ''
       block_category: 'DrupalCenter (Views)'
       style:
