@@ -18,6 +18,7 @@ regions:
   header: 'Branding'
   header_user_menu: 'Header user menu'
   header_search: 'Header search'
+  header_login: 'Header login'
   breadcrumb: 'Breadcrumb'
   mainmenu: 'Mainmenu'
   highlighted: 'Highlighted'

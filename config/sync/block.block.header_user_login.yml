@@ -1,0 +1,20 @@
+uuid: b3cea157-5401-4a25-93eb-8148eee13192
+langcode: de
+status: true
+dependencies:
+  module:
+    - dc_user
+  theme:
+    - dc
+id: header_user_login
+theme: dc
+region: header_login
+weight: 0
+provider: null
+plugin: user_login_header
+settings:
+  id: user_login_header
+  label: 'Header user login'
+  provider: dc_user
+  label_display: '0'
+visibility: {  }
