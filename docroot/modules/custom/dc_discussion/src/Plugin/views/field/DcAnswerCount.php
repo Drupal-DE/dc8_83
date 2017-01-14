@@ -94,7 +94,7 @@ class DcAnswerCount extends NumericField {
    */
   public function preRender(&$values) {
     $user = \Drupal::currentUser();
-    if ($user->isAnonymous() || empty($values)) {
+    if (empty($values)) {
       return;
     }
 
