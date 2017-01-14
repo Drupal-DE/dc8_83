@@ -67,7 +67,6 @@ class DiscussionAnswer extends BlockBase implements ContainerFactoryPluginInterf
    */
   public function build() {
     $build = [];
-    $build['discussion_answer']['#markup'] = 'Implement DiscussionAnswer.';
     // Create new discussion node answer form.
     $discussion_node_add = \Drupal::entityTypeManager()
       ->getStorage('node')
@@ -75,8 +74,24 @@ class DiscussionAnswer extends BlockBase implements ContainerFactoryPluginInterf
         'type' => 'discussion',
       ]);
 
-    $build['discussion_answer_form'] = $this->entityFormBuilder->getForm($discussion_node_add);
-    // Hide some fields
+    $build['discussion_answer_form'] = $this->entityFormBuilder->getForm($discussion_node_add, 'discussion_answer');
+    // Clean up default form / re-arrange fields.
+    $build['discussion_answer_form']['book']['#access'] = FALSE;
+    $build['discussion_answer_form']['advanced']['#access'] = FALSE;
+    // Rebuild actions.
+    // Skip dropbutton #processing.
+    $build['discussion_answer_form']['actions']['#process'] = [
+      [
+        'Drupal\\Core\\Render\\Element\\Actions',
+        'processActions',
+      ],
+      [
+        'Drupal\\Core\\Render\\Element\\Actions',
+        'processContainer',
+      ],
+    ];
+
+
     // Get current node from block context.
     $node = $this->getCurrentNode();
 
@@ -86,6 +101,21 @@ class DiscussionAnswer extends BlockBase implements ContainerFactoryPluginInterf
       $build['discussion_answer_form']['field_discussion_category']['widget']['#default_value'][] = $node->field_discussion_category->target_id;
       // @toDo prefill other fields.
     }
+
+    // We don't want to show summary above body field.
+    $build['discussion_answer_form']['body']['widget'][0]['summary']['#access'] = FALSE;
+
+    // Form actions
+    // We don't want to show dropbutton - only show normal buttons.
+    $build['discussion_answer_form']['actions']['save']['#access'] = FALSE;
+    // Just show regular submit button - unpublishing etc. will be handled
+    // by administrative links.
+    $build['discussion_answer_form']['actions']['submit']['#access'] = TRUE;
+    // Fix styling for button
+    $button_classes = ['uk-button', 'uk-button-primary', 'uk-button-small'];
+    $build['discussion_answer_form']['actions']['submit']['#attributes']['class'] = $button_classes;
+    $build['discussion_answer_form']['actions']['preview']['#attributes']['class'] = $button_classes;
+
     return $build;
   }
 }
