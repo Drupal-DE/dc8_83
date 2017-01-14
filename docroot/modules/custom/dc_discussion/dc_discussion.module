@@ -266,3 +266,21 @@ function dc_discussion_views_data_alter(array &$data) {
     ];
   }
 }
+
+/**
+ * Implements hook_entity_type_alter().
+ *
+ * Allow use of different form modes while using entity.form_builder getForm
+ */
+function dc_discussion_entity_type_alter(array &$entity_types) {
+  $entity_type = 'node';
+  $entity = $entity_types[$entity_type];
+  /** @var \Drupal\Core\Entity\EntityDisplayRepository[] $display_modes_list for node */
+  $form_modes = \Drupal::service('entity_display.repository')->getFormModes($entity_type);
+  foreach ($form_modes as $machine_name => $form_display) {
+    // Get the correct canonical path to add operation.
+    $path = $entity->getLinkTemplate('canonical') . "/" .$machine_name;
+    $default_handler_class = $entity->getHandlerClasses()['form']['default'];
+    $entity->setFormClass($machine_name, $default_handler_class)->setLinkTemplate($machine_name, $path);
+  }
+}
