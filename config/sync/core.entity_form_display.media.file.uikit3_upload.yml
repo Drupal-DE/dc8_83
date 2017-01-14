@@ -1,0 +1,32 @@
+uuid: 37e1680b-a9bb-4dc6-9dc5-de1b918de49d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.uikit3_upload
+    - field.field.media.file.field_file
+    - media_entity.bundle.file
+  module:
+    - file
+id: media.file.uikit3_upload
+targetEntityType: media
+bundle: file
+mode: uikit3_upload
+content:
+  field_file:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  uid: true

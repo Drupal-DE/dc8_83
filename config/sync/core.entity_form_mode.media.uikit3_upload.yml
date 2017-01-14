@@ -1,0 +1,10 @@
+uuid: 8d27a85b-e1fb-4d9a-bed0-694d877e2357
+langcode: de
+status: true
+dependencies:
+  module:
+    - media_entity
+id: media.uikit3_upload
+label: 'File attach (uikit3 upload)'
+targetEntityType: media
+cache: true

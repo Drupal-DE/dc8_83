@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_form_mode.media.uikit3_upload
     - core.entity_form_mode.node.discussion_answer
     - field.field.node.discussion.body
     - field.field.node.discussion.field_discussion_category
@@ -12,6 +13,7 @@ dependencies:
     - field.field.node.discussion.field_topic
     - node.type.discussion
   module:
+    - inline_entity_form
     - text
 id: node.discussion.discussion_answer
 targetEntityType: node
@@ -23,8 +25,8 @@ content:
     weight: 4
     settings:
       rows: 9
-      summary_rows: 3
       placeholder: ''
+      summary_rows: 1
     third_party_settings: {  }
   field_discussion_category:
     weight: 1
@@ -39,6 +41,15 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete_tags
+  field_files:
+    type: inline_entity_form_simple
+    weight: 5
+    settings:
+      form_mode: uikit3_upload
+      label_singular: ''
+      label_plural: ''
+      override_labels: false
+    third_party_settings: {  }
   field_parent:
     weight: 3
     settings:
@@ -56,7 +67,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_files: true
   field_topic: true
   langcode: true
   path: true
