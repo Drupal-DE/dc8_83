@@ -12,3 +12,8 @@ services:
     tags:
       - { name: event_subscriber }
 
+  dc_discussion.breadcrumb.node_discussion:
+    class: Drupal\dc_discussion\Breadcrumb\DcDiscussionNodeBreadcrumbBuilder
+    arguments: []
+    tags:
+      - { name: breadcrumb_builder, priority: 101 }
