@@ -1,0 +1,65 @@
+uuid: 9fdb2833-6e6c-4868-b40f-9be9219f3af6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.node.discussion_answer
+    - field.field.node.discussion.body
+    - field.field.node.discussion.field_discussion_category
+    - field.field.node.discussion.field_drupal_version
+    - field.field.node.discussion.field_files
+    - field.field.node.discussion.field_parent
+    - field.field.node.discussion.field_topic
+    - node.type.discussion
+  module:
+    - text
+id: node.discussion.discussion_answer
+targetEntityType: node
+bundle: discussion
+mode: discussion_answer
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 4
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_discussion_category:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_drupal_version:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+  field_parent:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_files: true
+  field_topic: true
+  langcode: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true
