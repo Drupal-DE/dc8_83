@@ -10,4 +10,7 @@
  * @see template_preprocess_input()
  */
 #}
-<button{{ attributes.addClass('uk-button', 'uk-button-small', 'uk-button-primary') }}>{{ attributes.value }}</button>{{ children }}
+<div uk-form-custom>
+  <button class="uk-button uk-button-small uk-button-default" type="button" tabindex="-1">{{ 'Select file'|trans }}</button>
+  <input{{ attributes.addClass('') }} />{{ children }}
+</div>
