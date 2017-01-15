@@ -1,26 +1,24 @@
-uuid: 74590bf5-a378-4b59-90c9-5b2a4681515d
+uuid: 20bec981-01cc-481b-95e4-0d489efc8ef2
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_form_mode.media.uikit3_upload
-    - field.field.media.image.field_image
-    - image.style.thumbnail
-    - media_entity.bundle.image
+    - core.entity_form_mode.media.simple_upload
+    - field.field.media.file.field_file
+    - media_entity.bundle.file
   module:
-    - image
-id: media.image.uikit3_upload
+    - file
+id: media.file.simple_upload
 targetEntityType: media
-bundle: image
-mode: uikit3_upload
+bundle: file
+mode: simple_upload
 content:
-  field_image:
+  field_file:
     weight: 1
     settings:
       progress_indicator: throbber
-      preview_image_style: thumbnail
     third_party_settings: {  }
-    type: image_image
+    type: file_generic
   name:
     type: string_textfield
     weight: 0

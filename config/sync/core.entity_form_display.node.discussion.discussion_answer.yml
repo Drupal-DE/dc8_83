@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_form_mode.media.uikit3_upload
+    - core.entity_form_mode.media.simple_upload
     - core.entity_form_mode.node.discussion_answer
     - field.field.node.discussion.body
     - field.field.node.discussion.field_discussion_category
@@ -45,7 +45,7 @@ content:
     type: inline_entity_form_simple
     weight: 5
     settings:
-      form_mode: uikit3_upload
+      form_mode: simple_upload
       label_singular: ''
       label_plural: ''
       override_labels: false
