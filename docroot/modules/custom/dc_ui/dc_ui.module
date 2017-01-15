@@ -5,7 +5,6 @@
  * Contains dc_ui.module.
  */
 
-use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\ViewExecutable;
 
@@ -102,5 +101,16 @@ function _dc_ui_access_legacy_content_field() {
 function dc_ui_views_pre_build(ViewExecutable $view) {
   if ('content_overview' === $view->id()) {
     $view->element['#attached']['library'][] = 'dc_ui/admin.content_overview';
+  }
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function dc_ui_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
+  // Updated element type of field_files - remove fieldset.
+  $field_definition = $context['items']->getFieldDefinition();
+  if ($field_definition->getName() == 'field_files') {
+    $element['#type'] = 'container';
   }
 }
