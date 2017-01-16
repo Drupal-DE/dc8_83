@@ -1,40 +1,41 @@
-uuid: 65707035-3cd3-4094-9744-a4c49c202b8e
+uuid: 8130609e-534f-4a25-91b6-67f1bcf335d4
 langcode: en
 status: true
 dependencies:
   config:
-    - page_manager.page.discussions_latest
+    - page_manager.page.latest_discussions_filtered
     - views.view.discussions
   module:
     - panels
     - views
-id: discussions_latest-panels_variant-0
-label: 'Latest discussions'
+id: latest_discussions_filtered-http_status_code-0
+label: Diskussionen
 variant: panels_variant
 variant_settings:
   blocks:
-    2097eb74-f3e5-4ed3-9072-96ce9e4f0c18:
+    8cea7564-920c-4717-9bf6-055be8db7360:
       id: 'views_block:discussions-latest_full'
       label: ''
       provider: views
-      label_display: '0'
+      label_display: visible
       views_label: ''
       items_per_page: none
       region: middle
       weight: 0
-      uuid: 2097eb74-f3e5-4ed3-9072-96ce9e4f0c18
+      uuid: 8cea7564-920c-4717-9bf6-055be8db7360
       context_mapping: {  }
   id: panels_variant
-  uuid: 15b4532d-6c17-4d7b-b809-0b62cd1c756c
   label: null
+  uuid: 5924a8ef-6984-490e-b4ca-7cd39611976e
   weight: 0
+  status_code: '404'
   layout: onecol
   layout_settings: {  }
   page_title: null
   storage_type: page_manager
-  storage_id: discussions_latest-panels_variant-0
+  storage_id: latest_discussions_filtered-http_status_code-0
   builder: standard
-page: discussions_latest
+page: latest_discussions_filtered
 weight: 0
 selection_criteria: {  }
 selection_logic: and
