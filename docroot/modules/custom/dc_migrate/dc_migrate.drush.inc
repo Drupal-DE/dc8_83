@@ -52,9 +52,19 @@ function dc_migrate_drush_command() {
     ],
     'aliases' => ['dc-mp-l'],
   ];
-
+  $commands['rebuild-taxonomy-index'] = [
+    'description' => 'Rebuild taxonomy index for all nodes',
+    'core' => ['8+'],
+    'arguments' => [
+      'type' => dt('Content type to rebuild the index for. If ommitted, all content types are used.'),
+    ],
+    'options' => [
+      'batch-size' => dt('The number of items to process per batch run. Defaults to 100.'),
+    ],
+  ];
   return $commands;
 }
+
 
 /**
  * Config refresh command callback.
@@ -204,4 +214,98 @@ function drush_dc_migrate_process_list() {
   }
 
   drush_print_table($rows);
+}
+
+/**
+ * Command callback for "dc-migrate-rebuild-taxonomy-index".
+ *
+ * @param string $type
+ *   Content type to rebuild the index for.
+ */
+function drush_dc_migrate_rebuild_taxonomy_index($type = NULL) {
+  $batch_size = drush_get_option('batch-size', 100);
+  if ($batch_size <= 0) {
+    drush_print('batch-size must be greater than 0!');
+    return;
+  }
+  $batch_definition = [
+    'init_message' => 'Rebuild taxonomy_index',
+    'operations' => [
+      ['_dc_migrate_rebuild_taxonomy_index_process', [$type, $batch_size]],
+    ],
+    'progress_message' => 'Processed @current out of @total.',
+    'finished' => '_dc_migrate_rebuild_taxonomy_index_finished',
+  ];
+  batch_set($batch_definition);
+  $batch = &batch_get();
+  $batch['progressive'] = TRUE;
+  drush_backend_batch_process();
+}
+
+/**
+ * Batch operation to rebuild taxonomy_index information.
+ *
+ * @param string $type
+ *   (optional) Content type to process.
+ * @param int $batch_size
+ *   (optional) Number of items to process with each batch.
+ * @param array $context
+ *   Context information used for the batch.
+ */
+function _dc_migrate_rebuild_taxonomy_index_process($type = NULL, $batch_size = 100, &$context) {
+  /* @var $entity_manager \Drupal\Core\Entity\EntityTypeManagerInterface */
+  $entity_manager = \Drupal::entityTypeManager();
+  $query = \Drupal::database()
+    ->select('node_field_data', 'n');
+  $query->condition('status', 1);
+  $query->fields('n', ['nid']);
+  $query->orderBy('nid');
+
+  if (!empty($type) && is_string($type)) {
+    $query->condition('type', $type);
+  }
+
+  if (empty($context['sandbox']['max'])) {
+    $context['finished'] = 0;
+    $context['sandbox']['max'] = $query->countQuery()->execute()->fetchField();
+    $context['sandbox']['progress'] = 0;
+    $context['message'] = 'Rebuild taxonomy_index ...';
+    $context['results']['updated'] = 0;
+    $context['results']['failures'] = 0;
+    $context['results']['processed'] = 0;
+  }
+
+  // Limit resultset.
+  $query->range($context['results']['processed'], $batch_size);
+
+  $nids = $query->execute()->fetchAllAssoc('nid');
+
+  $nodes = $entity_manager
+    ->getStorage('node')
+    ->loadMultiple(array_keys($nids));
+  foreach ($nodes as $node) {
+    taxonomy_build_node_index($node);
+    $context['sandbox']['progress']++;
+    $context['results']['processed']++;
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+  }
+  $context['message'] = sprintf('Processed %d out of %d items', $context['results']['processed'], $context['sandbox']['max']);
+}
+
+/**
+ * Finish callback for batch operation.
+ *
+ * @param type $success
+ * @param type $results
+ * @param type $operations
+ */
+function _dc_migrate_rebuild_taxonomy_index_finished($success, $results, $operations) {
+  if ($success) {
+    $message = 'Items processed: ' . $results['processed'];
+  }
+  else {
+    $message = t('Finished with an error.');
+  }
+
+  drush_print($message);
 }
