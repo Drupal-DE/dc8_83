@@ -14,33 +14,23 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 2
     settings: {  }
     third_party_settings: {  }
   field_file:
-    weight: 11
+    weight: 0
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-  langcode:
-    type: language_select
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-  name:
-    type: string_textfield
-    weight: -5
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 1
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  langcode: true
+  name: true
