@@ -1,0 +1,32 @@
+uuid: f859fb4f-132f-469c-90e1-dc5a4ccc79f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.search_result
+    - field.field.paragraph.text.field_content
+    - field.field.paragraph.text.field_headline
+    - paragraphs.paragraphs_type.text
+  module:
+    - text
+id: paragraph.text.search_result
+targetEntityType: paragraph
+bundle: text
+mode: search_result
+content:
+  field_content:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_headline:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true
