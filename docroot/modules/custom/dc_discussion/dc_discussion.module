@@ -63,14 +63,39 @@ function dc_discussion_form_node_discussion_form_alter(&$form, FormStateInterfac
 /**
  * Implements hook_form_FORM_ID_alter().
  */
+function dc_discussion_form_node_discussion_discussion_answer_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Prefill fields / hide fields like we do on node.add_discussion_answer route.
+  // Get current route..
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    // Prepopulate field_parent with node id from url.
+    if ($node instanceof NodeInterface) {
+      $form['field_parent']['widget'][0]['target_id']['#default_value'] = $node;
+      // Hide field_parent for discussion answers.
+      $form['field_parent']['#access'] = FALSE;
+      // Set drupal version.
+      if (!empty($node->field_drupal_version->target_id)) {
+        $form['field_drupal_version']['widget']['#default_value'][] = $node->field_drupal_version->target_id;
+        $form['field_drupal_version']['#access'] = FALSE;
+      }
+      // Set discussion category.
+      if (!empty($node->field_discussion_category->target_id)) {
+        $form['field_discussion_category']['widget']['#default_value'][] = $node->field_discussion_category->target_id;
+        $form['field_discussion_category']['#access'] = FALSE;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function dc_discussion_form_node_discussion_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $node = $form_state->getFormObject()->getEntity();
 
   // Hide field_parent for disussion edit form.
   $form['field_parent']['#access'] = FALSE;
-
   // Check for filled field_parent and hide fields
-  if ($node instanceof NodeInterface && ($node->hasField('field_parent') && !empty($node->get('field_parent')->getValue()[0]))) {
+  if ($node instanceof NodeInterface && ($node->hasField('field_parent') && !empty($node->field_parent->value))) {
     // Hide field_drupal_version while editing discussion answers.
     $form['field_drupal_version']['#access'] = FALSE;
     $form['field_discussion_category']['#access'] = FALSE;
@@ -242,8 +267,7 @@ function _dc_discussion_discussion_get_topic($entity) {
       $item = $parent->get(0);
       $value = $item->getValue();
       $entity = Drupal::entityTypeManager()->getStorage('node')->load($value['target_id']);
-    }
-    catch (Exception $exc) {
+    } catch (Exception $exc) {
       $entity = FALSE;
     }
   }
