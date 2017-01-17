@@ -219,9 +219,12 @@ function dc_discussion_node_presave(EntityInterface $entity) {
   }
   /* @var $parent \Drupal\Core\Field\FieldItemListInterface */
   if (($parent = $entity->get('field_parent')) && !$parent->isEmpty()) {
-    // Node is discussion answer: update field_topic.
+    // Node is discussion answer.
     if ($topic = _dc_discussion_discussion_get_topic($entity)) {
+      // Set field_topic to main topic.
       $entity->field_topic->setValue($topic->id());
+      // Set discussion_category to value of main topic.
+      $entity->field_discussion_category->setValue() = $topic->field_discussion_category->getValue();
     }
   }
 }
@@ -279,7 +282,7 @@ function dc_discussion_entity_type_alter(array &$entity_types) {
   $form_modes = \Drupal::service('entity_display.repository')->getFormModes($entity_type);
   foreach ($form_modes as $machine_name => $form_display) {
     // Get the correct canonical path to add operation.
-    $path = $entity->getLinkTemplate('canonical') . "/" .$machine_name;
+    $path = $entity->getLinkTemplate('canonical') . "/" . $machine_name;
     $default_handler_class = $entity->getHandlerClasses()['form']['default'];
     $entity->setFormClass($machine_name, $default_handler_class)->setLinkTemplate($machine_name, $path);
   }

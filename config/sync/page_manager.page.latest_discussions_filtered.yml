@@ -1,0 +1,16 @@
+uuid: 3a67aa80-163f-45fd-8449-7eeff95761f1
+langcode: en
+status: true
+dependencies: {  }
+id: latest_discussions_filtered
+label: 'Latest discussions (filtered)'
+description: ''
+use_admin_theme: false
+path: '/discussions/c/{tid}'
+access_logic: and
+access_conditions: {  }
+parameters:
+  tid:
+    machine_name: tid
+    type: integer
+    label: 'Term ID'

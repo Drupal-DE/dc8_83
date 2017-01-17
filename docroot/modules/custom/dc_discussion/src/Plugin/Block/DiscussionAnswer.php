@@ -97,7 +97,7 @@ class DiscussionAnswer extends BlockBase implements ContainerFactoryPluginInterf
 
     if ($node instanceof NodeInterface) {
       // Set default value for discussion_category.
-      $build['discussion_answer_form']['field_discussion_category']['widget']['#value'][] = $node->field_discussion_category->target_id;
+      $build['discussion_answer_form']['field_discussion_category']['widget']['#value'] = $node->field_discussion_category->target_id;
       $build['discussion_answer_form']['field_discussion_category']['widget']['#default_value'][] = $node->field_discussion_category->target_id;
       // @toDo prefill other fields.
     }
