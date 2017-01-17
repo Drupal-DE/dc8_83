@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\media_entity\MediaInterface;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -118,7 +119,7 @@ function dc_ui_field_widget_form_alter(&$element, FormStateInterface $form_state
 /**
  * Implements hook_ENTITY_TYPE_presave() on behalf of discussion nodes.
  */
-function dc_ui_media_presave(EntityInterface $entity) {
+function dc_ui_media_presave(MediaInterface $entity) {
   // Only process file/ image media entities.
   if (!in_array($entity->bundle(), ['file', 'image'])) {
     return;
