@@ -224,7 +224,7 @@ function dc_discussion_node_presave(EntityInterface $entity) {
       // Set field_topic to main topic.
       $entity->field_topic->setValue($topic->id());
       // Set discussion_category to value of main topic.
-      $entity->field_discussion_category->setValue() = $topic->field_discussion_category->getValue();
+      $entity->field_discussion_category->setValue($topic->field_discussion_category->getValue());
     }
   }
 }
