@@ -52,6 +52,8 @@
         "drupal/panels": "3.x-dev",
         "drupal/paragraphs": "^1.0",
         "drupal/pathauto": "^1.0",
+        "drupal/search_api": "dev-1.x",
+        "drupal/search_api_solr": "dev-1.x",
         "drupal/token": "^1.0",
         "drupal/views_lazy_load": "dev-8.x-1.x",
         "drush/drush": "~8.0"
