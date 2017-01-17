@@ -52,8 +52,11 @@ content:
       override_labels: true
       label_singular: File
       label_plural: Files
+      allow_new: true
+      match_operator: CONTAINS
+      allow_existing: false
     third_party_settings: {  }
-    type: inline_entity_form_simple
+    type: inline_entity_form_complex
   field_parent:
     weight: 3
     settings:
