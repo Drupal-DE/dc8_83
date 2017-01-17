@@ -14,19 +14,13 @@ bundle: file
 mode: simple_upload
 content:
   field_file:
-    weight: 1
+    weight: 0
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-  name:
-    type: string_textfield
-    weight: 0
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
 hidden:
   created: true
   langcode: true
+  name: true
   uid: true
