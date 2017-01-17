@@ -114,3 +114,17 @@ function dc_ui_field_widget_form_alter(&$element, FormStateInterface $form_state
     $element['#type'] = 'container';
   }
 }
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() on behalf of discussion nodes.
+ */
+function dc_ui_media_presave(EntityInterface $entity) {
+  // Only process file/ image media entities.
+  if (!in_array($entity->bundle(), ['file', 'image'])) {
+    return;
+  }
+  // Set name to uploaded file name.
+  if (!empty($entity->field_file->entity->filename->value)) {
+    $entity->name->setValue($entity->field_file->entity->filename->value);
+  }
+}
