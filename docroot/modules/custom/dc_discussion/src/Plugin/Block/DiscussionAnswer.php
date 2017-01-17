@@ -6,8 +6,6 @@ use Drupal\Core\Block\BlockBase;
 
 use Drupal\Core\Entity\EntityFormBuilder;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\node\NodeInterface;
-use Drupal\taxonomy\Entity\Term;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
@@ -91,30 +89,25 @@ class DiscussionAnswer extends BlockBase implements ContainerFactoryPluginInterf
       ],
     ];
 
-
-    // Get current node from block context.
-    $node = $this->getCurrentNode();
-
-    if ($node instanceof NodeInterface) {
-      // Set default value for discussion_category.
-      $build['discussion_answer_form']['field_discussion_category']['widget']['#value'] = $node->field_discussion_category->target_id;
-      $build['discussion_answer_form']['field_discussion_category']['widget']['#default_value'][] = $node->field_discussion_category->target_id;
-      // @toDo prefill other fields.
-    }
-
     // We don't want to show summary above body field.
     $build['discussion_answer_form']['body']['widget'][0]['summary']['#access'] = FALSE;
 
     // Form actions
-    // We don't want to show dropbutton - only show normal buttons.
-    $build['discussion_answer_form']['actions']['save']['#access'] = FALSE;
-    // Just show regular submit button - unpublishing etc. will be handled
-    // by administrative links.
-    $build['discussion_answer_form']['actions']['submit']['#access'] = TRUE;
-    // Fix styling for button
     $button_classes = ['uk-button', 'uk-button-primary', 'uk-button-small'];
-    $build['discussion_answer_form']['actions']['submit']['#attributes']['class'] = $button_classes;
+    // Skip pre-rendering of save actions - we don't want a drop button here.
+    $build['discussion_answer_form']['actions']['save']['#pre_render'] = [];
+    $build['discussion_answer_form']['actions']['save']['#type'] = 'container';
+    $build['discussion_answer_form']['actions']['save']['#theme'] = 'links';
+    // Update styling of publish button.
+
+    $build['discussion_answer_form']['actions']['publish']['#attributes']['class'] = $button_classes;
+    // Remove unpublish button.
+    unset($build['discussion_answer_form']['actions']['save']['#links']['unpublish']);
+
+    // Move preview button to save actions.
     $build['discussion_answer_form']['actions']['preview']['#attributes']['class'] = $button_classes;
+    $build['discussion_answer_form']['actions']['preview']['#dropbutton'] = 'save';
+    $build['discussion_answer_form']['actions']['save']['#links']['preview']['title'] = render($build['discussion_answer_form']['actions']['preview']);
 
     return $build;
   }
