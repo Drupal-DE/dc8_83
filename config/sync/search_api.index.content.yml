@@ -1,0 +1,210 @@
+uuid: 707b33b7-7316-4bef-a78e-a9fca7c41884
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - field.storage.node.field_legacy_content
+    - field.storage.node.field_drupal_version
+    - field.storage.node.field_discussion_category
+    - search_api.server.local
+  module:
+    - taxonomy
+    - search_api
+    - dc_search
+    - node
+id: content
+name: Content
+description: ''
+read_only: false
+field_settings:
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 8
+  created:
+    label: 'Authored on'
+    datasource_id: 'entity:node'
+    property_path: created
+    type: date
+  nid:
+    label: ID
+    datasource_id: 'entity:node'
+    property_path: nid
+    type: integer
+  body:
+    label: 'Body » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'body:processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  paragraph_content_rendered:
+    label: 'Content: rendered'
+    datasource_id: 'entity:node'
+    property_path: field_content_rendered
+    type: text
+    boost: !!float 5
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        text: search_index
+        text_with_image: search_index
+        link_list: ''
+        gallery: ''
+        image: ''
+        file_list: ''
+  processed:
+    label: 'Legacy content » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_legacy_content:processed'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_legacy_content
+  drupal_version:
+    label: 'Drupal version » Term ID'
+    datasource_id: 'entity:node'
+    property_path: 'field_drupal_version:entity:tid'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_drupal_version
+      module:
+        - taxonomy
+  drupal_version__name:
+    label: 'Drupal version » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_drupal_version:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_drupal_version
+      module:
+        - taxonomy
+  discussion_category:
+    label: 'Discussion category » Term ID'
+    datasource_id: 'entity:node'
+    property_path: 'field_discussion_category:entity:tid'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_discussion_category
+      module:
+        - taxonomy
+  discussion_category__name:
+    label: 'Discussion category » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_discussion_category:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_discussion_category
+      module:
+        - taxonomy
+  status:
+    label: 'Publishing status'
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - book
+        - discussion
+        - news
+        - page
+        - showroom
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  rendered_field_item: {  }
+  add_url: {  }
+  aggregated_field: {  }
+  highlight:
+    highlight: server
+    highlight_partial: true
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields:
+      - title
+    prefix: '<span class="highlight">'
+    suffix: '</span>'
+    weights:
+      postprocess_query: 0
+  html_filter:
+    fields:
+      - type
+      - title
+      - body
+      - paragraph_content_rendered
+      - processed
+      - drupal_version__name
+      - discussion_category__name
+    title: false
+    alt: false
+    tags:
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      b: 2
+      em: 1
+      u: 1
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  ignorecase:
+    fields:
+      - type
+      - title
+      - body
+      - paragraph_content_rendered
+      - processed
+      - drupal_version__name
+      - discussion_category__name
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  rendered_item: {  }
+  tokenizer:
+    fields:
+      - title
+      - body
+      - paragraph_content_rendered
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
+  transliteration:
+    fields:
+      - type
+      - title
+      - body
+      - paragraph_content_rendered
+      - processed
+      - drupal_version__name
+      - discussion_category__name
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+tracker_settings:
+  default: {  }
+options:
+  index_directly: false
+  cron_limit: 50
+server: local
