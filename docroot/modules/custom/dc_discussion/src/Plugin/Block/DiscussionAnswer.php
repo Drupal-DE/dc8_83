@@ -71,7 +71,7 @@ class DiscussionAnswer extends BlockBase implements ContainerFactoryPluginInterf
       ->create([
         'type' => 'discussion',
       ]);
-
+    // Get discussion node form in form mode discussion_answer.
     $build['discussion_answer_form'] = $this->entityFormBuilder->getForm($discussion_node_add, 'discussion_answer');
     // Clean up default form / re-arrange fields.
     $build['discussion_answer_form']['book']['#access'] = FALSE;
@@ -89,9 +89,6 @@ class DiscussionAnswer extends BlockBase implements ContainerFactoryPluginInterf
       ],
     ];
 
-    // We don't want to show summary above body field.
-    $build['discussion_answer_form']['body']['widget'][0]['summary']['#access'] = FALSE;
-
     // Form actions
     $button_classes = ['uk-button', 'uk-button-primary', 'uk-button-small'];
     // Skip pre-rendering of save actions - we don't want a drop button here.
@@ -99,7 +96,6 @@ class DiscussionAnswer extends BlockBase implements ContainerFactoryPluginInterf
     $build['discussion_answer_form']['actions']['save']['#type'] = 'container';
     $build['discussion_answer_form']['actions']['save']['#theme'] = 'links';
     // Update styling of publish button.
-
     $build['discussion_answer_form']['actions']['publish']['#attributes']['class'] = $button_classes;
     // Remove unpublish button.
     unset($build['discussion_answer_form']['actions']['save']['#links']['unpublish']);
