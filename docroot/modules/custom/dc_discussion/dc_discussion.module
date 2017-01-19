@@ -75,13 +75,14 @@ function dc_discussion_form_node_discussion_discussion_answer_form_alter(&$form,
       // Set drupal version.
       if (!empty($node->field_drupal_version->target_id)) {
         $form['field_drupal_version']['widget']['#default_value'][] = $node->field_drupal_version->target_id;
-        $form['field_drupal_version']['#access'] = FALSE;
       }
       // Set discussion category.
       if (!empty($node->field_discussion_category->target_id)) {
         $form['field_discussion_category']['widget']['#default_value'][] = $node->field_discussion_category->target_id;
-        $form['field_discussion_category']['#access'] = FALSE;
       }
+      // Hide fields that are not relevant for user / where prefilled.
+      $form['field_drupal_version']['#access'] = FALSE;
+      $form['field_discussion_category']['#access'] = FALSE;
     }
   }
 }
