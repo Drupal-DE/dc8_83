@@ -35,6 +35,7 @@
         "cweagans/composer-patches": "~1.0",
         "drupal-composer/drupal-scaffold": "^2.2.0",
         "drupal/admin_toolbar": "^1.0",
+        "drupal/allowed_formats": "dev-1.x",
         "drupal/console": "~1.0",
         "drupal/core": "^8.0",
         "drupal/inline_entity_form": "^1.0",
