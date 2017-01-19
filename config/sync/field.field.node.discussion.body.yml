@@ -6,7 +6,13 @@ dependencies:
     - field.storage.node.body
     - node.type.discussion
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    wysiwyg_small: wysiwyg_small
+    wysiwyg_full: '0'
+    plain_text: '0'
 id: node.discussion.body
 field_name: body
 entity_type: node
@@ -18,5 +24,5 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  display_summary: true
+  display_summary: false
 field_type: text_with_summary
