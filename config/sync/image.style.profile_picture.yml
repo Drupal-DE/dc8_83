@@ -1,0 +1,16 @@
+uuid: 5e526ddc-3f80-4092-ae5f-cadc8f15bc99
+langcode: de
+status: true
+dependencies:
+  module:
+    - focal_point
+name: profile_picture
+label: 'Profile picture (150x150)'
+effects:
+  8c5c5d5f-26df-477c-8587-05242c382224:
+    uuid: 8c5c5d5f-26df-477c-8587-05242c382224
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 150
+      height: 150

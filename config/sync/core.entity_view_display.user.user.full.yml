@@ -1,8 +1,9 @@
-uuid: 9e0496a7-b687-403b-b3b2-f8cdb4a2325d
+uuid: e0a8835e-bae1-4446-8536-c57837f86940
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.user.full
     - field.field.user.user.field_company
     - field.field.user.user.field_image
     - field.field.user.user.field_location
@@ -13,59 +14,53 @@ dependencies:
     - link
     - text
     - user
-id: user.user.default
+id: user.user.full
 targetEntityType: user
 bundle: user
-mode: default
+mode: full
 content:
   field_company:
-    weight: 11
+    weight: 4
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-  field_image:
-    weight: 7
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
   field_location:
-    weight: 10
+    weight: 3
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_name:
-    weight: 12
+    weight: 1
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_signature:
-    weight: 6
+    weight: 5
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_website:
-    weight: 9
+    weight: 2
     label: above
     settings:
       trim_length: 80
+      rel: nofollow
+      target: _blank
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
     third_party_settings: {  }
     type: link
   member_for:
-    weight: 5
+    weight: 0
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_image: true
   langcode: true

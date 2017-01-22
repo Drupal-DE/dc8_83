@@ -5,8 +5,14 @@ dependencies:
   config:
     - field.storage.user.field_signature
   module:
+    - allowed_formats
     - text
     - user
+third_party_settings:
+  allowed_formats:
+    wysiwyg_small: wysiwyg_small
+    wysiwyg_full: '0'
+    plain_text: '0'
 id: user.user.field_signature
 field_name: field_signature
 entity_type: user
