@@ -1,0 +1,7 @@
+{%
+set classes = [
+  style_name ? 'image-style-' ~ style_name|clean_class,
+  'uk-border-circle'
+]
+%}
+<img{{ attributes.addClass(classes) }} />

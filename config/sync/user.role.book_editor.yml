@@ -24,3 +24,4 @@ permissions:
   - 'edit own book content'
   - 'revert book revisions'
   - 'view book revisions'
+  - 'access user profiles'

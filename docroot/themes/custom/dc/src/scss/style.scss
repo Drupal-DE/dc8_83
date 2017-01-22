@@ -7,6 +7,8 @@
 
 // Base styles.
 @import "base/typography";
+// Basic HTMl elements.
+@import "base/base";
 // Overwrite uikit styles.
 @import "base/overwrite-ui-kit";
 
@@ -19,3 +21,4 @@
 @import "components/discussions";
 @import "components/marker";
 @import "components/navbar";
+@import "components/vertical_tabs";

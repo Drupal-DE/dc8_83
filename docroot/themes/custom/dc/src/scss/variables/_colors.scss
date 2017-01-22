@@ -10,10 +10,10 @@ $color--lime-green: #96BC44;
 // Secondary Colors.
 $color--navy-blue: #064771;
 $color--light-navy-blue: #0D7DC1;
-$color--pale-gray: #F6F6F2;
+$color--pale-grey: #F6F6F2;
 $color--light-yellow: #E6FCB6;
-$color--grey: #666666;
-$color--black: #222222;
+$color--grey: #666;
+$color--black: #222;
 
 // Messages.
 $color--notice: #D4EFCC;
@@ -25,6 +25,11 @@ $color--error: #EBCCCC;
  */
 
 // White
-$color--white: #ffffff;
+$color--white: #fff;
 $color--light-blue-header: #bce3fa;
-$color--light-grey: $color--pale-gray;
+$color--light-grey: $color--pale-grey;
+
+// Tabs.
+$color--tab-text: #999;
+$color--tab-text-hover: $color--grey;
+$color--tab-border: #e5e5e5;

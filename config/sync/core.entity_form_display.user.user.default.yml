@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_form_mode.media.simple_upload
     - field.field.user.user.field_company
     - field.field.user.user.field_image
     - field.field.user.user.field_location
@@ -10,17 +11,63 @@ dependencies:
     - field.field.user.user.field_signature
     - field.field.user.user.field_website
   module:
+    - field_group
     - inline_entity_form
     - link
     - text
     - user
+third_party_settings:
+  field_group:
+    group_user:
+      children:
+        - group_user_basic
+        - group_user_profile
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        id: ''
+        classes: ''
+        direction: vertical
+      label: User
+    group_user_basic:
+      children:
+        - account
+      parent_name: group_user
+      weight: 8
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: open
+        description: ''
+        required_fields: true
+      label: Basic
+    group_user_profile:
+      children:
+        - field_image
+        - field_name
+        - field_location
+        - field_company
+        - field_website
+        - field_signature
+      parent_name: group_user
+      weight: 9
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: false
+      label: 'Profile information'
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
   account:
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
   field_company:
@@ -31,50 +78,47 @@ content:
     third_party_settings: {  }
     type: string_textfield
   field_image:
-    weight: 1
+    weight: 2
     settings:
-      form_mode: default
-      label_singular: ''
-      label_plural: ''
+      form_mode: simple_upload
+      override_labels: true
+      label_singular: Benutzerbild
+      label_plural: Benutzerbilder
       allow_new: true
       match_operator: CONTAINS
-      override_labels: false
       allow_existing: false
     third_party_settings: {  }
     type: inline_entity_form_complex
   field_location:
-    weight: 3
+    weight: 4
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_name:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_signature:
-    weight: 6
+    weight: 7
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
   field_website:
-    weight: 4
+    weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-  language:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   langcode: true
+  language: true
   path: true
   timezone: true

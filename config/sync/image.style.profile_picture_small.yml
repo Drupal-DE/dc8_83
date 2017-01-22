@@ -1,0 +1,16 @@
+uuid: 34b51a52-086e-42b4-9cd5-1699b6fdae55
+langcode: de
+status: true
+dependencies:
+  module:
+    - focal_point
+name: profile_picture_small
+label: 'Profile picture small (40x40)'
+effects:
+  ad9943d7-9245-4f76-b751-5316e0ac2e04:
+    uuid: ad9943d7-9245-4f76-b751-5316e0ac2e04
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 40
+      height: 40

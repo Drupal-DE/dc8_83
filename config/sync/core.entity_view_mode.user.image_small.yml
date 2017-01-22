@@ -1,0 +1,10 @@
+uuid: 6a0be258-0c41-4cf4-8967-ceb9ea091917
+langcode: de
+status: true
+dependencies:
+  module:
+    - user
+id: user.image_small
+label: 'Image small'
+targetEntityType: user
+cache: true

@@ -6,4 +6,5 @@ id: forum_member
 label: 'Forum member'
 weight: 4
 is_admin: null
-permissions: {  }
+permissions:
+  - 'access user profiles'
