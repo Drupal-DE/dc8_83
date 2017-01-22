@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Functions for the "DrupalCenter placeholder image" module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_entity_build_defaults_alter().
+ */
+function dc_placeholder_image_entity_build_defaults_alter(array &$build, EntityInterface $entity, $view_mode) {
+  // Get config for default images.
+  $config = Drupal::config('dc_placeholder_image.settings');
+  // Image settings.
+  // (If this path is changed in the future, it also needs to be changed in
+  // RecipeHeadMedia::isPlaceholderImage() method, because it is the base for
+  // checking if an image is a placeholder image).
+  $path = 'activetheme://images/placeholder';
+
+  // Handle media per bundle.
+  switch ($entity->bundle()) {
+    case 'user':
+      // Check if we have an empty image bundle
+      if ($entity->hasField('field_image') && !(empty($entity->field_image->get(0)))) {
+        break;
+      }
+      $image = !empty($config->get('user_picture_default')) ? $config->get('user_picture_default') : 'user_default.png';
+      // Set default image for field user_picture.
+      $placeholder_image_service = Drupal::service('dc_placeholder_image.placeholder_image');
+      if ($placeholder_image_service && ($placeholder_image_file = $placeholder_image_service->create($path, $image, 'media'))) {
+        // Set generated placeholder image.
+        $entity->field_image = $placeholder_image_file;
+      }
+      else {
+        // Something went wrong: hide the expired image entirely.
+        $entity->field_image = NULL;
+      }
+      break;
+  }
+}

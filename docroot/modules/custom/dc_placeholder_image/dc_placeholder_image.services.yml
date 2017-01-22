@@ -1,0 +1,3 @@
+services:
+  dc_placeholder_image.placeholder_image:
+    class: Drupal\dc_placeholder_image\Utility\PlaceholderImage
