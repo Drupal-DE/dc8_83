@@ -7,6 +7,7 @@
 
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\page_manager\PageVariantInterface;
+use Drupal\user\Entity\User;
 
 /**
  * Override variables used in page.html.twig.
@@ -64,6 +65,14 @@ function dc_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $va
 function dc_preprocess_block(&$variables) {
   if(!empty($variables['attributes']['id'])) {
     $variables['content']['#attributes']['block'] = $variables['attributes']['id'];
+  }
+  // Get user image for use in header menu block.
+  if(isset($variables['elements']['#id']) && $variables['elements']['#id'] == "header_user_menu") {
+    // Get current user and render in user preview image view mode.
+    $userCurrent = \Drupal::currentUser();
+    $user = User::load($userCurrent->id());
+    $view_builder = \Drupal::entityManager()->getViewBuilder('user');
+    $variables['user_picture'] = $view_builder->view($user, 'image_small');
   }
 }
 
