@@ -10,8 +10,10 @@ dependencies:
     - field.field.user.user.field_name
     - field.field.user.user.field_signature
     - field.field.user.user.field_website
+    - image.style.profile_picture
   module:
     - link
+    - media_entity
     - text
     - user
 id: user.user.full
@@ -20,34 +22,42 @@ bundle: user
 mode: full
 content:
   field_company:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_image:
+    type: media_thumbnail
+    weight: 0
+    label: hidden
+    settings:
+      image_style: profile_picture
+      image_link: ''
+    third_party_settings: {  }
+  field_location:
     weight: 4
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-  field_location:
-    weight: 3
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
   field_name:
-    weight: 1
+    weight: 2
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_signature:
-    weight: 5
+    weight: 6
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_website:
-    weight: 2
+    weight: 3
     label: above
     settings:
       trim_length: 80
@@ -58,9 +68,8 @@ content:
     third_party_settings: {  }
     type: link
   member_for:
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_image: true
   langcode: true
