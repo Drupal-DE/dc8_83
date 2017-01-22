@@ -10,7 +10,9 @@ module:
   config: 0
   config_translation: 0
   contextual: 0
+  crop: 0
   ctools: 0
+  ctools_block: 0
   ctools_views: 0
   dblog: 0
   dc_discussion: 0
@@ -22,9 +24,11 @@ module:
   entity: 0
   entity_reference_revisions: 0
   field: 0
+  field_group: 0
   field_ui: 0
   file: 0
   filter: 0
+  focal_point: 0
   image: 0
   inline_entity_form: 0
   language: 0
