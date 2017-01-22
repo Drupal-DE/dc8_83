@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Asset\AttachedAssetsInterface;
+use Drupal\page_manager\PageVariantInterface;
 
 /**
  * Override variables used in page.html.twig.
@@ -83,6 +84,26 @@ function dc_theme_suggestions_menu_alter(array &$suggestions, array $variables) 
  */
 function dc_theme_suggestions_form_alter(array &$suggestions, array $variables) {
   $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#form_id'];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function dc_theme_suggestions_panels_twocol_alter(array &$suggestions, array $variables) {
+  // Add page id to theme suggestions.
+  $page_variant = $variables['content']['#page_variant'];
+  if ($page_variant instanceof PageVariantInterface) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $page_variant->getPage()->id();
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function dc_theme_suggestions_image_alter(array &$suggestions, array $variables) {
+  if (isset($variables['style_name'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['style_name'];
+  }
 }
 
 /**
