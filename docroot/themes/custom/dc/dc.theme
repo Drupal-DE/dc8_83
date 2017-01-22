@@ -98,20 +98,18 @@ function dc_theme_suggestions_form_alter(array &$suggestions, array $variables) 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
-function dc_theme_suggestions_panels_twocol_alter(array &$suggestions, array $variables) {
-  // Add page id to theme suggestions.
-  $page_variant = $variables['content']['#page_variant'];
-  if ($page_variant instanceof PageVariantInterface) {
-    $suggestions[] = $variables['theme_hook_original'] . '__' . $page_variant->getPage()->id();
+function dc_theme_suggestions_image_alter(array &$suggestions, array $variables) {
+  if (isset($variables['style_name'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['style_name'];
   }
 }
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
-function dc_theme_suggestions_image_alter(array &$suggestions, array $variables) {
-  if (isset($variables['style_name'])) {
-    $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['style_name'];
+function dc_theme_suggestions_user_alter(array &$suggestions, array $variables) {
+  if (isset($variables['elements']['#view_mode'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['elements']['#view_mode'];
   }
 }
 
