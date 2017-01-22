@@ -38,6 +38,8 @@
         "drupal/allowed_formats": "dev-1.x",
         "drupal/console": "~1.0",
         "drupal/core": "^8.0",
+        "drupal/field_group": "^1.0@RC",
+        "drupal/focal_point": "^1.0@beta",
         "drupal/inline_entity_form": "^1.0",
         "drupal/layout_plugin": "1.x-dev",
         "drupal/media_entity": "1.6",
