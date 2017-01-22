@@ -1,0 +1,32 @@
+.vertical-tabs,
+.vertical-tabs__menu {
+  border: none;
+}
+.vertical-tabs__menu-item {
+  border: none;
+  background: none;
+  a {
+    border-right: 1px solid $color--tab-border;
+    color: $color--tab-text;
+    font-size: .8rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    &:hover {
+      color: $color--tab-text-hover;
+      outline: none;
+      text-decoration: none;
+      .vertical-tabs__menu-item-title {
+        text-decoration: none;
+      }
+    }
+    strong {
+      font-weight: 400;
+    }
+  }
+  &.is-selected a {
+    border-right: 1px solid $color--light-navy-blue;
+    .vertical-tabs__menu-item-title {
+      text-decoration: none;
+    }
+  }
+}
