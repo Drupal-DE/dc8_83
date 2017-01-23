@@ -29,7 +29,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'access content'
+          perm: 'administer nodes'
       cache:
         type: tag
         options: {  }
@@ -1430,7 +1430,9 @@ display:
     display_title: 'Admin overview'
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        views_lazy_load:
+          views_lazy_load_enabled: false
       path: admin/content
       menu:
         type: 'default tab'
