@@ -1,0 +1,4 @@
+services:
+  dc_relation.relation_information:
+    class: Drupal\dc_relation\RelationInformation
+    arguments: ['@database', '@entity_type.manager']

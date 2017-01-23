@@ -1,0 +1,5 @@
+name: DrupalCenter Relations
+type: module
+description: Relation helper for discussions.
+core: 8.x
+package: DrupalCenter
