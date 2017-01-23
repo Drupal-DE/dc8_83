@@ -1,4 +1,4 @@
-node.add_discussion_answer:
+entity.node.discussion_answer:
   path: '/node/{node}/discussion_answer'
   defaults:
     _controller: '\Drupal\node\Controller\NodeController::add'

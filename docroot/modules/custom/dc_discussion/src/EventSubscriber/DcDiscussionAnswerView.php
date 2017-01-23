@@ -51,9 +51,9 @@ class DcDiscussionAnswerView implements EventSubscriberInterface {
     }
     // Get taxonomy_term form route for further processing.
     $node = $this->route_match->getParameter('node');
-    $base_route = $this->route_match->getParameter('base_route_name');
+    $route_name = $this->route_match->getRouteName();
 
-    if ((!empty($node) && $node->bundle() == 'discussion') && $base_route == 'entity.node.canonical') {
+    if ((!empty($node) && $node->bundle() == 'discussion') && $route_name == 'entity.node.canonical') {
       // Redirect to topic of node if parent is available.
       if ($node->hasField('field_topic') && !empty($node->field_topic->target_id)) {
         $target_nid = $node->field_topic->target_id;
