@@ -4,11 +4,13 @@
  * @file
  * Contains dc_discussion.module.
  */
+
 use Drupal\Core\Database\Database;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\dc_relation\Entity\DiscussionRelation;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\views\ViewExecutable;
@@ -246,13 +248,29 @@ function dc_discussion_node_presave(EntityInterface $entity) {
   /* @var $parent \Drupal\Core\Field\FieldItemListInterface */
   if (($parent = $entity->get('field_parent')) && !$parent->isEmpty()) {
     // Node is discussion answer.
-    if ($topic = _dc_discussion_discussion_get_topic($entity)) {
+    /* @var $service \Drupal\discussion_relation\RelationInformationInterface */
+    $service = \Drupal::service('dc_relation.relation_information');
+    if ($topic = $service->getTopic($entity)) {
       // Set field_topic to main topic.
       $entity->field_topic->setValue($topic->id());
       // Set discussion_category to value of main topic.
       $entity->field_discussion_category->setValue($topic->field_discussion_category->getValue());
     }
   }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() on behalf of discussion nodes.
+ */
+function dc_discussion_node_insert(EntityInterface $entity) {
+  DiscussionRelation::updateOrCreateFromEntity($entity);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() on behalf of discussion nodes.
+ */
+function dc_discussion_node_update(EntityInterface $entity) {
+  DiscussionRelation::updateOrCreateFromEntity($entity);
 }
 
 /**
@@ -268,7 +286,8 @@ function _dc_discussion_discussion_get_topic($entity) {
       $item = $parent->get(0);
       $value = $item->getValue();
       $entity = Drupal::entityTypeManager()->getStorage('node')->load($value['target_id']);
-    } catch (Exception $exc) {
+    }
+    catch (Exception $exc) {
       $entity = FALSE;
     }
   }

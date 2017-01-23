@@ -6,6 +6,7 @@ use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\dc_migrate\MigrateBatchHelper;
+use Drupal\dc_relation\Entity\DiscussionRelation;
 use Drush\Log\LogLevel;
 
 /**
@@ -58,6 +59,13 @@ function dc_migrate_drush_command() {
     'arguments' => [
       'type' => dt('Content type to rebuild the index for. If ommitted, all content types are used.'),
     ],
+    'options' => [
+      'batch-size' => dt('The number of items to process per batch run. Defaults to 100.'),
+    ],
+  ];
+  $commands['update-discussion-relations'] = [
+    'description' => 'Update discussion relations',
+    'core' => ['8+'],
     'options' => [
       'batch-size' => dt('The number of items to process per batch run. Defaults to 100.'),
     ],
@@ -234,7 +242,7 @@ function drush_dc_migrate_rebuild_taxonomy_index($type = NULL) {
       ['_dc_migrate_rebuild_taxonomy_index_process', [$type, $batch_size]],
     ],
     'progress_message' => 'Processed @current out of @total.',
-    'finished' => '_dc_migrate_rebuild_taxonomy_index_finished',
+    'finished' => '_dc_migrate_batch_finished',
   ];
   batch_set($batch_definition);
   $batch = &batch_get();
@@ -299,7 +307,7 @@ function _dc_migrate_rebuild_taxonomy_index_process($type = NULL, $batch_size = 
  * @param type $results
  * @param type $operations
  */
-function _dc_migrate_rebuild_taxonomy_index_finished($success, $results, $operations) {
+function _dc_migrate_batch_finished($success, $results, $operations) {
   if ($success) {
     $message = 'Items processed: ' . $results['processed'];
   }
@@ -308,4 +316,70 @@ function _dc_migrate_rebuild_taxonomy_index_finished($success, $results, $operat
   }
 
   drush_print($message);
+}
+
+/**
+ * Command callback for "dc-migrate-update-discussion-relations".
+ */
+function drush_dc_migrate_update_discussion_relations($type = NULL) {
+  $batch_size = drush_get_option('batch-size', 100);
+  if ($batch_size <= 0) {
+    drush_print('batch-size must be greater than 0!');
+    return;
+  }
+  $batch_definition = [
+    'init_message' => 'Update discussion relations',
+    'operations' => [
+      ['_dc_migrate_update_discussion_relations_process', [$batch_size]],
+    ],
+    'progress_message' => 'Processed @current out of @total.',
+    'finished' => '_dc_migrate_batch_finished',
+  ];
+  \batch_set($batch_definition);
+  $batch = &\batch_get();
+  $batch['progressive'] = TRUE;
+  drush_backend_batch_process();
+}
+
+/**
+ * Batch operation to update discussion relations.
+ *
+ * @param int $batch_size
+ *   (optional) Number of items to process with each batch.
+ * @param array $context
+ *   Context information used for the batch.
+ */
+function _dc_migrate_update_discussion_relations_process($batch_size = 100, &$context) {
+  /* @var $entity_manager \Drupal\Core\Entity\EntityTypeManagerInterface */
+  $entity_manager = \Drupal::entityTypeManager();
+  $query = \Drupal::database()
+    ->select('discussion_relation_data', 'd');
+  $query->fields('d', ['entity_id']);
+  $query->orderBy('entity_id');
+
+  if (empty($context['sandbox']['max'])) {
+    $context['finished'] = 0;
+    $context['sandbox']['max'] = $query->countQuery()->execute()->fetchField();
+    $context['sandbox']['progress'] = 0;
+    $context['message'] = 'Update discussion relations ...';
+    $context['results']['updated'] = 0;
+    $context['results']['failures'] = 0;
+    $context['results']['processed'] = 0;
+  }
+
+  // Limit resultset.
+  $query->range($context['results']['processed'], $batch_size);
+
+  $nids = $query->execute()->fetchAllAssoc('entity_id');
+
+  $nodes = $entity_manager
+    ->getStorage('node')
+    ->loadMultiple(array_keys($nids));
+  foreach ($nodes as $node) {
+    DiscussionRelation::updateOrCreateFromEntity($node);
+    $context['sandbox']['progress']++;
+    $context['results']['processed']++;
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+  }
+  $context['message'] = sprintf('Processed %d out of %d items', $context['results']['processed'], $context['sandbox']['max']);
 }
