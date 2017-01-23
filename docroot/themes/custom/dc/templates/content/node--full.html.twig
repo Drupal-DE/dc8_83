@@ -11,9 +11,6 @@
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
   <header>
-    {{ title_prefix }}
-    <h2{{ title_attributes.addClass('uk-panel-title', 'uk-margin-small-bottom') }}>{{ label }}</h2>
-    {{ title_suffix }}
     {% if display_submitted %}
       <div class="uk-article-meta uk-margin-small-bottom">{% trans %} Submitted by {{ author_name }} on {{ date }}{% endtrans %}</div>
     {% endif %}
