@@ -9,7 +9,7 @@ _core:
 id: dc_page_title
 theme: dc
 region: content
-weight: -2
+weight: -4
 provider: null
 plugin: page_title_block
 settings:

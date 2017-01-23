@@ -1,0 +1,20 @@
+uuid: 8dd6035c-eb2e-449f-9ae9-db0db88cb613
+langcode: de
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dc
+id: page_content
+theme: dc
+region: content
+weight: -2
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: Haupt-Seiteninhalt
+  provider: system
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,30 @@
+uuid: 89ee6129-e550-4427-93b9-48deb1b2281e
+langcode: de
+status: true
+dependencies:
+  module:
+    - ctools
+    - dc_discussion
+  theme:
+    - dc
+id: discussion_answer
+theme: dc
+region: content
+weight: -1
+provider: null
+plugin: discussion_answer
+settings:
+  id: discussion_answer
+  label: 'Discussion answer'
+  provider: dc_discussion
+  label_display: visible
+  context_mapping:
+    node: '@node.node_route_context:node'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      discussion: discussion
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
