@@ -210,35 +210,6 @@ function dc_discussion_views_post_build(ViewExecutable $view) {
 }
 
 /**
- * Implement hook_views_post_build() on behalf of view "discussions" and
- * display "latest_full".
- */
-function dc_discussion_views__discussions_latest_full__post_build(ViewExecutable $view) {
-  call_user_func_array('dc_discussion_views__discussions_latest__post_build', [$view]);
-}
-
-/**
- * Implement hook_views_post_build() on behalf of view "discussions" and
- * display "latest".
- */
-function dc_discussion_views__discussions_latest__post_build(ViewExecutable $view) {
-  /* @var $query Drupal\Core\Database\Driver\mysql\Select */
-  $query = $view->build_info['query'];
-  // Alter expression so we get the *last* answer.
-  $expressions = &$query->getExpressions();
-  if (empty($expressions) || empty($expressions['field_topic_node_field_data_nid'])) {
-    // We need this.
-    return;
-  }
-  $expressions['field_topic_node_field_data_nid']['expression'] = str_replace('MIN(', 'MAX(', $expressions['field_topic_node_field_data_nid']['expression']);
-
-  // Add expression to get latest update (looks strange, but works).
-  $query->addExpression('COALESCE(MAX(field_topic_node_field_data.created), MAX(node_field_data.created))', 'dc_discussion_last_update');
-  // Order by created date of topic or answer.
-  $query->orderBy('dc_discussion_last_update', 'DESC');
-}
-
-/**
  * Implements hook_ENTITY_TYPE_presave() on behalf of discussion nodes.
  */
 function dc_discussion_node_presave(EntityInterface $entity) {

@@ -93,7 +93,6 @@ class DcAnswerCount extends NumericField {
    * {@inheritdoc}
    */
   public function preRender(&$values) {
-    $user = \Drupal::currentUser();
     if (empty($values)) {
       return;
     }
@@ -101,13 +100,17 @@ class DcAnswerCount extends NumericField {
     $nids = [];
     $ids = [];
     foreach ($values as $id => $result) {
-      $nids[] = $result->nid;
+      if (!isset($result->nid) && !isset($result->node_field_data_discussion_relation_data_nid)) {
+        continue;
+      }
+      $nid = isset($result->nid) ? $result->nid : (isset($result->node_field_data_discussion_relation_data_nid) ? $result->node_field_data_discussion_relation_data_nid : NULL);
+      $nids[] = $nid;
       $values[$id]->{$this->field_alias} = 0;
       // Create a reference so we can find this record in the values again.
-      if (empty($ids[$result->nid])) {
-        $ids[$result->nid] = [];
+      if (empty($ids[$nid])) {
+        $ids[$nid] = [];
       }
-      $ids[$result->nid][] = $id;
+      $ids[$nid][] = $id;
     }
 
     if ($nids) {
