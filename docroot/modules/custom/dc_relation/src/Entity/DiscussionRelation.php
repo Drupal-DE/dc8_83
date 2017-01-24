@@ -96,9 +96,7 @@ class DiscussionRelation extends ContentEntityBase implements DcRelationInterfac
     }
     $storage = \Drupal::entityTypeManager()->getStorage('discussion_relation');
     $properties = [
-      'entity_id' => $entity->id(),
       'topic_id' => $topic->id(),
-      'parent_id' => $parent->id(),
     ];
     $entities = $storage->loadByProperties($properties);
     // We need the first result (which should be the only one).
@@ -107,12 +105,12 @@ class DiscussionRelation extends ContentEntityBase implements DcRelationInterfac
     if (!($relation instanceof DcRelationInterface)) {
       // Create new entity.
       $relation = $storage->create([
-        'entity_id' => $entity->id(),
+        'topic_id' => $topic->id(),
       ]);
     }
 
     // Set entity values.
-    $relation->set('topic_id', $topic->id());
+    $relation->set('entity_id', $entity->id());
     $relation->set('parent_id', $parent->id());
     $relation->set('changed', $entity->changed->value);
 
