@@ -1,14 +1,14 @@
-uuid: 1ce4044f-3d01-4a3e-8f02-da616c605b0b
+uuid: a4ddbd2c-c4a1-487b-8fa0-690970b2b09c
 langcode: de
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.list_teaser
     - field.storage.node.field_discussion_category
-    - node.type.discussion
     - taxonomy.vocabulary.discussion_category
   module:
     - dc_discussion
+    - dc_relation
     - dc_ui
     - node
     - taxonomy
@@ -18,8 +18,8 @@ label: Discussions
 module: views
 description: ''
 tag: ''
-base_table: node_field_data
-base_field: nid
+base_table: discussion_relation_data
+base_field: id
 core: 8.x
 display:
   default:
@@ -46,43 +46,30 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Anwenden
           reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Zurücksetzen
+          exposed_sorts_label: 'Sortieren nach'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Aufsteigend
+          sort_desc_label: Absteigend
       pager:
-        type: mini
+        type: some
         options:
           items_per_page: 15
           offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
       style:
         type: default
       row:
         type: fields
       fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
+        rendered_entity_1:
+          id: rendered_entity_1
+          table: node
+          field: rendered_entity
+          relationship: topic_id
           group_type: group
-          admin_label: 'Discussion title'
+          admin_label: 'rendered topic'
           label: ''
           exclude: false
           alter:
@@ -124,27 +111,15 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
+          view_mode: list_teaser
+          entity_type: node
+          plugin_id: rendered_entity
       filters:
         status:
           id: status
           table: node_field_data
           field: status
-          relationship: none
+          relationship: topic_id
           group_type: group
           admin_label: Published
           operator: '='
@@ -175,54 +150,14 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: 'Content type'
-          operator: in
-          value:
-            discussion: discussion
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
+          plugin_id: boolean
         field_parent_target_id:
           id: field_parent_target_id
           table: node__field_parent
           field: field_parent_target_id
-          relationship: none
+          relationship: topic_id
           group_type: group
           admin_label: 'Parent discussion'
           operator: empty
@@ -257,26 +192,63 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: numeric
-      sorts: {  }
-      title: ''
+      sorts:
+        changed:
+          id: changed
+          table: discussion_relation_data
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: Changed
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+          entity_type: discussion_relation
+          entity_field: changed
+          plugin_id: date
+      title: Discussions
       header: {  }
       footer: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        topic_id:
+          id: topic_id
+          table: discussion_relation_data
+          field: topic_id
+          relationship: none
+          group_type: group
+          admin_label: Topic
+          required: true
+          entity_type: discussion_relation
+          entity_field: topic_id
+          plugin_id: standard
       arguments: {  }
-      display_extenders:
-        views_lazy_load:
-          views_lazy_load_enabled: false
-      use_ajax: true
+      display_extenders: {  }
+      show_admin_links: false
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
-        - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:core.entity_view_display.node.book.default'
+        - 'config:core.entity_view_display.node.book.full'
+        - 'config:core.entity_view_display.node.book.teaser'
+        - 'config:core.entity_view_display.node.discussion.default'
+        - 'config:core.entity_view_display.node.discussion.discussion_answer'
+        - 'config:core.entity_view_display.node.discussion.full'
+        - 'config:core.entity_view_display.node.discussion.list_teaser'
+        - 'config:core.entity_view_display.node.discussion.search_result'
+        - 'config:core.entity_view_display.node.discussion.teaser'
+        - 'config:core.entity_view_display.node.news.default'
+        - 'config:core.entity_view_display.node.news.full'
+        - 'config:core.entity_view_display.node.news.teaser'
+        - 'config:core.entity_view_display.node.page.default'
+        - 'config:core.entity_view_display.node.page.teaser'
+        - 'config:core.entity_view_display.node.showroom.default'
+        - 'config:core.entity_view_display.node.showroom.teaser'
   latest:
     display_plugin: block
     id: latest
@@ -285,74 +257,42 @@ display:
     display_options:
       display_extenders:
         views_lazy_load:
-          views_lazy_load_enabled: 1
-          use_ajax: true
+          views_lazy_load_enabled: false
       display_description: ''
-      block_category: 'DrupalCenter (Views)'
-      style:
-        type: default
-        options: {  }
+      use_more: true
       defaults:
-        style: false
-        row: false
-        relationships: false
-        group_by: false
-        query: false
-        sorts: false
-        use_ajax: false
-        pager: false
         use_more: false
         use_more_always: false
         use_more_text: false
         link_display: false
         link_url: false
-        title: false
-      row:
-        type: 'entity:node'
-        options:
-          relationship: none
-          view_mode: list_teaser
-      relationships:
-        reverse__node__field_topic:
-          id: reverse__node__field_topic
-          table: node_field_data
-          field: reverse__node__field_topic
-          relationship: none
-          group_type: group
-          admin_label: Answers
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
-      group_by: true
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: true
-          replica: false
-          query_comment: ''
-          query_tags: {  }
-      sorts: {  }
-      use_ajax: true
-      pager:
-        type: some
-        options:
-          items_per_page: 15
-          offset: 0
-      use_more: true
-      use_more_always: false
+      use_more_always: true
       use_more_text: 'more discussions'
       link_display: custom_url
       link_url: discussions/latest
-      title: 'Latest discussions'
+      block_category: 'DrupalCenter (Views)'
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
-        - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:core.entity_view_display.node.book.default'
+        - 'config:core.entity_view_display.node.book.full'
+        - 'config:core.entity_view_display.node.book.teaser'
+        - 'config:core.entity_view_display.node.discussion.default'
+        - 'config:core.entity_view_display.node.discussion.discussion_answer'
+        - 'config:core.entity_view_display.node.discussion.full'
+        - 'config:core.entity_view_display.node.discussion.list_teaser'
+        - 'config:core.entity_view_display.node.discussion.search_result'
+        - 'config:core.entity_view_display.node.discussion.teaser'
+        - 'config:core.entity_view_display.node.news.default'
+        - 'config:core.entity_view_display.node.news.full'
+        - 'config:core.entity_view_display.node.news.teaser'
+        - 'config:core.entity_view_display.node.page.default'
+        - 'config:core.entity_view_display.node.page.teaser'
+        - 'config:core.entity_view_display.node.showroom.default'
+        - 'config:core.entity_view_display.node.showroom.teaser'
   latest_full:
     display_plugin: block
     id: latest_full
@@ -361,96 +301,26 @@ display:
     display_options:
       display_extenders:
         views_lazy_load:
-          views_lazy_load_enabled: 1
+          views_lazy_load_enabled: false
       display_description: ''
-      block_category: 'DrupalCenter (Views)'
-      style:
-        type: table
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            title: title
-            field_color: field_discussion_category
-            field_discussion_category: field_discussion_category
-            dc_answer_count: dc_answer_count
-          info:
-            title:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_color:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_discussion_category:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            dc_answer_count:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: '-1'
-          empty_table: false
+      use_more: false
       defaults:
-        style: false
-        row: false
-        relationships: false
-        group_by: false
-        query: false
-        sorts: false
-        title: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+        link_display: false
+        link_url: false
         pager: false
         fields: false
+        style: false
+        row: false
+        title: false
         arguments: false
-      row:
-        type: fields
-        options:
-          default_field_elements: true
-          inline: {  }
-          separator: ''
-          hide_empty: false
-      relationships:
-        reverse__node__field_topic:
-          id: reverse__node__field_topic
-          table: node_field_data
-          field: reverse__node__field_topic
-          relationship: none
-          group_type: group
-          admin_label: Answers
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
-      group_by: true
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: true
-          replica: false
-          query_comment: ''
-          query_tags: {  }
-      sorts: {  }
-      title: 'Latest topics'
+      use_more_always: true
+      use_more_text: 'more discussions'
+      link_display: custom_url
+      link_url: discussions/latest
+      block_category: 'DrupalCenter (Views)'
       pager:
         type: full
         options:
@@ -458,26 +328,26 @@ display:
           offset: 0
           id: 0
           total_pages: null
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
           tags:
-            previous: ‹‹
-            next: ››
+            previous: '‹ Previous'
+            next: 'Next >'
             first: '« First'
             last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Elemente pro Seite'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- Alle -'
+            offset: false
+            offset_label: Offset
           quantity: 9
       fields:
         title:
           id: title
           table: node_field_data
           field: title
-          relationship: none
+          relationship: topic_id
           group_type: group
           admin_label: 'Discussion title'
           label: Topic
@@ -535,12 +405,14 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          entity_type: node
+          entity_field: title
           plugin_id: field
         field_discussion_category:
           id: field_discussion_category
           table: node__field_discussion_category
           field: field_discussion_category
-          relationship: none
+          relationship: topic_id
           group_type: group
           admin_label: 'Discussion category'
           label: Category
@@ -586,7 +458,8 @@ display:
           hide_alter_empty: true
           click_sort_column: target_id
           type: dc_ui_discussion_category_colored
-          settings: {  }
+          settings:
+            link: 1
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -602,7 +475,7 @@ display:
           id: dc_answer_count
           table: node_field_data
           field: dc_answer_count
-          relationship: none
+          relationship: topic_id
           group_type: group
           admin_label: 'Number of replies'
           label: Replies
@@ -657,12 +530,47 @@ display:
           link_to_answers: 1
           entity_type: node
           plugin_id: node_dc_answer_count
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            rendered_entity_1: rendered_entity_1
+            title: title
+          info:
+            rendered_entity_1:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            title:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: '-1'
+          empty_table: false
+      row:
+        type: fields
+        options: {  }
+      title: 'Latest topics'
       arguments:
         term_node_tid_depth:
           id: term_node_tid_depth
           table: node_field_data
           field: term_node_tid_depth
-          relationship: none
+          relationship: topic_id
           group_type: group
           admin_label: 'Discussion category'
           default_action: default
@@ -708,7 +616,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'user.node_grants:view'
         - user.permissions
       tags:
         - 'config:field.storage.node.field_discussion_category'
