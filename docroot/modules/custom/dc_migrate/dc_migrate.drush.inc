@@ -70,6 +70,13 @@ function dc_migrate_drush_command() {
       'batch-size' => dt('The number of items to process per batch run. Defaults to 100.'),
     ],
   ];
+  $commands['add-discussion-relations'] = [
+    'description' => 'Add discussion relations',
+    'core' => ['8+'],
+    'options' => [
+      'batch-size' => dt('The number of items to process per batch run. Defaults to 100.'),
+    ],
+  ];
   return $commands;
 }
 
@@ -371,6 +378,74 @@ function _dc_migrate_update_discussion_relations_process($batch_size = 100, &$co
   $query->range($context['results']['processed'], $batch_size);
 
   $nids = $query->execute()->fetchAllAssoc('entity_id');
+
+  $nodes = $entity_manager
+    ->getStorage('node')
+    ->loadMultiple(array_keys($nids));
+  foreach ($nodes as $node) {
+    DiscussionRelation::updateOrCreateFromEntity($node);
+    $context['sandbox']['progress']++;
+    $context['results']['processed']++;
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+  }
+  $context['message'] = sprintf('Processed %d out of %d items', $context['results']['processed'], $context['sandbox']['max']);
+}
+
+/**
+ * Command callback for "dc-migrate-add-discussion-relations".
+ */
+function drush_dc_migrate_add_discussion_relations($type = NULL) {
+  $batch_size = drush_get_option('batch-size', 100);
+  if ($batch_size <= 0) {
+    drush_print('batch-size must be greater than 0!');
+    return;
+  }
+  $batch_definition = [
+    'init_message' => 'Add discussion relations',
+    'operations' => [
+      ['_dc_migrate_add_discussion_relations_process', [$batch_size]],
+    ],
+    'progress_message' => 'Processed @current out of @total.',
+    'finished' => '_dc_migrate_batch_finished',
+  ];
+  \batch_set($batch_definition);
+  $batch = &\batch_get();
+  $batch['progressive'] = TRUE;
+  drush_backend_batch_process();
+}
+
+/**
+ * Batch operation to add discussion relations.
+ *
+ * @param int $batch_size
+ *   (optional) Number of items to process with each batch.
+ * @param array $context
+ *   Context information used for the batch.
+ */
+function _dc_migrate_add_discussion_relations_process($batch_size = 100, &$context) {
+  /* @var $entity_manager \Drupal\Core\Entity\EntityTypeManagerInterface */
+  $entity_manager = \Drupal::entityTypeManager();
+  /* @var $query SelectInterface */
+  $query = \Drupal::database()
+    ->select('node', 'n');
+  $query->fields('n', ['nid']);
+  $query->condition('n.type', 'discussion');
+  $query->orderBy('nid');
+
+  if (empty($context['sandbox']['max'])) {
+    $context['finished'] = 0;
+    $context['sandbox']['max'] = $query->countQuery()->execute()->fetchField();
+    $context['sandbox']['progress'] = 0;
+    $context['message'] = 'Add discussion relations ...';
+    $context['results']['updated'] = 0;
+    $context['results']['failures'] = 0;
+    $context['results']['processed'] = 0;
+  }
+
+  // Limit resultset.
+  $query->range($context['results']['processed'], $batch_size);
+
+  $nids = $query->execute()->fetchAllAssoc('nid');
 
   $nodes = $entity_manager
     ->getStorage('node')
