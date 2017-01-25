@@ -4,7 +4,6 @@
  * @file
  * Contains dc_discussion.module.
  */
-
 use Drupal\Core\Database\Database;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -283,6 +282,16 @@ function dc_discussion_views_data_alter(array &$data) {
       ],
     ];
   }
+
+  // Add history field.
+  $data['history']['discussion_timestamp'] = [
+    'title' => t('Discussion is new/updated'),
+    'field' => [
+      'id' => 'dc_discussion_history_timestamp',
+      'real field' => 'timestamp',
+      'help' => t('Show a marker if the discussion is new or updated.'),
+    ],
+  ];
 }
 
 /**

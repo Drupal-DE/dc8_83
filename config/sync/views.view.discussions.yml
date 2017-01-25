@@ -471,6 +471,57 @@ display:
           entity_type: discussion_relation
           entity_field: entity_id
           plugin_id: field
+        discussion_timestamp:
+          id: discussion_timestamp
+          table: history
+          field: discussion_timestamp
+          relationship: topic_id
+          group_type: group
+          admin_label: 'new/updated marker'
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          link_to_node: 0
+          comments: 0
+          plugin_id: dc_discussion_history_timestamp
         title:
           id: title
           table: node_field_data
@@ -481,8 +532,8 @@ display:
           label: Topic
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ title }} {{ discussion_timestamp }}'
             make_link: false
             path: ''
             absolute: false
