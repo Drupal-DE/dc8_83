@@ -141,33 +141,11 @@ class DcAnswerCount extends NumericField {
    *   Returns a string for the link text.
    */
   protected function renderLink($data, ResultRow $values) {
-    // Disable link generation until we find a good way.
-    if (FALSE && !empty($this->options['link_to_answers']) && $data !== NULL && $data !== '') {
-      $node_type = $this->getValue($values, 'type');
-      $node = Node::create([
-          'nid' => $this->getValue($values, 'nid'),
-          'type' => $node_type,
-      ]);
-      // Because there is no support for selecting a specific answer field to
-      // reference, we arbitrarily use the first such field name we find.
-      // @todo Provide a means for selecting the answer field.
-      //   https://www.drupal.org/node/2594201
-      $entity_manager = \Drupal::entityManager();
-      $field_map = $entity_manager->getFieldMapByFieldType('answer');
-      $answer_field_name = 'answer';
-      foreach ($field_map['node'] as $field_name => $field_data) {
-        foreach ($field_data['bundles'] as $bundle_name) {
-          if ($node_type == $bundle_name) {
-            $answer_field_name = $field_name;
-            break 2;
-          }
-        }
-      }
-//      $page_number = $entity_manager->getStorage('answer')
-//        ->getNewCommentPageNumber($this->getValue($values, 'answer_count'), $this->getValue($values), $node, $answer_field_name);
+    if (!empty($this->options['link_to_answers']) && $data !== NULL && $data !== '') {
+      $topic = $this->getEntity($values);
+
       $this->options['alter']['make_link'] = TRUE;
-      $this->options['alter']['url'] = $node->urlInfo();
-//      $this->options['alter']['query'] = $page_number ? array('page' => $page_number) : NULL;
+      $this->options['alter']['url'] = $topic->urlInfo();
       $this->options['alter']['fragment'] = 'new';
     }
 
