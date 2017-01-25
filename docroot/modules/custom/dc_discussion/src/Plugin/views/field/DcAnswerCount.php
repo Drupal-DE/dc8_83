@@ -142,11 +142,14 @@ class DcAnswerCount extends NumericField {
    */
   protected function renderLink($data, ResultRow $values) {
     if (!empty($this->options['link_to_answers']) && $data !== NULL && $data !== '') {
+      /* @var $topic \Drupal\node\NodeInterface */
       $topic = $this->getEntity($values);
 
       $this->options['alter']['make_link'] = TRUE;
       $this->options['alter']['url'] = $topic->urlInfo();
       $this->options['alter']['fragment'] = 'new';
+      $this->options['alter']['alt'] = $this->formatPlural($data, '@count reply on "!title"', '@count replies on @title', ['@title' => $topic->getTitle()]);
+      $this->options['alter']['link_attributes']['uk-tooltip'] = 'uk-tooltip';
     }
 
     return $data;
