@@ -291,6 +291,11 @@ function dc_discussion_views_data_alter(array &$data) {
       'real field' => 'timestamp',
       'help' => t('Show a marker if the discussion is new or updated.'),
     ],
+    'filter' => [
+      'id' => 'dc_discussion_history_timestamp',
+      'real field' => 'timestamp',
+      'help' => t('Filter for new or updated discussions.'),
+    ],
   ];
 }
 
