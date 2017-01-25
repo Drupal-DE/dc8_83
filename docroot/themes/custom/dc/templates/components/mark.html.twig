@@ -13,8 +13,8 @@
 #}
 {% if logged_in %}
   {% if status is constant('MARK_NEW') %}
-    <span class="uk-label uk-label-success update-marker">{{ 'New'|t }}</span>
+    <span uk-icon="bolt" uk-tooltip class="marked-new" title="{{ 'New'|t }}"></span>
   {% elseif status is constant('MARK_UPDATED') %}
-    <span class="uk-label uk-label-warning update-marker">{{ 'Updated'|t }}</span>
+    <span uk-icon="bell" uk-tooltip class="marked-updated" title="{{ 'Updated'|t }}"></span>
   {% endif %}
 {% endif %}
