@@ -31,6 +31,19 @@ function dc_discussion_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function dc_discussion_theme() {
+  return [
+    'dc_answer_count' => [
+      'render element' => 'element',
+      'template' => 'answer-count',
+      'file' => 'templates/theme.inc',
+    ],
+  ];
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function dc_discussion_form_node_discussion_form_alter(&$form, FormStateInterface $form_state, $form_id) {
@@ -142,10 +155,12 @@ function dc_discussion_node_view_alter(array &$build, EntityInterface $entity, E
         $build['discussion_answers']['#weight'] = $answers['weight'];
       }
       if (($count = $display->getComponent('answer_count')) !== NULL) {
-        $answers = _dc_discussion_discussion_get_answers($entity->id());
+        $answer_count = _dc_discussion_discussion_get_answers($entity->id());
         $build['answer_count'] = [
-          '#markup' => $answers,
+          '#count' => $answer_count,
+          '#entity' => $entity,
           '#weight' => $count['weight'],
+          '#theme' => 'dc_answer_count',
         ];
       }
       break;
