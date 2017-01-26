@@ -5,7 +5,14 @@ services:
       - { name: path_processor_inbound, priority: 99 }
       - { name: path_processor_outbound, priority: 200 }
     arguments: []
+
   dc_ui.active_theme:
     class: Drupal\dc_ui\StreamWrapper\ActiveTheme
     tags:
       - { name: stream_wrapper, scheme: activetheme }
+
+  dc_ui.breadcrumb.node_showrooom:
+      class: Drupal\dc_ui\Breadcrumb\DcShowroomNodeBreadcrumbBuilder
+      arguments: []
+      tags:
+        - { name: breadcrumb_builder, priority: 101 }
