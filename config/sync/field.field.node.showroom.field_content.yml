@@ -5,9 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_content
     - node.type.showroom
-    - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.text
-    - paragraphs.paragraphs_type.text_with_image
   module:
     - entity_reference_revisions
 id: node.showroom.field_content
@@ -25,22 +23,23 @@ settings:
   handler_settings:
     target_bundles:
       text: text
-      text_with_image: text_with_image
-      image: image
     target_bundles_drag_drop:
       text:
         enabled: true
         weight: -11
       text_with_image:
-        enabled: true
         weight: -10
+        enabled: false
       image:
-        enabled: true
         weight: -9
+        enabled: false
       gallery:
         weight: -8
         enabled: false
       link_list:
         weight: -7
+        enabled: false
+      file_list:
+        weight: 7
         enabled: false
 field_type: entity_reference_revisions

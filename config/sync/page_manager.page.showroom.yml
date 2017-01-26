@@ -1,0 +1,12 @@
+uuid: 76e588ca-21f7-45b8-8410-988f9ea03ed0
+langcode: de
+status: true
+dependencies: {  }
+id: showroom
+label: Showroom
+description: ''
+use_admin_theme: false
+path: /showroom
+access_logic: and
+access_conditions: {  }
+parameters: {  }
