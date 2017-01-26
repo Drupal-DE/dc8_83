@@ -3,7 +3,6 @@
 namespace Drupal\dc_discussion;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Interface for discussion_information service.
@@ -35,7 +34,7 @@ interface DiscussionInformationInterface {
    * @return bool
    *   TRUE if this entity is a top-level item, FALSE otherwise.
    */
-  public function isTopic(EntityInterface $entity);
+  public function isTopic(ContentEntityInterface $entity);
 
   /**
    * Loads the main topic of a relation.
@@ -66,12 +65,15 @@ interface DiscussionInformationInterface {
    *   The entity ID.
    * @param boolean $tree
    *   (Optional) Load answers of answers also. Defaults to TRUE.
+   * @param boolean $load
+   *   (Optional) Load entities. If FALSE, only the entity IDs are returned.
+   *   Defaults to TRUE.
    *
-   * @return \Drupal\Core\Entity\ContentEntityInterface|null
+   * @return mixed
    *   List of answers ordered by changed-date or NULL, if the entity doesn't
    *   exist.
    */
-  public function getAnswers($entity_id, $tree = TRUE);
+  public function getAnswers($entity_id, $tree = TRUE, $load = TRUE);
 
   /**
    * Loads the latest answer of a specific relation item.

@@ -4,10 +4,10 @@ namespace Drupal\dc_discussion;
 
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\dc_discussion\DiscussionInformationInterface;
 use Drupal\dc_relation\RelationInformationInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * General service for discussion-related questions about Entity API.
@@ -105,7 +105,7 @@ class DiscussionInformation implements DiscussionInformationInterface {
   /**
    * {@inheritdoc}
    */
-  public function isTopic(EntityInterface $entity) {
+  public function isTopic(ContentEntityInterface $entity) {
     if ('discussion' !== $entity->bundle() || !$entity->hasField('field_parent')) {
       return FALSE;
     }
@@ -117,16 +117,11 @@ class DiscussionInformation implements DiscussionInformationInterface {
    * {@inheritdoc}
    */
   public function getTopic(ContentEntityInterface $entity) {
-    /* @var $parent \Drupal\Core\Field\FieldItemListInterface */
-    while ($entity && !$entity->get('field_parent')->isEmpty()) {
-      try {
-        $entity = $entity->field_parent->entity;
-      }
-      catch (Exception $exc) {
-        $entity = NULL;
-      }
+    if ('discussion' !== $entity->bundle() || !$entity->hasField('field_topic')) {
+      return NULL;
     }
-    return $entity;
+
+    return $entity->field_topic->entity;
   }
 
   /**
@@ -136,8 +131,9 @@ class DiscussionInformation implements DiscussionInformationInterface {
     if ('discussion' !== $entity->bundle()) {
       return FALSE;
     }
-    $query = $this->database->select('node__field_topic', 'p');
-    $query->condition('field_topic_target_id', $entity->id());
+    // Find all items with parent set to the given entity.
+    $query = $this->database->select('node__field_parent', 'p');
+    $query->condition('field_parent_target_id', $entity->id());
 
     return !empty($query->countQuery()->execute()->fetchField());
   }
@@ -145,8 +141,46 @@ class DiscussionInformation implements DiscussionInformationInterface {
   /**
    * {@inheritdoc}
    */
-  public function getAnswers($entity_id, $tree = TRUE) {
-    return [];
+  public function getAnswers($entity_id, $tree = TRUE, $load = TRUE) {
+    $answers = [];
+
+    try {
+    // Find all items with parent set to the given entity.
+    $query = $this->database->select('node__field_parent', 'p');
+    $query->condition('field_parent_target_id', $entity_id);
+    $query->join('node_field_data', 'n', 'n.nid = p.entity_id');
+    $query->addField('n', 'nid');
+    $query->addField('n', 'changed');
+    $query->orderBy('n.changed', 'DESC');
+
+    $answers = $query->execute()->fetchAllAssoc('nid');
+    // Load entities if necessary.
+    if (!empty($answers) && $load) {
+      $answers = Node::loadMultiple(array_keys($answers));
+    }
+
+    if ($tree) {
+      foreach (array_keys($answers) as $nid) {
+        // Merge child answers while preserve numeric keys in array.
+        $answers += $this->getAnswers($nid);
+      }
+    }
+
+    // Sort by "changed" property.
+    uasort($answers, function($a, $b) use ($load) {
+      // Sort descending.
+      if ($load) {
+        return strcmp($b->getChangedTime(), $a->getChangedTime());
+      }
+      return strcmp($b->changed, $a->changed);
+    });
+    }
+    catch (Exception $ex) {
+      \Drupal::logger('dc_discussion')->warning('Failed to load answers for discussion @id', ['@id' => $entity_id]);
+      return [];
+    }
+
+    return $answers;
   }
 
   /**
