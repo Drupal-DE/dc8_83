@@ -3,6 +3,8 @@
 namespace Drupal\dc_discussion;
 
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\dc_discussion\DiscussionInformationInterface;
 use Drupal\dc_relation\RelationInformationInterface;
@@ -88,6 +90,83 @@ class DiscussionInformation implements DiscussionInformationInterface {
     $query->range(0, $limit);
 
     return $query->execute()->fetchAll();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getParent(ContentEntityInterface $entity) {
+    if (!($entity->hasField('field_parent'))) {
+      return NULL;
+    }
+    return $entity->field_parent->entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isTopic(EntityInterface $entity) {
+    if ('discussion' !== $entity->bundle() || !$entity->hasField('field_parent')) {
+      return FALSE;
+    }
+    // The main topic does not have a parent.
+    return $entity->get('field_parent')->isEmpty();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTopic(ContentEntityInterface $entity) {
+    /* @var $parent \Drupal\Core\Field\FieldItemListInterface */
+    while ($entity && !$entity->get('field_parent')->isEmpty()) {
+      try {
+        $entity = $entity->field_parent->entity;
+      }
+      catch (Exception $exc) {
+        $entity = NULL;
+      }
+    }
+    return $entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function hasAnswers(ContentEntityInterface $entity) {
+    if ('discussion' !== $entity->bundle()) {
+      return FALSE;
+    }
+    $query = $this->database->select('node__field_topic', 'p');
+    $query->condition('field_topic_target_id', $entity->id());
+
+    return !empty($query->countQuery()->execute()->fetchField());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getAnswers($entity_id, $tree = TRUE) {
+    return [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLatestAnswer($entity_id) {
+    $storage = $this->entityTypeManager->getStorage('discussion_relation');
+    $answers = $storage->loadByProperties([
+      'topic_id' => $entity_id,
+    ]);
+    // Order by "updated"?
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isLatestAnswer(ContentEntityInterface $entity) {
+    if ('discussion' !== $entity->bundle()) {
+      return FALSE;
+    }
   }
 
 }
