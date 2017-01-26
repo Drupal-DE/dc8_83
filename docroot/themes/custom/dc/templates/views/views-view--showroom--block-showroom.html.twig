@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Overwrite views-view template for showroom block display.
+ */
+#}
+
+{% set classes = [
+  dom_id ? 'js-view-dom-id-' ~ dom_id,
+  'uk-grid',
+  'uk-child-width-expand@s',
+  'uk-text-center'
+] %}
+<div{{ attributes.addClass(classes) }} uk-grid uk-height-match>
+  {{ rows }}
+  {{ empty }}
+</div>
+{{ pager }}
