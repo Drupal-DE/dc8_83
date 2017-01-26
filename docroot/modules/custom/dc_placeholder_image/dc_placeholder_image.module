@@ -18,7 +18,6 @@ function dc_placeholder_image_entity_build_defaults_alter(array &$build, EntityI
   // RecipeHeadMedia::isPlaceholderImage() method, because it is the base for
   // checking if an image is a placeholder image).
   $path = 'activetheme://images/placeholder';
-
   // Handle media per bundle.
   switch ($entity->bundle()) {
     case 'user':
@@ -38,5 +37,24 @@ function dc_placeholder_image_entity_build_defaults_alter(array &$build, EntityI
         $entity->field_image = NULL;
       }
       break;
+
+    case 'showroom':
+      // Check if we have an empty image bundle
+      if ($entity->hasField('field_screenshot') && !(empty($entity->field_screenshot->get(0)))) {
+        break;
+      }
+      $image = !empty($config->get('node_picture_default')) ? $config->get('node_picture_default') : 'node_picture_default.png';
+      // Set default image for field user_picture.
+      $placeholder_image_service = Drupal::service('dc_placeholder_image.placeholder_image');
+      if ($placeholder_image_service && ($placeholder_image_file = $placeholder_image_service->create($path, $image, 'media'))) {
+        // Set generated placeholder image.
+        $entity->field_screenshot = $placeholder_image_file;
+      }
+      else {
+        // Something went wrong: hide the expired image entirely.
+        $entity->field_screenshot = NULL;
+      }
+      break;
+
   }
 }
