@@ -17,3 +17,7 @@ services:
     arguments: []
     tags:
       - { name: breadcrumb_builder, priority: 101 }
+
+  dc_discussion.discussion_information:
+    class: Drupal\dc_discussion\DiscussionInformation
+    arguments: ['@database', '@entity_type.manager', '@dc_relation.relation_information']
