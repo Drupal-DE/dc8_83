@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Default theme implementation for category filter.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="uk-navbar-container" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li>
+        <button class="uk-button uk-button-default" type="button">{{ 'Category'|t }}</button>
+        <div uk-dropdown="mode: click">
+          <ul class="uk-nav uk-navbar-dropdown-nav">
+            {% for category in categories %}
+              <li class="uk-nav-header">{{ category.name }}</li>
+              {% for child in category.children %}
+                <li><a href="{{ child.url }}">{{ child.name }}</a></li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
