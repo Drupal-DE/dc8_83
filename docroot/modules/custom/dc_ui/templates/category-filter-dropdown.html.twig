@@ -12,7 +12,7 @@
 </button>
 <div uk-dropdown="mode: click">
   <ul class="uk-nav uk-navbar-dropdown-nav">
-    <li><a href="{{ overview_url }}">{{ 'all categories'|t }}</a></li>
+    <li><a href="{{ overview_url }}">{{ overview_label }}</a></li>
       {% for category in categories %}
         {% if category.children is not empty %}
         <li class="uk-nav-header">{{ category.name }}</li>

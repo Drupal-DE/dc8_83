@@ -29,6 +29,7 @@ function template_preprocess_dc_category_filter(&$vars) {
   $top_category = array_shift($active_trail);
   $level = 0;
   $categories = $element['#categories'];
+  $parent = NULL;
 
   do {
     /* @var $active \Drupal\taxonomy\TermInterface */
@@ -37,6 +38,7 @@ function template_preprocess_dc_category_filter(&$vars) {
     $dropdown = [
       '#theme' => 'dc_category_filter_dropdown',
       '#active' => $active,
+      '#parent' => $parent,
       '#items' => $categories,
       '#level' => $level,
     ];
@@ -48,9 +50,20 @@ function template_preprocess_dc_category_filter(&$vars) {
     if ($active && ($level > 0)) {
       $categories = $categories[$active->id()]['children'];
     }
+    $parent = $active;
     array_shift($active_trail);
   }
   while (count($active_trail));
+
+  if ($active && !empty($categories)) {
+    $dropdown = [
+      '#theme' => 'dc_category_filter_dropdown',
+      '#active' => $active,
+      '#items' => $categories,
+      '#level' => $level,
+    ];
+    $vars['dropdowns'][$level] = render($dropdown);
+  }
 }
 
 /**
@@ -68,10 +81,21 @@ function template_preprocess_dc_category_filter_dropdown(&$vars) {
   $element = $vars['element'];
   $vars['categories'] = [];
   $vars['overview_url'] = Url::fromRoute('page_manager.page_view_discussions_latest');
+  $vars['overview_label'] = t('all categories', [], ['context' => 'dc_ui:filter']);
   $vars['label'] = t('all categories', [], ['context' => 'dc_ui:filter']);
   if ($element['#active']) {
-//    $vars['overview_url'] = Url::fromRoute('page_manager.page_view_latest_discussions_filtered', ['tid' => 9]);
     $vars['label'] = Unicode::truncate($element['#active']->getName(), 22, TRUE, TRUE);
+
+    if (($element['#level'] > 0) && !in_array($element['#active']->id(), array_keys($element['#items']))) {
+      // Must be parent.
+      $vars['label'] = t('all', [], ['context' => 'dc_ui:filter']);
+      $vars['overview_label'] = t('all', [], ['context' => 'dc_ui:filter']);
+      $vars['overview_url'] = Url::fromRoute('page_manager.page_view_latest_discussions_filtered', ['tid' => $element['#active']->id()]);
+    }
+    if (!empty($element['#parent'])) {
+      $vars['overview_label'] = t('all', [], ['context' => 'dc_ui:filter']);
+      $vars['overview_url'] = Url::fromRoute('page_manager.page_view_latest_discussions_filtered', ['tid' => $element['#parent']->id()]);
+    }
   }
 
   foreach ($element['#items'] as $tid => $category) {
