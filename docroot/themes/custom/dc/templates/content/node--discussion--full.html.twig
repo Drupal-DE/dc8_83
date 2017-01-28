@@ -1,32 +1,11 @@
-{% set classes = [
-  'uk-article',
-  'uk-margin-bottom-small'
-] %}
-
-{{ attach_library('classy/node') }}
-<article{{ attributes.addClass(classes) }}>
-  <header class="uk-comment-header uk-grid-medium uk-flex-middle uk-background-muted" uk-grid>
-    <div class="uk-width-auto">
-      <img class="uk-comment-avatar" src="http://lorempixel.com/65/65/people/" alt=""/>
-    </div>
-    <div class="uk-width-expand">
-      {% if title %}
-        {{ title_prefix }}
-        <h4{{ title_attributes.addClass('uk-comment-title') }}>{{ label }}</h4>
-        {{ title_suffix }}
-      {% endif %}
-      <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-small">
-        <li>{% trans %}Submitted by {{ author_name }}{% endtrans %}</li>
-        <li>{% trans %}on {{ date }} in{% endtrans %}{{ content.field_discussion_category }} {{ content.field_drupal_version }}</li>
-      </ul>
-    </div>
-  </header>
-  <div class="uk-comment-body">
+{% embed "@dc/content/node--full.html.twig" %}
+  {% block node_body %}
     {{ content.body }}
-    {{ content.field_files }}
-    {{ content.links }}
-  </div>
-</article>
-{% if content.discussion_answers is not empty %}
-  {{ content.discussion_answers }}
-{% endif %}
+  {% endblock %}
+  {% block node_attachment_after %}
+    {%- if content.discussion_answers is not empty -%}
+      <h3 class="dc-heading uk-margin-left">{{ content.answer_count }} Antworten</h3>
+      {{- content.discussion_answers -}}
+    {%- endif -%}
+  {% endblock %}
+{% endembed %}

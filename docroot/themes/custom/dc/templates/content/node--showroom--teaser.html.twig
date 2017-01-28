@@ -7,15 +7,14 @@
 {% set classes = [
   'node',
   'node--type-' ~ node.bundle|clean_class,
-  'uk-card',
-  'uk-card-small',
-  'uk-card-default'
+  'uk-box-shadow-small',
+  'uk-visible-toggle'
 ] %}
 <article{{ attributes.addClass(classes) }}>
   <div class="uk-card-media-top">
     {{- content -}}
-  </div>
-  <div class="uk-card-footer">
-    <a href="{{ url }}"  class="uk-button uk-button-text uk-text-truncate">{{ label }}</a>
+    <div class="uk-overlay uk-hidden-hover uk-padding-small uk-overlay-primary uk-position-bottom uk-text-truncate">
+      <a href="{{ url }}">{{ label }}</a>
+    </div>
   </div>
 </article>
