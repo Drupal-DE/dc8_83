@@ -5,6 +5,7 @@ dependencies:
   module:
     - ctools
     - dc_discussion
+    - user
   theme:
     - dc
 id: discussion_answer
@@ -28,3 +29,14 @@ visibility:
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+      administrator: administrator
+      forum_moderator: forum_moderator
+      forum_member: forum_member
+      book_editor: book_editor
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
