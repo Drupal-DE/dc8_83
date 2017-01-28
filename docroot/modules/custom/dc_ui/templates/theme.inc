@@ -121,6 +121,9 @@ function template_preprocess_dc_category_filter_dropdown(&$vars) {
       if (!empty($child['active'])) {
         $item['children'][$child_id]['attributes']->addClass('uk-active');
       }
+      if (!empty($child['children'])) {
+//        $item['children'][$child_id]['attributes']->setAttribute('uk-icon', 'icon: arrow-right');
+      }
     }
     $vars['categories'][$tid] = $item;
   }
