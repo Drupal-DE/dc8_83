@@ -145,35 +145,35 @@ class DiscussionInformation implements DiscussionInformationInterface {
     $answers = [];
 
     try {
-    // Find all items with parent set to the given entity.
-    $query = $this->database->select('node__field_parent', 'p');
-    $query->condition('field_parent_target_id', $entity_id);
-    $query->join('node_field_data', 'n', 'n.nid = p.entity_id');
-    $query->addField('n', 'nid');
-    $query->addField('n', 'changed');
-    $query->orderBy('n.changed', 'DESC');
+      // Find all items with parent set to the given entity.
+      $query = $this->database->select('node__field_parent', 'p');
+      $query->condition('field_parent_target_id', $entity_id);
+      $query->join('node_field_data', 'n', 'n.nid = p.entity_id');
+      $query->addField('n', 'nid');
+      $query->addField('n', 'changed');
+      $query->orderBy('n.changed', 'DESC');
 
-    $answers = $query->execute()->fetchAllAssoc('nid');
-    // Load entities if necessary.
-    if (!empty($answers) && $load) {
-      $answers = Node::loadMultiple(array_keys($answers));
-    }
-
-    if ($tree) {
-      foreach (array_keys($answers) as $nid) {
-        // Merge child answers while preserve numeric keys in array.
-        $answers += $this->getAnswers($nid);
+      $answers = $query->execute()->fetchAllAssoc('nid');
+      // Load entities if necessary.
+      if (!empty($answers) && $load) {
+        $answers = Node::loadMultiple(array_keys($answers));
       }
-    }
 
-    // Sort by "changed" property.
-    uasort($answers, function($a, $b) use ($load) {
-      // Sort descending.
-      if ($load) {
-        return strcmp($b->getChangedTime(), $a->getChangedTime());
+      if ($tree) {
+        foreach (array_keys($answers) as $nid) {
+          // Merge child answers while preserve numeric keys in array.
+          $answers += $this->getAnswers($nid);
+        }
       }
-      return strcmp($b->changed, $a->changed);
-    });
+
+      // Sort by "changed" property.
+      uasort($answers, function($a, $b) use ($load) {
+        // Sort descending.
+        if ($load) {
+          return strcmp($b->getChangedTime(), $a->getChangedTime());
+        }
+        return strcmp($b->changed, $a->changed);
+      });
     }
     catch (Exception $ex) {
       \Drupal::logger('dc_discussion')->warning('Failed to load answers for discussion @id', ['@id' => $entity_id]);
@@ -187,11 +187,16 @@ class DiscussionInformation implements DiscussionInformationInterface {
    * {@inheritdoc}
    */
   public function getLatestAnswer($entity_id) {
-    $storage = $this->entityTypeManager->getStorage('discussion_relation');
-    $answers = $storage->loadByProperties([
-      'topic_id' => $entity_id,
-    ]);
-    // Order by "updated"?
+    // Find all items with parent set to the given entity.
+    $query = $this->database->select('node__field_parent', 'p');
+    $query->condition('p.field_parent_target_id', $entity_id);
+    $query->join('node_field_data', 'n', 'n.nid = p.entity_id');
+    $query->addField('n', 'nid');
+    $query->orderBy('n.changed', 'DESC');
+    // Limit to 1 result.
+    $query->range(0, 1);
+
+    return Node::load($query->execute()->fetchField());
   }
 
   /**
@@ -199,8 +204,20 @@ class DiscussionInformation implements DiscussionInformationInterface {
    */
   public function isLatestAnswer(ContentEntityInterface $entity) {
     if ('discussion' !== $entity->bundle()) {
+      // How dare you!
       return FALSE;
     }
+    if ($this->isTopic($entity) && !$this->hasAnswers($entity)) {
+      // Without answers a topic is basically the latest answer to itself.
+      return TRUE;
+    }
+    $topic = $this->getTopic($entity);
+    if (($latest_answer = $this->getLatestAnswer($topic->id())) === FALSE) {
+      // Something went wrong so better not do anything.
+      return FALSE;
+    }
+
+    return $latest_answer->id() === $entity->id();
   }
 
 }
