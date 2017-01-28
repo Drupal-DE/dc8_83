@@ -6,10 +6,10 @@
           <a class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon href="#"></a>
           {{ page.mainmenu }}
           <ul class="uk-navbar-nav">
-            <li><a href="#">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="#">Handbuch</a></li>
             <li><a href="/discussions">Forum</a></li>
-            <li><a href="#">Showroom</a></li>
+            <li><a href="/showroom">Showroom</a></li>
           </ul>
         </div>
         <div class="uk-navbar-right">
@@ -63,7 +63,26 @@
 {% endif %}
 
 <div class="uk-container uk-container-center">
-  {{ page.content }}
+
+  <div class="uk-grid" uk-grid>
+    <div class="uk-width-4-5@m">{{ page.content }}</div>
+    <div class="uk-width-1-5@m uk-margin-top">
+      <div class="uk-dark uk-background-muted uk-padding-small">
+        <h3 class="uk-heading">Drupal Jobs</h3>
+        Going to catch the red dot today going to catch the red dot today see owner, run in terror and tuxedo cats always looking dapper, climb leg. Scratch leg; meow for can opener to feed me.
+      </div>
+      <div class="uk-dark uk-background-muted uk-padding-small uk-margin-top">
+        <h3 class="uk-heading">Neu im Showroom</h3>
+        <img src="https://placeimg.com/250/200/tech/grayscale" />
+        <div class="uk-margin-small-top uk-text-right">technicaldomain.com</div>
+      </div>
+      <div class="uk-dark uk-background-muted uk-padding-small uk-margin-top">
+        <h3 class="uk-heading">Neu im Handbuch</h3>
+        So that blue mountain aromatic that at milk plunger pot crema brewed. Mazagran, decaffeinated extraction cup, est and, blue mountain ristretto skinny doppio as breve.
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div id="footer" class="footer__full_width_grey ">
