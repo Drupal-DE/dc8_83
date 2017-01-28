@@ -4,6 +4,8 @@
  * @file
  * Contains dc_ui.module.
  */
+
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\media_entity\MediaInterface;
 use Drupal\views\ViewExecutable;
@@ -144,5 +146,25 @@ function dc_ui_media_presave(MediaInterface $entity) {
   // Set name to uploaded file name.
   if (!empty($entity->field_file->entity->filename->value)) {
     $entity->name->setValue($entity->field_file->entity->filename->value);
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function dc_ui_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  switch ($entity_type->id()) {
+    case 'node':
+      $fields['uid']->setDisplayConfigurable('view', TRUE);
+      $fields['changed']->setDisplayConfigurable('view', TRUE);
+      $fields['created']->setDisplayConfigurable('view', TRUE);
+      break;
+    case 'user':
+      $fields['name']->setDisplayConfigurable('view', TRUE);
+      break;
+    case 'comment':
+      $fields['uid']->setDisplayConfigurable('view', TRUE);
+      $fields['created']->setDisplayConfigurable('view', TRUE);
+      break;
   }
 }

@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Teaser template of showroom nodes.
+ */
+#}
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  'uk-box-shadow-small',
+  'uk-visible-toggle'
+] %}
+<article{{ attributes.addClass(classes) }}>
+  <div class="uk-card-media-top">
+    {{- content -}}
+    <div class="uk-overlay uk-hidden-hover uk-padding-small uk-overlay-primary uk-position-bottom uk-text-truncate">
+      <a href="{{ url }}">{{ label }}</a>
+    </div>
+  </div>
+</article>

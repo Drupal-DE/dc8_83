@@ -4,20 +4,35 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.showroom.field_comments
+    - field.field.node.showroom.field_content
+    - field.field.node.showroom.field_drupal_version
+    - field.field.node.showroom.field_screenshot
+    - field.field.node.showroom.field_showroom_category
+    - field.field.node.showroom.field_showroom_url
+    - image.style.showroom_teaser
     - node.type.showroom
   module:
+    - media_entity
     - user
 id: node.showroom.teaser
 targetEntityType: node
 bundle: showroom
 mode: teaser
 content:
-  links:
-    weight: 100
+  field_screenshot:
+    type: media_thumbnail
+    weight: 0
+    label: hidden
+    settings:
+      image_style: showroom_teaser
+      image_link: content
+    third_party_settings: {  }
 hidden:
+  field_comments: true
   field_content: true
   field_drupal_version: true
-  field_screenshot: true
   field_showroom_category: true
   field_showroom_url: true
   langcode: true
+  links: true

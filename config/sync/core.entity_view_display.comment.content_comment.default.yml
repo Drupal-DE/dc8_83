@@ -15,12 +15,22 @@ content:
   comment_body:
     label: hidden
     type: text_default
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
+  created:
+    type: timestamp
+    weight: 0
+    label: hidden
+    settings:
+      date_format: custom
+      custom_date_format: 'd.m.Y H:i'
+      timezone: ''
+    third_party_settings: {  }
   links:
-    weight: 100
+    weight: 2
     settings: {  }
     third_party_settings: {  }
 hidden:
   langcode: true
+  uid: true

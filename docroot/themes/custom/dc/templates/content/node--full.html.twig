@@ -1,26 +1,35 @@
 {% set classes = [
-  'node',
-  'node--type-' ~ node.bundle|clean_class,
-  node.isPromoted() ? 'node--promoted',
-  node.isSticky() ? 'node--sticky',
-  not node.isPublished() ? 'node--unpublished',
-  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  'uk-panel',
-  'uk-panel-header'
+  'uk-article',
+  'uk-margin-bottom',
+  'uk-box-shadow-small',
+  'uk-padding-small',
+  'uk-visible-toggle'
 ] %}
-{{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
-  <header>
-    {% if display_submitted %}
-      <div class="uk-article-meta uk-margin-small-bottom">{% trans %} Submitted by {{ author_name }} on {{ date }}{% endtrans %}</div>
-    {% endif %}
+  <header class="uk-comment-header uk-position-relative">
+    {% block node_header_meta %}
+      <div class="uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-auto">
+          <img class="uk-comment-avatar" src="http://lorempixel.com/55/55/people/" alt=""/>
+        </div>
+        <div class="uk-width-expand">
+          <h4 class="uk-comment-title uk-margin-remove">{{ author_name }}</h4>
+          <p class="uk-comment-meta uk-margin-remove-top">{{ date }}</p>
+        </div>
+      </div>
+    {% endblock %}
+    {% block node_header_links %}
+      <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#block-discussion-answer">{{ 'Reply'|t }}</a></div>
+    {% endblock %}
   </header>
-  {# @toDo check for filled legacy content / paragraph content #}
-  <div class="uk-margin-bottom">
-    {{ content.field_legacy_content }}
-    {{ content.field_content }}
+  <div class="uk-comment-body">
+    {% block node_body %}
+      {{ content.field_legacy_content }}
+      {{ content.field_content }}
+    {% endblock %}
   </div>
-  {% block article_footer %}
-    {{ content.field_comments }}
-  {% endblock %}
 </article>
+{% block node_attachment_after %}
+  {{ content.field_comments }}
+{% endblock %}
+

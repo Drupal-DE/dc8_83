@@ -1,5 +1,6 @@
 .uk-breadcrumb {
   a,
+  span,
   &>:last-child>* {
     color: $color--white;
     font-size: 0.8rem;

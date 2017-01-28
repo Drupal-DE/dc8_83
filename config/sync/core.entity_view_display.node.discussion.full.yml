@@ -19,32 +19,48 @@ targetEntityType: node
 bundle: discussion
 mode: full
 content:
+  answer_count:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
   body:
     label: hidden
     type: text_default
-    weight: 0
+    weight: 2
     settings: {  }
     third_party_settings: {  }
+  created:
+    label: hidden
+    type: timestamp
+    weight: 1
+    settings:
+      date_format: custom
+      custom_date_format: 'd.m.Y H:i'
+      timezone: ''
+    third_party_settings: {  }
   discussion_answers:
-    weight: 3
+    weight: 4
     settings: {  }
     third_party_settings: {  }
   field_files:
     type: entity_reference_entity_view
-    weight: 1
+    weight: 3
     label: above
     settings:
       view_mode: table_row
       link: false
     third_party_settings: {  }
-  links:
-    weight: 2
+  uid:
+    label: hidden
+    type: author
+    weight: 0
     settings: {  }
     third_party_settings: {  }
 hidden:
-  answer_count: true
+  changed: true
   field_discussion_category: true
   field_drupal_version: true
   field_parent: true
   field_topic: true
   langcode: true
+  links: true

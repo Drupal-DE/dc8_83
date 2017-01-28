@@ -1,0 +1,53 @@
+uuid: c4586078-b544-4146-b3e2-3f9aa2c7bd5a
+langcode: de
+status: true
+dependencies:
+  config:
+    - page_manager.page.showroom
+    - views.view.showroom
+    - views.view.showroom_tags
+  module:
+    - panels
+    - views
+id: showroom-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    f92d8aa2-dcb0-4b3d-a3f6-3c507b218251:
+      id: 'views_block:showroom-block_showroom'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: middle
+      weight: 1
+      uuid: f92d8aa2-dcb0-4b3d-a3f6-3c507b218251
+      context_mapping: {  }
+    fcdd2618-7a28-4e12-b8d4-82675dc94bfc:
+      id: 'views_block:showroom_tags-block_tags'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: middle
+      weight: 0
+      uuid: fcdd2618-7a28-4e12-b8d4-82675dc94bfc
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 61bc5ce5-7dd9-435b-b7ab-ec8935f279a5
+  label: null
+  weight: 0
+  layout: onecol
+  layout_settings: {  }
+  page_title: Showroom
+  storage_type: page_manager
+  storage_id: showroom-panels_variant-0
+  builder: standard
+page: showroom
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

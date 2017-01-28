@@ -14,6 +14,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: $base-font-family;
   font-weight: $headline-font-weight;
+  a {
+    color: $color--grey;
+  }
 }
 
 .uk-h1, h1 {
@@ -28,4 +31,9 @@ h3 {
 
 strong {
   font-weight: $strong-font-weight;
+}
+
+.dc-heading {
+  color: $color--grey;
+  font-weight: 400;
 }

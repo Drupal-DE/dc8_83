@@ -1,0 +1,16 @@
+uuid: 8c1ff344-0705-4c16-8283-5e13f769f0e8
+langcode: de
+status: true
+dependencies:
+  module:
+    - focal_point
+name: showroom_teaser
+label: 'Showroom teaser (330x210)'
+effects:
+  74bcbc4f-fd5f-406c-aca3-8e7fe13c1495:
+    uuid: 74bcbc4f-fd5f-406c-aca3-8e7fe13c1495
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 330
+      height: 210

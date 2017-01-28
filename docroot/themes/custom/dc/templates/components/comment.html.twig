@@ -1,33 +1,34 @@
 {% set classes = [
   'uk-comment',
-  'js-comment',
-  status != 'published' ? 'comment--' ~ status,
-  comment.owner.anonymous ? 'by-anonymous',
-  author_id and author_id == commented_entity.getOwnerId() ? 'by-' ~ commented_entity.getEntityTypeId() ~ '-author',
-  'clearfix',
+  'uk-comment-primary',
+  'uk-margin-left',
+  'uk-margin-bottom',
+  'uk-padding-small',
+  'uk-visible-toggle'
 ] %}
+{% block comment_anchor %}
+{% endblock %}
 <article role="article"{{ attributes.addClass(classes)|without('role') }}>
-  <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
-    <div class="uk-width-auto">
-      <img class="uk-comment-avatar" src="http://lorempixel.com/85/85/people/" alt=""/>
+  <header class="uk-comment-header uk-position-relative">
+    <div class="uk-grid-medium uk-flex-middle" uk-grid>
+      {% block comment_header_meta %}
+        <div class="uk-width-auto">
+          <img class="uk-comment-avatar" src="http://lorempixel.com/55/55/people/" alt=""/>
+        </div>
+        <div class="uk-width-expand">
+          <h4 class="uk-comment-title uk-margin-remove dc-heading">{{ comment.getSubject() }}</h4>
+          <p class="uk-comment-meta uk-margin-remove-top">{{ author }} | {{ content.created }} | {{ permalink }}</p>
+        </div>
+      {% endblock %}
     </div>
-    <div class="uk-width-expand">
-      {% if title %}
-        {{ title_prefix }}
-        <h4{{ title_attributes.addClass('uk-comment-title') }}>{{ comment.getSubject() }}</h4>
-        {{ title_suffix }}
-      {% endif %}
-      <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-small">
-        <li>{{ created }}</li>
-        <li>{{ author }}</li>
-        <li>{{ permalink }}</li>
-      </ul>
-    </div>
+    <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#block-discussion-answer">{{ 'Reply'|t }}</a></div>
   </header>
-  <div{{ content_attributes.addClass('uk-comment-body') }}>
-    {{ content|without('links') }}
-    {% if content.links %}
-      <nav>{{ content.links }}</nav>
-    {% endif %}
+  <div class="uk-comment-body">
+    {% block comment_body %}
+      {{ content|without('links', 'created') }}
+      {% if content.links %}
+        <nav>{{ content.links }}</nav>
+      {% endif %}
+    {% endblock %}
   </div>
 </article>
