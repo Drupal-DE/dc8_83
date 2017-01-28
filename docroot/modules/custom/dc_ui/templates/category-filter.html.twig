@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Default theme implementation for category filter.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="uk-navbar-container" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      {% for dropdown in dropdowns %}
+        <li>
+          {{ dropdown }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

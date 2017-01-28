@@ -4,10 +4,27 @@
  * @file
  * Contains dc_ui.module.
  */
-
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\media_entity\MediaInterface;
 use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_theme().
+ */
+function dc_ui_theme() {
+  return [
+    'dc_category_filter' => [
+      'render element' => 'element',
+      'template' => 'category-filter',
+      'file' => 'templates/theme.inc',
+    ],
+    'dc_category_filter_dropdown' => [
+      'render element' => 'element',
+      'template' => 'category-filter-dropdown',
+      'file' => 'templates/theme.inc',
+    ],
+  ];
+}
 
 /**
  * Implements hook_editor_js_settings_alter().

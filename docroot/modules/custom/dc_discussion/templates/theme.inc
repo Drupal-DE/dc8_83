@@ -6,9 +6,9 @@
  */
 
 /**
- * Prepares variables for horizontal tabs templates.
+ * Prepares variables for answer count templates.
  *
- * Default template: horizontal-tabs.html.twig.
+ * Default template: answer-count.html.twig.
  *
  * @param array $vars
  *   An associative array containing:
