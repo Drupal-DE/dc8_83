@@ -51,7 +51,7 @@
         "drupal/page_manager": "1.x-dev",
         "drupal/panels": "3.x-dev",
         "drupal/paragraphs": "^1.0",
-        "drupal/pathauto": "^1.0",
+        "drupal/pathauto": "dev-1.x",
         "drupal/search_api": "dev-1.x",
         "drupal/search_api_solr": "dev-1.x",
         "drupal/token": "^1.0",

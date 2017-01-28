@@ -18,6 +18,11 @@ function dc_ui_theme() {
       'template' => 'category-filter',
       'file' => 'templates/theme.inc',
     ],
+    'dc_category_filter_dropdown' => [
+      'render element' => 'element',
+      'template' => 'category-filter-dropdown',
+      'file' => 'templates/theme.inc',
+    ],
   ];
 }
 

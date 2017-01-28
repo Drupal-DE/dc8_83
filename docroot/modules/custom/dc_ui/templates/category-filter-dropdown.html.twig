@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Default theme implementation for category filter dropdown.
+ *
+ * @ingroup themeable
+ */
+#}
+<button class="uk-button uk-button-default uk-button-small" type="button">
+  {{- label -}}
+  <span class="uk-icon uk-margin-small-left" href="#" uk-icon="triangle-right"></span>
+</button>
+<div uk-dropdown="mode: click">
+  <ul class="uk-nav uk-navbar-dropdown-nav">
+    <li><a href="{{ overview_url }}">{{ 'all categories'|t }}</a></li>
+      {% for category in categories %}
+        {% if category.children is not empty %}
+        <li class="uk-nav-header">{{ category.name }}</li>
+          {% for child in category.children %}
+          <li{{ child.attributes }}><a href="{{ child.url }}">{{ child.name }}</a></li>
+          {% endfor %}
+        {% else %}
+        <li{{ category.attributes }}><a href="{{ category.url }}">{{ category.name }}</a></li>
+        {% endif %}
+      {% endfor %}
+  </ul>
+</div>
