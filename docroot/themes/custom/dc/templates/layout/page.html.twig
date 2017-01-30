@@ -28,13 +28,11 @@
       </nav>
     </div>
   </div>
-
   <div class="header__full_width_light_navy">
     <div class="uk-container uk-container-center">
       {{ page.header }}
     </div>
   </div>
-
   <div class="header__full_width_navy">
     <div class="uk-container uk-container-center">
       {% if page.header_login is not empty %}
@@ -52,7 +50,6 @@
     </div>
   </div>
 </div>
-
 {% if page.highlighted or page.help %}
   <div class="uk-container uk-container-center">
     <aside class="layout-container section clearfix" role="complementary">
@@ -61,30 +58,21 @@
     </aside>
   </div>
 {% endif %}
-
 <div class="uk-container uk-container-center">
-
   <div class="uk-grid" uk-grid>
-    <div class="uk-width-4-5@m">{{ page.content }}</div>
-    <div class="uk-width-1-5@m uk-margin-top">
-      <div class="uk-dark uk-background-muted uk-padding-small">
-        <h3 class="uk-heading">Drupal Jobs</h3>
-        Going to catch the red dot today going to catch the red dot today see owner, run in terror and tuxedo cats always looking dapper, climb leg. Scratch leg; meow for can opener to feed me.
-      </div>
+    <div class="uk-width-4-5@m">
+      {{ page.content }}
+    </div>
+    <div class="uk-width-1-5@m">
+      {{ page.sidebar_right }}
       <div class="uk-dark uk-background-muted uk-padding-small uk-margin-top">
-        <h3 class="uk-heading">Neu im Showroom</h3>
-        <img src="https://placeimg.com/250/200/tech/grayscale" />
-        <div class="uk-margin-small-top uk-text-right">technicaldomain.com</div>
-      </div>
-      <div class="uk-dark uk-background-muted uk-padding-small uk-margin-top">
-        <h3 class="uk-heading">Neu im Handbuch</h3>
-        So that blue mountain aromatic that at milk plunger pot crema brewed. Mazagran, decaffeinated extraction cup, est and, blue mountain ristretto skinny doppio as breve.
+        <h3 class="uk-heading">Demo sidebar content</h3>
+        Going to catch the red dot today going to catch the red dot today see owner, run in terror and tuxedo cats always looking dapper, climb leg. Scratch
+        leg; meow for can opener to feed me.
       </div>
     </div>
   </div>
-
 </div>
-
 <div id="footer" class="footer__full_width_grey ">
   <div class="uk-container uk-container-center uk-padding-large uk-margin-large-top">
     {{ page.footer }}

@@ -14,14 +14,15 @@ stylesheets-remove:
   - core/assets/vendor/normalize-css/normalize.css
 
 regions:
-  navigation: 'Navigation'
-  header: 'Branding'
-  header_user_menu: 'Header user menu'
-  header_search: 'Header search'
-  header_login: 'Header login'
   breadcrumb: 'Breadcrumb'
-  mainmenu: 'Mainmenu'
-  highlighted: 'Highlighted'
-  help: 'Help'
   content: 'Content'
   footer: 'Footer'
+  header: 'Branding'
+  header_login: 'Header login'
+  header_search: 'Header search'
+  header_user_menu: 'Header user menu'
+  help: 'Help'
+  highlighted: 'Highlighted'
+  mainmenu: 'Mainmenu'
+  navigation: 'Navigation'
+  sidebar_right: 'Sidebar right'
