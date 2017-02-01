@@ -108,4 +108,23 @@ interface DiscussionInformationInterface {
    *   TRUE if this entity has answers, FALSE otherwise.
    */
   public function hasAnswers(ContentEntityInterface $entity);
+
+  /**
+   * Determines if the number of answers to a discussion item.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   The entity to count answers for.
+   *
+   * @return int
+   *   Number of answers of the given discussion item.
+   */
+  public function answerCount(ContentEntityInterface $entity);
+
+  /**
+   * Delete all answers to a discussion item.
+   *
+   * @param ContentEntityInterface $entity
+   *   The discussion item.
+   */
+  public function deleteAnswers(ContentEntityInterface $entity);
 }

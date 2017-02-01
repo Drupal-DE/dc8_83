@@ -4,7 +4,6 @@
  * @file
  * Contains dc_discussion.module.
  */
-use Drupal\Core\Database\Database;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -59,19 +58,29 @@ function dc_discussion_form_node_discussion_form_alter(&$form, FormStateInterfac
   }
 
   // Add new discussion answer.
-  if ($route->getRouteName() == 'node.add_discussion_answer') {
-    $node = Node::load($route->getParameter('node'));
-    // Prepopulate field_parent with node id from url.
-    if ($node instanceof NodeInterface) {
-      $form['field_parent']['widget'][0]['target_id']['#default_value'] = $node;
-      // Hide field_parent for discussion answers.
-      $form['field_parent']['#access'] = FALSE;
-      // Hide field_drupal_version for discussion answers.
-      $form['field_drupal_version']['#access'] = FALSE;
-      // Hide field_discussion_category for discussion answers.
-      $form['field_discussion_category']['#access'] = FALSE;
-    }
+  if ($route->getRouteName() !== 'node.add_discussion_answer') {
+    return;
   }
+  /* @var $node NodeInterface */
+  $node = Node::load($route->getParameter('node'));
+  // Prepopulate field_parent with node id from url.
+  if (!($node instanceof NodeInterface)) {
+    return;
+  }
+  /* @var $service \Drupal\dc_discussion\DiscussionInformationInterface */
+  $service = \Drupal::service('dc_discussion.discussion_information');
+
+  $form['field_parent']['widget'][0]['target_id']['#default_value'] = $node;
+  // Hide field_parent for discussion answers.
+//  $form['field_parent']['#access'] = FALSE;
+  // Set topic.
+  $form['field_topic']['widget'][0]['target_id']['#default_value'] = $service->getTopic($node);
+  // Hide field_topic for discussion answers.
+//  $form['field_topic']['#access'] = FALSE;
+  // Hide field_drupal_version for discussion answers.
+  $form['field_drupal_version']['#access'] = FALSE;
+  // Hide field_discussion_category for discussion answers.
+  $form['field_discussion_category']['#access'] = FALSE;
 }
 
 /**
@@ -79,26 +88,36 @@ function dc_discussion_form_node_discussion_form_alter(&$form, FormStateInterfac
  */
 function dc_discussion_form_node_discussion_discussion_answer_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Prefill fields / hide fields like we do on node.add_discussion_answer route.
-  // Get current route..
-  if ($node = \Drupal::routeMatch()->getParameter('node')) {
-    // Prepopulate field_parent with node id from url.
-    if ($node instanceof NodeInterface) {
-      $form['field_parent']['widget'][0]['target_id']['#default_value'] = $node;
-      // Hide field_parent for discussion answers.
-      $form['field_parent']['#access'] = FALSE;
-      // Set drupal version.
-      if (!empty($node->field_drupal_version->target_id)) {
-        $form['field_drupal_version']['widget']['#default_value'][] = $node->field_drupal_version->target_id;
-      }
-      // Set discussion category.
-      if (!empty($node->field_discussion_category->target_id)) {
-        $form['field_discussion_category']['widget']['#default_value'][] = $node->field_discussion_category->target_id;
-      }
-      // Hide fields that are not relevant for user / where prefilled.
-      $form['field_drupal_version']['#access'] = FALSE;
-      $form['field_discussion_category']['#access'] = FALSE;
-    }
+  // Get current route.
+  /* @var $node NodeInterface */
+  if (($node = \Drupal::routeMatch()->getParameter('node')) === NULL) {
+    return;
   }
+  // Prepopulate field_parent with node id from url.
+  if (!($node instanceof NodeInterface)) {
+    return;
+  }
+  /* @var $service \Drupal\dc_discussion\DiscussionInformationInterface */
+  $service = \Drupal::service('dc_discussion.discussion_information');
+
+  $form['field_parent']['widget'][0]['target_id']['#default_value'] = $node;
+  // Hide field_parent for discussion answers.
+//  $form['field_parent']['#access'] = FALSE;
+  // Set topic.
+  $form['field_topic']['widget'][0]['target_id']['#default_value'] = $service->getTopic($node);
+  // Hide field_topic for discussion answers.
+
+  // Set drupal version.
+  if (!empty($node->field_drupal_version->target_id)) {
+    $form['field_drupal_version']['widget']['#default_value'][] = $node->field_drupal_version->target_id;
+  }
+  // Set discussion category.
+  if (!empty($node->field_discussion_category->target_id)) {
+    $form['field_discussion_category']['widget']['#default_value'][] = $node->field_discussion_category->target_id;
+  }
+  // Hide fields that are not relevant for user / where prefilled.
+  $form['field_drupal_version']['#access'] = FALSE;
+  $form['field_discussion_category']['#access'] = FALSE;
 }
 
 /**
@@ -115,6 +134,27 @@ function dc_discussion_form_node_discussion_edit_form_alter(&$form, FormStateInt
     $form['field_drupal_version']['#access'] = FALSE;
     $form['field_discussion_category']['#access'] = FALSE;
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dc_discussion_form_node_discussion_delete_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /* @var $entity NodeInterface */
+  $entity = $form_state->getFormObject()->getEntity();
+  /* @var $service \Drupal\dc_discussion\DiscussionInformationInterface */
+  $service = \Drupal::service('dc_discussion.discussion_information');
+  if (!$service->hasAnswers($entity)) {
+    // No need to alter the description.
+    return;
+  }
+
+  $t_args = [
+    '%label' => $entity->getTitle(),
+    '@count' => $service->answerCount($entity),
+  ];
+  $form['description']['#markup'] = '<p>' . $form['description']['#markup'] . '</p>';
+  $form['description']['#markup'] .= '<p>' . t('%label has @count answers. The answers will be deleted also.', $t_args, ['context' => 'dc_discussion:form']) . '</p>';
 }
 
 /**
@@ -158,7 +198,10 @@ function dc_discussion_node_view_alter(array &$build, EntityInterface $entity, E
     $build['discussion_answers']['#weight'] = $answers['weight'];
   }
   if (($count = $display->getComponent('answer_count')) !== NULL) {
-    $answer_count = _dc_discussion_discussion_get_answers($entity->id());
+    /* @var $service \Drupal\dc_discussion\DiscussionInformationInterface */
+    $service = \Drupal::service('dc_discussion.discussion_information');
+
+    $answer_count = $service->answerCount($entity);
     $build['answer_count'] = [
       '#count' => $answer_count,
       '#entity' => $entity,
@@ -200,24 +243,6 @@ function dc_discussion_form_taxonomy_term_discussion_category_form_alter(&$form,
 }
 
 /**
- * Helper function to get all answers (as flat list) for a single discussion.
- *
- * @todo: implement as cachable service?
- *
- * @param int $id
- *   Entity ID.
- *
- * @return int[]
- *   List of discussion answer IDs.
- */
-function _dc_discussion_discussion_get_answers($id) {
-  $query = Database::getConnection()->select('node__field_topic', 'p');
-  $query->condition('field_topic_target_id', $id);
-
-  return $query->countQuery()->execute()->fetchField();
-}
-
-/**
  * Implements hook_views_post_build().
  */
 function dc_discussion_views_post_build(ViewExecutable $view) {
@@ -242,15 +267,14 @@ function dc_discussion_node_presave(EntityInterface $entity) {
   }
   /* @var $parent \Drupal\Core\Field\FieldItemListInterface */
   if (($parent = $entity->get('field_parent')) && !$parent->isEmpty()) {
-    // Node is discussion answer.
-    /* @var $service \Drupal\discussion_relation\RelationInformationInterface */
-    $service = \Drupal::service('dc_relation.relation_information');
-    if ($topic = $service->getTopic($entity)) {
-      // Set field_topic to main topic.
-      $entity->field_topic->setValue($topic->id());
-      // Set discussion_category to value of main topic.
-      $entity->field_discussion_category->setValue($topic->field_discussion_category->getValue());
-    }
+    /* @var $service \Drupal\dc_discussion\DiscussionInformationInterface */
+    $service = \Drupal::service('dc_discussion.discussion_information');
+    /* @var $topic ContentEntityInterface */
+    $topic = $service->getTopic($parent[0]->entity);
+    // Set field_topic to main topic.
+    $entity->field_topic->setValue($topic->id());
+    // Set discussion_category to value of main topic.
+    $entity->field_discussion_category->setValue($topic->field_discussion_category->getValue());
   }
 }
 
@@ -269,24 +293,12 @@ function dc_discussion_node_update(EntityInterface $entity) {
 }
 
 /**
- * Helper function to get the main topic of a discussion.
- *
- * @param \Drupal\Core\Entity\EntityInterface $entity
- *   Discussion node to get the topic for.
+ * Implements hook_ENTITY_TYPE_delete() on behalf of discussion nodes.
  */
-function _dc_discussion_discussion_get_topic($entity) {
-  /* @var $parent \Drupal\Core\Field\FieldItemListInterface */
-  while ($entity && ($parent = $entity->get('field_parent')) !== NULL && !$parent->isEmpty()) {
-    try {
-      $item = $parent->get(0);
-      $value = $item->getValue();
-      $entity = Drupal::entityTypeManager()->getStorage('node')->load($value['target_id']);
-    }
-    catch (Exception $exc) {
-      $entity = FALSE;
-    }
-  }
-  return $entity;
+function dc_discussion_node_delete(EntityInterface $entity) {
+  /* @var $service \Drupal\dc_discussion\DiscussionInformationInterface */
+  $service = \Drupal::service('dc_discussion.discussion_information');
+  $service->deleteAnswers($entity);
 }
 
 /**
@@ -330,14 +342,15 @@ function dc_discussion_views_data_alter(array &$data) {
  * Allow use of different form modes while using entity.form_builder getForm
  */
 function dc_discussion_entity_type_alter(array &$entity_types) {
-  $entity_type = 'node';
-  $entity = $entity_types[$entity_type];
+  $type_name = 'node';
+  /* @var $entity_type \Drupal\Core\Entity\ContentEntityTypeInterface */
+  $entity_type = $entity_types[$type_name];
   /** @var \Drupal\Core\Entity\EntityDisplayRepository[] $display_modes_list for node */
-  $form_modes = \Drupal::service('entity_display.repository')->getFormModes($entity_type);
+  $form_modes = \Drupal::service('entity_display.repository')->getFormModes($type_name);
   foreach ($form_modes as $machine_name => $form_display) {
     // Get the correct canonical path to add operation.
-    $path = $entity->getLinkTemplate('canonical') . "/" . $machine_name;
-    $default_handler_class = $entity->getHandlerClasses()['form']['default'];
-    $entity->setFormClass($machine_name, $default_handler_class)->setLinkTemplate($machine_name, $path);
+    $path = $entity_type->getLinkTemplate('canonical') . "/" . $machine_name;
+    $default_handler_class = $entity_type->getHandlerClasses()['form']['default'];
+    $entity_type->setFormClass($machine_name, $default_handler_class)->setLinkTemplate($machine_name, $path);
   }
 }

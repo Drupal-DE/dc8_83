@@ -248,6 +248,7 @@ display:
         - 'config:core.entity_view_display.node.page.default'
         - 'config:core.entity_view_display.node.page.teaser'
         - 'config:core.entity_view_display.node.showroom.default'
+        - 'config:core.entity_view_display.node.showroom.full'
         - 'config:core.entity_view_display.node.showroom.teaser'
   latest:
     display_plugin: block
@@ -292,6 +293,7 @@ display:
         - 'config:core.entity_view_display.node.page.default'
         - 'config:core.entity_view_display.node.page.teaser'
         - 'config:core.entity_view_display.node.showroom.default'
+        - 'config:core.entity_view_display.node.showroom.full'
         - 'config:core.entity_view_display.node.showroom.teaser'
   latest_full:
     display_plugin: block
@@ -316,6 +318,7 @@ display:
         row: false
         title: false
         arguments: false
+        empty: false
       use_more_always: true
       use_more_text: 'more discussions'
       link_display: custom_url
@@ -721,10 +724,28 @@ display:
           summary: ''
           description: ''
           columns:
-            rendered_entity_1: rendered_entity_1
+            topic_id: topic_id
+            entity_id: entity_id
+            discussion_timestamp: discussion_timestamp
             title: title
+            field_discussion_category: field_discussion_category
+            dc_answer_count: dc_answer_count
           info:
-            rendered_entity_1:
+            topic_id:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            entity_id:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            discussion_timestamp:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -738,8 +759,22 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
+            field_discussion_category:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            dc_answer_count:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
           default: '-1'
-          empty_table: false
+          empty_table: true
       row:
         type: fields
         options: {  }
@@ -788,6 +823,18 @@ display:
           use_taxonomy_term_path: false
           entity_type: node
           plugin_id: taxonomy_index_tid_depth
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content: 'Zu der gewählten Kategorie gibt es noch keine Einträge.'
+          plugin_id: text_custom
     cache_metadata:
       max-age: 0
       contexts:

@@ -19,7 +19,7 @@ class DiscussionInformation implements DiscussionInformationInterface {
    *
    * @var \Drupal\Core\Database\Connection
    */
-  protected $database;
+  public $database;
 
   /**
    * The entity type manager.
@@ -121,7 +121,7 @@ class DiscussionInformation implements DiscussionInformationInterface {
       return NULL;
     }
 
-    return $entity->field_topic->entity;
+    return $this->isTopic($entity) ? $entity : $entity->field_topic->entity;
   }
 
   /**
@@ -218,6 +218,38 @@ class DiscussionInformation implements DiscussionInformationInterface {
     }
 
     return $latest_answer->id() === $entity->id();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function answerCount(ContentEntityInterface $entity) {
+    if ($this->isTopic($entity)) {
+      // Count all answers to this topic.
+      $query = $this->database->select('node__field_topic', 't');
+      $query->condition('t.field_topic_target_id', $entity->id());
+
+      return $query->countQuery()->execute()->fetchField();
+    }
+    // Count direct answers to a discussion answer.
+    $query = $this->database->select('node__field_parent', 'p');
+    $query->condition('p.field_parent_target_id', $entity->id());
+
+    return $query->countQuery()->execute()->fetchField();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function deleteAnswers(ContentEntityInterface $entity) {
+    if (!$this->hasAnswers($entity)) {
+      return;
+    }
+    // Load direct answers only. Answers on answers will be deleted recursively.
+    $answers = $this->getAnswers($entity->id(), FALSE);
+    /* @var $storage \Drupal\node\NodeStorageInterface */
+    $storage = $this->entityTypeManager->getStorage('node');
+    $storage->delete($answers);
   }
 
 }
