@@ -19,6 +19,16 @@ function dc_preprocess_page(&$vars) {
 }
 
 /**
+ * Override variables used in page.html.twig.
+ */
+function dc_preprocess_node(&$vars) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $vars['node'];
+  // Add author_picture
+  $vars['author_picture'] = user_view($node->getOwner(), 'compact');
+}
+
+/**
  * Override variables used in views-view-unformatted--discussion-categories.html.twig.
  */
 function dc_preprocess_views_view_unformatted__discussion_categories(&$vars) {
@@ -72,7 +82,7 @@ function dc_preprocess_block(&$variables) {
     $userCurrent = \Drupal::currentUser();
     $user = User::load($userCurrent->id());
     $view_builder = \Drupal::entityManager()->getViewBuilder('user');
-    $variables['user_picture'] = $view_builder->view($user, 'image_small');
+    $variables['user_picture'] = $view_builder->view($user, 'image_round');
   }
 }
 
