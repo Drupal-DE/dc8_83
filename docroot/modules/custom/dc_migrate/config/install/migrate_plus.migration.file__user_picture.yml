@@ -1,6 +1,6 @@
 id: file__user_picture
 label: Copy images associated to user accounts into the new directory structure
-migration_group: dkr
+migration_group: drupalcenter
 destination:
   plugin: entity:file
 source:
