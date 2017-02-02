@@ -2,10 +2,9 @@
   {% block comment_anchor %}
     <a name="{{- node.id -}}"></a>
   {% endblock %}
-
   {% block comment_header_meta %}
     <div class="uk-width-auto">
-      <img class="uk-comment-avatar" src="http://lorempixel.com/55/55/people/" alt=""/>
+      {{ author_picture }}
     </div>
     <div class="uk-width-expand">
       <h4 class="uk-comment-title uk-margin-remove dc-heading">{{ label }}</h4>
