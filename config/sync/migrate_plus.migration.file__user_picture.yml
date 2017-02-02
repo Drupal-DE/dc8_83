@@ -1,0 +1,53 @@
+uuid: adebf09e-0516-435d-8c2d-af25d72dbebd
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: rPlMGF9MaC4uSyxvUW0WBk2Je4OiYyNhozzKiRmqJW0
+id: file__user_picture
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Copy images associated to user accounts into the new directory structure'
+source:
+  plugin: dc_file__user_picture
+  constants:
+    source_base: 'dcmigration:/'
+    langcode: de
+    status: 1
+process:
+  langcode: constants/langcode
+  filename: filename
+  source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base
+        - filepath
+    -
+      plugin: urlencode
+  file_destination:
+    plugin: string_replace
+    replacements:
+      files/pictures/: 'public://users/'
+    source: uri
+  uri:
+    plugin: file_copy
+    source:
+      - '@source_full_path'
+      - '@file_destination'
+  status: constants/status
+  uid:
+    -
+      plugin: migration
+      migration: user_accounts
+      source: uid
+    -
+      plugin: skip_on_empty
+      method: row
+destination:
+  plugin: 'entity:file'
+migration_dependencies:
+  optional:
+    - user_accounts
