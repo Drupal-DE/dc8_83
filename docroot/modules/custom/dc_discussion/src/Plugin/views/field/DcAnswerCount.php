@@ -149,7 +149,7 @@ class DcAnswerCount extends NumericField {
       $this->options['alter']['url'] = $topic->urlInfo();
       $this->options['alter']['fragment'] = 'new';
       $this->options['alter']['alt'] = $this->formatPlural($data, '@count reply on \'@title\'', '@count replies on \'@title\'', ['@title' => $topic->getTitle()]);
-      $this->options['alter']['link_attributes']['uk-tooltip'] = 'uk-tooltip';
+      $this->options['alter']['link_attributes']['uk-tooltip'] = 'pos: left';
     }
 
     return $data;
