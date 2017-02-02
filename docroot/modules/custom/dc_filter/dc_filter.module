@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Contains dc_filter.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function dc_filter_theme() {
+  return [
+    'dc_filter_api_link' => [
+      'render element' => 'element',
+      'template' => 'filter-api-link',
+      'file' => 'templates/theme.inc',
+    ],
+  ];
+}

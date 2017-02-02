@@ -1,0 +1,7 @@
+name: DrupalCenter content filters
+type: module
+description: 'Input filters for DrupalCenter'
+core: 8.x
+package: DrupalCenter
+dependencies:
+  - filter

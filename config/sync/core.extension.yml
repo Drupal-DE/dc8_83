@@ -16,6 +16,7 @@ module:
   ctools_views: 0
   dblog: 0
   dc_discussion: 0
+  dc_filter: 0
   dc_migrate: 0
   dc_placeholder_image: 0
   dc_relation: 0
