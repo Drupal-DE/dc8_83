@@ -72,11 +72,11 @@ function dc_discussion_form_node_discussion_form_alter(&$form, FormStateInterfac
 
   $form['field_parent']['widget'][0]['target_id']['#default_value'] = $node;
   // Hide field_parent for discussion answers.
-//  $form['field_parent']['#access'] = FALSE;
+  $form['field_parent']['#access'] = FALSE;
   // Set topic.
   $form['field_topic']['widget'][0]['target_id']['#default_value'] = $service->getTopic($node);
   // Hide field_topic for discussion answers.
-//  $form['field_topic']['#access'] = FALSE;
+  $form['field_topic']['#access'] = FALSE;
   // Hide field_drupal_version for discussion answers.
   $form['field_drupal_version']['#access'] = FALSE;
   // Hide field_discussion_category for discussion answers.
@@ -102,10 +102,11 @@ function dc_discussion_form_node_discussion_discussion_answer_form_alter(&$form,
 
   $form['field_parent']['widget'][0]['target_id']['#default_value'] = $node;
   // Hide field_parent for discussion answers.
-//  $form['field_parent']['#access'] = FALSE;
+  $form['field_parent']['#access'] = FALSE;
   // Set topic.
   $form['field_topic']['widget'][0]['target_id']['#default_value'] = $service->getTopic($node);
   // Hide field_topic for discussion answers.
+  $form['field_topic']['#access'] = FALSE;
 
   // Set drupal version.
   if (!empty($node->field_drupal_version->target_id)) {
