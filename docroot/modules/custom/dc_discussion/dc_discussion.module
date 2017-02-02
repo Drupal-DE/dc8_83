@@ -355,3 +355,44 @@ function dc_discussion_entity_type_alter(array &$entity_types) {
     $entity_type->setFormClass($machine_name, $default_handler_class)->setLinkTemplate($machine_name, $path);
   }
 }
+
+/**
+ * Implements hook_options_list_alter().
+ */
+function dc_ui_options_list_alter(array &$options, array $context) {
+  /* @var $field_definition \Drupal\Core\Field\FieldDefinitionInterface */
+  $field_definition = $context['fieldDefinition'];
+  // Check if this is the field we want to change.
+  if ('node.discussion.field_discussion_category' !== $field_definition->id()) {
+    return;
+  }
+
+  // Rewrite options to optgroups.
+  $options_new = [];
+  if (isset($options['_none'])) {
+    $options_new['_none'] = $options['_none'];
+  }
+  $group = [];
+  foreach ($options as $key => $value) {
+    if ('_none' === $key) {
+      continue;
+    }
+    if (strpos($value, '-') === FALSE) {
+      if (!empty($group['items'])) {
+        // Add optgroup to options.
+        $options_new[$group['name']] = $group['items'];
+        $group = [
+          'name' => '',
+          'items' => [],
+        ];
+      }
+      $group['name'] = $value;
+      continue;
+    }
+    $group['items'][$key] = $value;
+  }
+  if (!empty($group['items'])) {
+    $options_new[$group['name']] = $group['items'];
+  }
+  $options = $options_new;
+}
