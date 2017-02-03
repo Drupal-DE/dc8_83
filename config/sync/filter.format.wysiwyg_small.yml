@@ -22,7 +22,7 @@ filters:
     id: filter_htmlcorrector
     provider: filter
     status: true
-    weight: -46
+    weight: -45
     settings: {  }
   filter_autop:
     id: filter_autop
@@ -47,29 +47,35 @@ filters:
     id: editor_file_reference
     provider: editor
     status: false
-    weight: -44
+    weight: -43
     settings: {  }
   filter_align:
     id: filter_align
     provider: filter
     status: false
-    weight: -43
+    weight: -42
     settings: {  }
   filter_caption:
     id: filter_caption
     provider: filter
     status: false
-    weight: -42
+    weight: -41
     settings: {  }
   filter_html_escape:
     id: filter_html_escape
     provider: filter
     status: false
-    weight: -45
+    weight: -44
     settings: {  }
   filter_html_image_secure:
     id: filter_html_image_secure
     provider: filter
     status: false
-    weight: -41
+    weight: -40
+    settings: {  }
+  dc_filter_project:
+    id: dc_filter_project
+    provider: dc_filter
+    status: true
+    weight: -46
     settings: {  }

@@ -15,5 +15,10 @@ function dc_filter_theme() {
       'template' => 'filter-api-link',
       'file' => 'templates/theme.inc',
     ],
+    'dc_filter_project_link' => [
+      'render element' => 'element',
+      'template' => 'filter-project-link',
+      'file' => 'templates/theme.inc',
+    ],
   ];
 }
