@@ -1,9 +1,9 @@
-uuid: f3091af4-c7ed-4471-99b1-90cfad4d0a79
+uuid: b680f20f-abd5-48d4-acff-85bc0bfbca1a
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.user.image_small
+    - core.entity_view_mode.user.compact
     - field.field.user.user.field_company
     - field.field.user.user.field_image
     - field.field.user.user.field_location
@@ -14,17 +14,17 @@ dependencies:
   module:
     - media_entity
     - user
-id: user.user.image_small
+id: user.user.compact
 targetEntityType: user
 bundle: user
-mode: image_small
+mode: compact
 content:
   field_image:
-    weight: 2
+    weight: 0
     label: hidden
     settings:
       image_style: profile_picture_small
-      image_link: ''
+      image_link: content
     third_party_settings: {  }
     type: media_thumbnail
 hidden:
@@ -35,3 +35,4 @@ hidden:
   field_website: true
   langcode: true
   member_for: true
+  name: true

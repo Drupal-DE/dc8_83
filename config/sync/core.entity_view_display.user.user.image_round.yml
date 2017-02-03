@@ -1,0 +1,38 @@
+uuid: 40e954eb-9dfb-44f4-adbd-4ebdd5e4f89c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.image_round
+    - field.field.user.user.field_company
+    - field.field.user.user.field_image
+    - field.field.user.user.field_location
+    - field.field.user.user.field_name
+    - field.field.user.user.field_signature
+    - field.field.user.user.field_website
+    - image.style.profile_picture_round
+  module:
+    - media_entity
+    - user
+id: user.user.image_round
+targetEntityType: user
+bundle: user
+mode: image_round
+content:
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: profile_picture_round
+      image_link: ''
+    third_party_settings: {  }
+    type: media_thumbnail
+hidden:
+  field_company: true
+  field_location: true
+  field_name: true
+  field_signature: true
+  field_website: true
+  langcode: true
+  member_for: true
+  name: true

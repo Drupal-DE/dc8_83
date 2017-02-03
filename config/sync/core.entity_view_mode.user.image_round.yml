@@ -1,10 +1,10 @@
-uuid: 6a0be258-0c41-4cf4-8967-ceb9ea091917
+uuid: db32cc6d-beb9-43f0-87bf-6cd8ebe1d8f0
 langcode: de
 status: true
 dependencies:
   module:
     - user
-id: user.image_small
-label: 'Image small'
+id: user.image_round
+label: 'Image round'
 targetEntityType: user
 cache: true
