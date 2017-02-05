@@ -54,7 +54,11 @@ settings:
           items:
             - Undo
             - Redo
+            - '-'
+            - CodeSnippet
+            - Code
             - Source
+            - '-'
             - HorizontalRule
             - Cut
             - Copy
@@ -63,6 +67,34 @@ settings:
       language_list: un
     stylescombo:
       styles: ''
+    codesnippet:
+      highlight_style: github
+      highlight_languages:
+        bash: bash
+        css: css
+        diff: diff
+        html: html
+        ini: ini
+        json: json
+        javascript: javascript
+        php: php
+        sql: sql
+        xhtml: xhtml
+        xml: xml
+        apache: 0
+        cs: 0
+        cpp: 0
+        coffeescript: 0
+        http: 0
+        java: 0
+        makefile: 0
+        markdown: 0
+        nginx: 0
+        objectivec: 0
+        perl: 0
+        python: 0
+        ruby: 0
+        vbscript: 0
 image_upload:
   status: false
   scheme: public
