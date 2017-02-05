@@ -36,6 +36,8 @@
         "drupal-composer/drupal-scaffold": "^2.2.0",
         "drupal/admin_toolbar": "^1.0",
         "drupal/allowed_formats": "dev-1.x",
+        "drupal/codesnippet": "dev-1.x",
+        "drupal/codetag": "dev-1.x",
         "drupal/console": "~1.0",
         "drupal/core": "^8.0",
         "drupal/field_group": "^1.0@RC",

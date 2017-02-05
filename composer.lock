@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6edbe0e55cfd3f24a0d697d9080a059a",
+    "content-hash": "92eb3cdf0c171b599b00d4883e738697",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1215,6 +1215,97 @@
                 "source": "http://cgit.drupalcode.org/allowed_formats"
             },
             "time": "2016-09-12 13:13:22"
+        },
+        {
+            "name": "drupal/codesnippet",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/codesnippet",
+                "reference": "701afb1556c6ddbf94dc4adf6da81f336dc2cc10"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.6+9-dev",
+                    "datestamp": "1474380477"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Quillen (kevinquillen)",
+                    "homepage": "https://www.drupal.org/u/kevinquillen",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Adds the CodeSnippet plugin to CKEditor.",
+            "homepage": "http://drupal.org/project/codesnippet",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/codesnippet",
+                "issues": "http://drupal.org/project/issues/codesnippet"
+            },
+            "time": "2016-09-20 13:53:48"
+        },
+        {
+            "name": "drupal/codetag",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/codetag",
+                "reference": "2013831cb3af360450b4c66af7bc48b1e1aad6b9"
+            },
+            "require": {
+                "drupal/ckeditor": "*",
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1+0-dev",
+                    "datestamp": "1473953339"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Quillen (kevinquillen)",
+                    "homepage": "https://www.drupal.org/u/kevinquillen",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "kevinquillen",
+                    "homepage": "https://www.drupal.org/user/317279"
+                }
+            ],
+            "description": "Adds the CodeTag plugin to CKEditor.",
+            "homepage": "http://drupal.org/project/codetag",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/codetag",
+                "issues": "http://drupal.org/project/issues/codetag"
+            },
+            "time": "2016-09-15 15:25:19"
         },
         {
             "name": "drupal/console",
@@ -6372,6 +6463,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/allowed_formats": 20,
+        "drupal/codesnippet": 20,
+        "drupal/codetag": 20,
         "drupal/field_group": 5,
         "drupal/focal_point": 10,
         "drupal/layout_plugin": 20,
