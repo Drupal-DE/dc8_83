@@ -15,7 +15,7 @@
 {% if breadcrumb %}
   <nav role="navigation" aria-labelledby="system-breadcrumb">
     <h2 class="uk-hidden">{{ 'Breadcrumb'|t }}</h2>
-    <ul class="uk-breadcrumb uk-iconnav uk-margin-small-left {{ breadcrumb_classes }}">
+    <ul class="uk-breadcrumb uk-margin-small-left {{ breadcrumb_classes }}">
       {% for item in breadcrumb %}
         <li{{ attributes.addClass(is_active ? 'uk-active') }}>
           {% if item.url %}
