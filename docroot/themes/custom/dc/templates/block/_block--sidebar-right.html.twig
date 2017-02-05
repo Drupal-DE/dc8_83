@@ -1,0 +1,23 @@
+{# Attributes classes for wrapping block #}
+{%- set block_classes = [
+  'uk-dark',
+  'uk-background-muted',
+  'uk-padding-small',
+  'uk-margin-top'
+] -%}
+
+{# Title class #}
+{%- set title_classes = [
+  'uk-heading'
+] -%}
+
+<div{{ attributes.addClass(block_classes) }}>
+  {{- title_prefix -}}
+  {%- if label -%}
+    <h3{{ title_attributes.addClass(title_classes) }}>{{ label }}</h3>
+  {%- endif -%}
+  {{- title_suffix -}}
+  {%- block content -%}
+    {{- content -}}
+  {%- endblock -%}
+</div>

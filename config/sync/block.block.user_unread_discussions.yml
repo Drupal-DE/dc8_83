@@ -1,0 +1,33 @@
+uuid: 2640f0da-ee69-4e2b-a524-b2c8080e1a8b
+langcode: de
+status: true
+dependencies:
+  module:
+    - dc_discussion
+    - user
+  theme:
+    - dc
+id: user_unread_discussions
+theme: dc
+region: sidebar_right
+weight: 0
+provider: null
+plugin: discussion_my_unread
+settings:
+  id: discussion_my_unread
+  label: 'My unread discussions'
+  provider: dc_discussion
+  label_display: visible
+  num_results: '10'
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+      administrator: administrator
+      forum_moderator: forum_moderator
+      forum_member: forum_member
+      book_editor: book_editor
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
