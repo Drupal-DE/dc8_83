@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Default theme implementation for quotes.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="quote">
+  {% if author %}
+    <div class="author">{{- author -}}</div>
+  {% endif %}
+  {{- quote|raw -}}
+</div>

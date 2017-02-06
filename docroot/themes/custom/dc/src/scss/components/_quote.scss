@@ -1,0 +1,9 @@
+.quote {
+  border-left: 4px solid $color--light-blue;
+  padding-left: .5rem;
+
+  .author {
+    color: $color--grey;
+    font-style: italic;
+  }
+}

@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - dc_filter
+    - dc_quote
     - editor
 name: 'WYSIWYG small'
 format: wysiwyg_small
@@ -78,4 +79,10 @@ filters:
     provider: dc_filter
     status: true
     weight: -46
+    settings: {  }
+  dc_quote_quote:
+    id: dc_quote_quote
+    provider: dc_quote
+    status: true
+    weight: -45
     settings: {  }

@@ -1,0 +1,7 @@
+name: DrupalCenter quote
+type: module
+description: 'Quote for DrupalCenter'
+core: 8.x
+package: DrupalCenter
+dependencies:
+  - filter

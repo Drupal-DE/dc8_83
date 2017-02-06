@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Contains dc_quote.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function dc_quote_theme() {
+  return [
+    'dc_quote' => [
+      'render element' => 'element',
+      'template' => 'quote',
+      'file' => 'templates/theme.inc',
+    ],
+  ];
+}
