@@ -22,7 +22,7 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
   created:
@@ -35,16 +35,20 @@ content:
       timezone: ''
     third_party_settings: {  }
   discussion_answers:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
   field_files:
     type: entity_reference_entity_view
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       view_mode: table_row
       link: false
+    third_party_settings: {  }
+  links:
+    weight: 2
+    settings: {  }
     third_party_settings: {  }
   uid:
     label: hidden
@@ -60,4 +64,3 @@ hidden:
   field_parent: true
   field_topic: true
   langcode: true
-  links: true

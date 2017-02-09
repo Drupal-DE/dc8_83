@@ -9,6 +9,7 @@
     <div class="uk-width-expand">
       <h4 class="uk-comment-title uk-margin-remove dc-heading">{{ label }}</h4>
       <p class="uk-comment-meta uk-margin-remove-top">{{ author_name }} | {{ date }}</p>
+      {{ content.links }}
     </div>
   {% endblock %}
   {% block comment_body %}
