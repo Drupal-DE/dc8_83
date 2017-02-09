@@ -232,7 +232,7 @@ function dc_discussion_node_links_alter(array &$links, NodeInterface $entity, ar
   $custom_links = [];
   if ($access_manager->checkNamedRoute('entity.node.edit_form', ['node' => $entity->id()])) {
     $custom_links['node-edit'] = [
-      'title' => t('Edit', [], ['context' => 'discussion']),
+      'title' => '',
       'url' => Url::fromRoute('entity.node.edit_form', ['node' => $entity->id()]),
       'attributes' => [
         'uk-icon' => 'pencil',
@@ -243,7 +243,7 @@ function dc_discussion_node_links_alter(array &$links, NodeInterface $entity, ar
   }
   if ($access_manager->checkNamedRoute('entity.node.delete_form', ['node' => $entity->id()])) {
     $custom_links['node-delete'] = [
-      'title' => t('Delete', [], ['context' => 'discussion']),
+      'title' => '',
       'url' => Url::fromRoute('entity.node.delete_form', ['node' => $entity->id()]),
       'attributes' => [
         'uk-icon' => 'trash',
@@ -254,7 +254,7 @@ function dc_discussion_node_links_alter(array &$links, NodeInterface $entity, ar
   }
   if ($access_manager->checkNamedRoute('entity.node.discussion_answer', ['node' => $entity->id()])) {
     $custom_links['node-reply'] = [
-      'title' => t('Reply', [], ['context' => 'discussion']),
+      'title' => '',
       'url' => Url::fromUserInput('#block-discussion-answer'),
       'attributes' => [
         'uk-icon' => 'comment',
@@ -265,7 +265,7 @@ function dc_discussion_node_links_alter(array &$links, NodeInterface $entity, ar
   }
   if ($access_manager->checkNamedRoute('entity.node.discussion_answer', ['node' => $entity->id()])) {
     $custom_links['node-quote'] = [
-      'title' => t('Quote', [], ['context' => 'discussion']),
+      'title' => '',
       'url' => Url::fromUserInput('#block-discussion-answer'),
       'attributes' => [
         'uk-icon' => 'commenting',
@@ -274,13 +274,12 @@ function dc_discussion_node_links_alter(array &$links, NodeInterface $entity, ar
       ],
     ];
   }
-
   /* @var $service \Drupal\dc_discussion\DiscussionInformationInterface */
   $service = \Drupal::service('dc_discussion.discussion_information');
-  if (!$service->isTopic($entity)) {
+  if (!$service->isTopic($entity) && $service->getTopic($entity) instanceof NodeInterface) {
     // Create permalink for answers.
     $custom_links['node-permalink'] = [
-      'title' => t('Link', [], ['context' => 'discussion']),
+      'title' => '',
       'url' => Url::fromRoute('entity.node.canonical', ['node' => $service->getTopic($entity)->id()], ['fragment' => $entity->id()]),
       'attributes' => [
         'uk-icon' => 'link',
