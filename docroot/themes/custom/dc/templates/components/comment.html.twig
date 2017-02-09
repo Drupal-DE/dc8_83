@@ -10,7 +10,7 @@
 {% endblock %}
 <article role="article"{{ attributes.addClass(classes)|without('role') }}>
   <header class="uk-comment-header uk-position-relative">
-    <div class="uk-grid-medium uk-flex-middle" uk-grid>
+    <div class="uk-grid-medium uk-flex-top" uk-grid>
       {% block comment_header_meta %}
         <div class="uk-width-auto">
           {{ user_picture }}
@@ -22,12 +22,23 @@
       {% endblock %}
     </div>
   </header>
+  {% if content.links %}
+    {% block comment_header_links %}
+      <div class="uk-position-small uk-position-top-right uk-hidden-hover">
+        {{ content.links }}
+      </div>
+    {% endblock %}
+  {% endif %}
   <div class="uk-comment-body">
     {% block comment_body %}
       {{ content|without('links', 'created') }}
-      {% if content.links %}
-        <nav>{{ content.links }}</nav>
-      {% endif %}
     {% endblock %}
   </div>
+  {% if content.links %}
+    {% block comment_footer_links %}
+      <div class="uk-position-small uk-position-bottom-right uk-hidden-hover">
+        {{ content.links }}
+      </div>
+    {% endblock %}
+  {% endif %}
 </article>

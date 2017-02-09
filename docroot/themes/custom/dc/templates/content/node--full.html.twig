@@ -1,14 +1,14 @@
 {% set classes = [
-  'uk-article',
-  'uk-margin-bottom',
-  'uk-box-shadow-small',
-  'uk-padding-small',
-  'uk-visible-toggle'
+'uk-article',
+'uk-margin-bottom',
+'uk-box-shadow-small',
+'uk-padding-small',
+'uk-visible-toggle'
 ] %}
 <article{{ attributes.addClass(classes) }}>
   <header class="uk-comment-header uk-position-relative">
     {% block node_header_meta %}
-      <div class="uk-grid-medium uk-flex-middle" uk-grid>
+      <div class="uk-grid-medium uk-flex-top" uk-grid>
         <div class="uk-width-auto">
           {{ author_picture }}
         </div>
@@ -18,16 +18,23 @@
         </div>
       </div>
     {% endblock %}
-    {% block node_header_links %}
-      {{ content.links }}
-    {% endblock %}
   </header>
+  {% block node_header_links %}
+    <div class="uk-position-small uk-position-top-right uk-hidden-hover">
+      {{ content.links }}
+    </div>
+  {% endblock %}
   <div class="uk-comment-body">
     {% block node_body %}
       {{ content.field_legacy_content }}
       {{ content.field_content }}
     {% endblock %}
   </div>
+  {% block node_footer_links %}
+    <div class="uk-position-small uk-position-bottom-right uk-hidden-hover">
+      {{ content.links }}
+    </div>
+  {% endblock %}
 </article>
 {% block node_attachment_after %}
   {{ content.field_comments }}

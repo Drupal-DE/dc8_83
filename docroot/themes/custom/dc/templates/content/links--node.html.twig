@@ -1,15 +1,13 @@
 {% if links %}
-  <div class="uk-position-top-right uk-position-small uk-hidden-hover">
-    <ul{{ attributes.addClass('uk-subnav uk-subnav-line', 'uk-float-right', 'uk-text-small').removeClass('inline') }}>
-      {%- for item in links -%}
+  <ul{{ attributes.addClass('links', 'uk-iconnav', 'uk-text-small').removeClass('inline') }}>
+    {%- for item in links -%}
       <li{{ item.attributes.addClass('itemlink') }}>
         {%- if item.link -%}
-        {{ item.link }}
+          {{ item.link }}
         {%- else -%}
-        <span{{ item.text_attributes }}>{{ item.text }}</span>
+          <span{{ item.text_attributes }}>{{ item.text }}</span>
         {%- endif -%}
       </li>
-      {%- endfor -%}
-    </ul>
-  </div>
+    {%- endfor -%}
+  </ul>
 {% endif %}
