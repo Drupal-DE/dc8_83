@@ -1,7 +1,8 @@
 .quote {
+  background: $color--white;
   border-left: 4px solid $color--light-blue;
-  padding-left: .5rem;
-
+  margin-top: .5rem;
+  padding: .5rem;
   .author {
     color: $color--grey;
     font-style: italic;
