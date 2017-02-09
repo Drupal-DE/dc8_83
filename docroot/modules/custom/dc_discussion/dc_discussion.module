@@ -220,18 +220,23 @@ function dc_discussion_node_view_alter(array &$build, EntityInterface $entity, E
       $build['#attached']['drupalSettings']['history']['nodesToMarkAsRead'][$entity->id()] = TRUE;
     }
   }
+
+  if ($display->getComponent('links')) {
+    _dc_discussion_create_node_links($build, $entity);
+  }
 }
 
 /**
  * Implements hook_node_links_alter().
  */
-function dc_discussion_node_links_alter(array &$links, NodeInterface $entity, array &$context) {
+function _dc_discussion_create_node_links(array &$build, NodeInterface $entity) {
   /* @var $access_manager Drupal\Core\Access\AccessManagerInterface */
   $access_manager = \Drupal::service('access_manager');
 
-  $custom_links = [];
+  $user_links = [];
+  $admin_links = [];
   if ($access_manager->checkNamedRoute('entity.node.edit_form', ['node' => $entity->id()])) {
-    $custom_links['node-edit'] = [
+    $admin_links['node-edit'] = [
       'title' => '',
       'url' => Url::fromRoute('entity.node.edit_form', ['node' => $entity->id()]),
       'attributes' => [
@@ -242,7 +247,7 @@ function dc_discussion_node_links_alter(array &$links, NodeInterface $entity, ar
     ];
   }
   if ($access_manager->checkNamedRoute('entity.node.delete_form', ['node' => $entity->id()])) {
-    $custom_links['node-delete'] = [
+    $admin_links['node-delete'] = [
       'title' => '',
       'url' => Url::fromRoute('entity.node.delete_form', ['node' => $entity->id()]),
       'attributes' => [
@@ -253,7 +258,7 @@ function dc_discussion_node_links_alter(array &$links, NodeInterface $entity, ar
     ];
   }
   if ($access_manager->checkNamedRoute('entity.node.discussion_answer', ['node' => $entity->id()])) {
-    $custom_links['node-reply'] = [
+    $user_links['node-reply'] = [
       'title' => '',
       'url' => Url::fromUserInput('#block-discussion-answer'),
       'attributes' => [
@@ -264,7 +269,7 @@ function dc_discussion_node_links_alter(array &$links, NodeInterface $entity, ar
     ];
   }
   if ($access_manager->checkNamedRoute('entity.node.discussion_answer', ['node' => $entity->id()])) {
-    $custom_links['node-quote'] = [
+    $user_links['node-quote'] = [
       'title' => '',
       'url' => Url::fromUserInput('#block-discussion-answer'),
       'attributes' => [
@@ -278,7 +283,7 @@ function dc_discussion_node_links_alter(array &$links, NodeInterface $entity, ar
   $service = \Drupal::service('dc_discussion.discussion_information');
   if (!$service->isTopic($entity) && $service->getTopic($entity) instanceof NodeInterface) {
     // Create permalink for answers.
-    $custom_links['node-permalink'] = [
+    $user_links['node-permalink'] = [
       'title' => '',
       'url' => Url::fromRoute('entity.node.canonical', ['node' => $service->getTopic($entity)->id()], ['fragment' => $entity->id()]),
       'attributes' => [
@@ -288,10 +293,18 @@ function dc_discussion_node_links_alter(array &$links, NodeInterface $entity, ar
       ],
     ];
   }
-  $links['dc_discussion'] = [
-    '#theme' => 'links__node__dc_discussion',
-    '#links' => $custom_links,
-  ];
+  if (!empty($admin_links)) {
+    $build['links__admin'] = [
+      '#theme' => 'links__admin',
+      '#links' => $admin_links,
+    ];
+  }
+  if (!empty($user_links)) {
+    $build['links__user'] = [
+      '#theme' => 'links__user',
+      '#links' => $user_links,
+    ];
+  }
 }
 
 /**

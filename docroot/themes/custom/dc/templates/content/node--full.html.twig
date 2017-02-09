@@ -20,9 +20,11 @@
     {% endblock %}
   </header>
   {% block node_header_links %}
-    <div class="uk-position-small uk-position-top-right uk-hidden-hover">
-      {{ content.links }}
-    </div>
+    {% if content.links__admin %}
+      <div class="uk-position-small uk-position-top-right uk-hidden-hover">
+        {{ content.links__admin }}
+      </div>
+    {% endif %}
   {% endblock %}
   <div class="uk-comment-body">
     {% block node_body %}
@@ -31,9 +33,11 @@
     {% endblock %}
   </div>
   {% block node_footer_links %}
-    <div class="uk-position-small uk-position-bottom-right uk-hidden-hover">
-      {{ content.links }}
-    </div>
+    {% if content.links__user %}
+      <div class="uk-position-small uk-position-bottom-right uk-hidden-hover">
+        {{ content.links__user }}
+      </div>
+    {% endif %}
   {% endblock %}
 </article>
 {% block node_attachment_after %}

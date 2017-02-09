@@ -24,9 +24,11 @@
   </header>
   {% if content.links %}
     {% block comment_header_links %}
-      <div class="uk-position-small uk-position-top-right uk-hidden-hover">
-        {{ content.links }}
-      </div>
+      {% if content.links__admin %}
+        <div class="uk-position-small uk-position-top-right uk-hidden-hover">
+          {{ content.links__admin }}
+        </div>
+      {% endif %}
     {% endblock %}
   {% endif %}
   <div class="uk-comment-body">
@@ -36,9 +38,11 @@
   </div>
   {% if content.links %}
     {% block comment_footer_links %}
-      <div class="uk-position-small uk-position-bottom-right uk-hidden-hover">
-        {{ content.links }}
-      </div>
+      {% if content.links__user %}
+        <div class="uk-position-small uk-position-bottom-right uk-hidden-hover">
+          {{ content.links__user }}
+        </div>
+      {% endif %}
     {% endblock %}
   {% endif %}
 </article>
