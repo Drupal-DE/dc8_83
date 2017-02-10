@@ -82,6 +82,7 @@ class DiscussionInformation implements DiscussionInformationInterface {
     $query->condition($group_or);
     // Filter for user;
     $query->condition('n.uid', $uid);
+    $query->condition('h.uid', $uid);
 
     // Sort results.
     $query->orderBy('r.changed', $sort);
