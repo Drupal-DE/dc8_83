@@ -4,7 +4,7 @@
   {% endblock %}
   {% block node_attachment_after %}
     {%- if content.discussion_answers is not empty -%}
-      <h3 class="dc-heading uk-margin-left">{{ content.answer_count }} Antworten</h3>
+      <h3 class="dc-heading uk-margin-left">{{ content.num_answers }}</h3>
       {{- content.discussion_answers -}}
     {%- endif -%}
   {% endblock %}

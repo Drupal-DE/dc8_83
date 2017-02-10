@@ -25,6 +25,11 @@ function dc_preprocess_node(&$vars) {
   $node = $vars['node'];
   // Add author_picture
   $vars['author_picture'] = user_view($node->getOwner(), 'compact');
+  if (isset($vars['content']['answer_count'])) {
+    /* @var $service \Drupal\Core\StringTranslation\TranslationInterface */
+    $service = \Drupal::service('string_translation');
+    $vars['content']['num_answers'] = $service->formatPlural($vars['content']['answer_count']['#count'], '1 answer', '@count answers');
+  }
 }
 
 /**

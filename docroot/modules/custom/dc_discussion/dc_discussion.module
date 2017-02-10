@@ -391,6 +391,32 @@ function dc_discussion_node_delete(EntityInterface $entity) {
   /* @var $service \Drupal\dc_discussion\DiscussionInformationInterface */
   $service = \Drupal::service('dc_discussion.discussion_information');
   $service->deleteAnswers($entity);
+
+  try {
+    $storage = \Drupal::entityTypeManager()->getStorage('discussion_relation');
+    $relations = $storage->loadByProperties(['topic_id' => $service->getTopic($entity)->id()]);
+    /* @var $relation DiscussionRelation */
+    if (($relation = reset($relations)) === FALSE) {
+      // No relations found ... which is somehow false.
+      \Drupal::logger('dc_discussion')->warning('No relation found for entity !id', ['!id' => $entity->id()]);
+      return;
+    }
+    if ($service->isTopic($entity)) {
+      // Remove relation also.
+      $relation->delete();
+    }
+    else {
+      // Update relation.
+      $latest_answer = $service->getLatestAnswer($service->getTopic($entity)->id());
+      $relation->set('entity_id', $latest_answer->id());
+      $relation->set('parent_id', $service->getParent($latest_answer)->id());
+      $relation->set('changed', $latest_answer->getChangedTime());
+      $relation->save();
+    }
+  }
+  catch (Exception $ex) {
+    \Drupal::logger('dc_discussion')->warning('Failed removing relation for entity !id', ['!id' => $entity->id()]);
+  }
 }
 
 /**
