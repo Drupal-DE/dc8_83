@@ -1,0 +1,9 @@
+dc_discussion.quote:
+  js:
+    js/quote.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+    - ckeditor/drupal.ckeditor

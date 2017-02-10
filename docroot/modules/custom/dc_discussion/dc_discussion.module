@@ -304,6 +304,11 @@ function _dc_discussion_create_node_links(array &$build, NodeInterface $entity) 
       '#theme' => 'links__user',
       '#links' => $user_links,
     ];
+    if (!empty($user_links['node-quote'])) {
+      $build['links__user']['#attached'] = [
+        'library' => 'dc_discussion/dc_discussion.quote',
+      ];
+    }
   }
 }
 
