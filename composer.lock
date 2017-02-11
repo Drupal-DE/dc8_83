@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "92eb3cdf0c171b599b00d4883e738697",
+    "content-hash": "9553894ee2633619566e19c206ab3771",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1941,6 +1941,54 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/entity_reference_revisions"
             }
+        },
+        {
+            "name": "drupal/fac",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/fac",
+                "reference": "533577ccfd57bdd4c46f02f1f0bc11536afa7c8b"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1483010583"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Martijn Vermeulen (Marty2081)",
+                    "homepage": "https://www.drupal.org/u/marty2081",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Heine",
+                    "homepage": "https://www.drupal.org/user/17943"
+                },
+                {
+                    "name": "Marty2081",
+                    "homepage": "https://www.drupal.org/user/960720"
+                }
+            ],
+            "description": "Fast Autocomplete",
+            "homepage": "http://drupal.org/project/fac",
+            "support": {
+                "source": "http://cgit.drupalcode.org/fac",
+                "issues": "http://drupal.org/project/issues/fac"
+            },
+            "time": "2017-01-19 09:43:39"
         },
         {
             "name": "drupal/field_group",
@@ -6465,6 +6513,7 @@
         "drupal/allowed_formats": 20,
         "drupal/codesnippet": 20,
         "drupal/codetag": 20,
+        "drupal/fac": 20,
         "drupal/field_group": 5,
         "drupal/focal_point": 10,
         "drupal/layout_plugin": 20,
