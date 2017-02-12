@@ -1,0 +1,10 @@
+uuid: 13767d19-95ee-4274-adc1-6b9d074a2e82
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.search_autocomplete
+label: 'Search autocomplete'
+targetEntityType: node
+cache: true

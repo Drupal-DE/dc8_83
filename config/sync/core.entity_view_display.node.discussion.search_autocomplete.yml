@@ -1,8 +1,9 @@
-uuid: bd01b6f2-c4cd-40ca-9835-9339a6c0de06
+uuid: e87fe181-04f4-49a6-a2dc-cf014c0a8c57
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.search_autocomplete
     - field.field.node.discussion.body
     - field.field.node.discussion.field_discussion_category
     - field.field.node.discussion.field_drupal_version
@@ -11,11 +12,12 @@ dependencies:
     - field.field.node.discussion.field_topic
     - node.type.discussion
   module:
+    - dc_ui
     - user
-id: node.discussion.default
+id: node.discussion.search_autocomplete
 targetEntityType: node
 bundle: discussion
-mode: default
+mode: search_autocomplete
 content:
   created:
     label: hidden
@@ -27,11 +29,11 @@ content:
       timezone: ''
     third_party_settings: {  }
   field_discussion_category:
-    type: entity_reference_label
+    type: dc_ui_discussion_category_colored
     weight: 0
     label: hidden
     settings:
-      link: true
+      link: 0
     third_party_settings: {  }
   uid:
     label: hidden

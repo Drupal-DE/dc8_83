@@ -1,8 +1,9 @@
-uuid: 7b28e0cc-2d52-4327-a301-c3291789001c
+uuid: baa7f2d8-eb90-40ee-8cb6-3dd2d6d0a00c
 langcode: de
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.search_autocomplete
     - field.field.node.book.field_comments
     - field.field.node.book.field_content
     - field.field.node.book.field_drupal_version
@@ -12,10 +13,10 @@ dependencies:
     - user
 _core:
   default_config_hash: 7UKHHzhlAE0hzKaKG_KHqUXXOp85mAQ1nZTOep8quTc
-id: node.book.default
+id: node.book.search_autocomplete
 targetEntityType: node
 bundle: book
-mode: default
+mode: search_autocomplete
 content:
   created:
     label: hidden

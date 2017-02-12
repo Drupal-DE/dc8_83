@@ -1,21 +1,18 @@
-uuid: 7b28e0cc-2d52-4327-a301-c3291789001c
-langcode: de
+uuid: a90bc4d6-bb64-44ff-906e-2701e5a81bb0
+langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.book.field_comments
-    - field.field.node.book.field_content
-    - field.field.node.book.field_drupal_version
-    - field.field.node.book.field_legacy_content
-    - node.type.book
+    - core.entity_view_mode.node.search_autocomplete
+    - field.field.node.page.field_comments
+    - field.field.node.page.field_content
+    - node.type.page
   module:
     - user
-_core:
-  default_config_hash: 7UKHHzhlAE0hzKaKG_KHqUXXOp85mAQ1nZTOep8quTc
-id: node.book.default
+id: node.page.search_autocomplete
 targetEntityType: node
-bundle: book
-mode: default
+bundle: page
+mode: search_autocomplete
 content:
   created:
     label: hidden
@@ -36,7 +33,5 @@ hidden:
   changed: true
   field_comments: true
   field_content: true
-  field_drupal_version: true
-  field_legacy_content: true
   langcode: true
   links: true

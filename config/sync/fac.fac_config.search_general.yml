@@ -15,12 +15,12 @@ viewModes:
   file: default
   media: default
   menu_link_content: default
-  node: default
+  node: search_autocomplete
   paragraph: default
   taxonomy_term: default
   user: default
 keyMinLength: 3
-keyMaxLength: 5
+keyMaxLength: 15
 allResultsLink: false
 allResultsLinkThreshold: 0
 breakpoint: 0
