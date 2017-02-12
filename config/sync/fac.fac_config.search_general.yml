@@ -1,0 +1,31 @@
+uuid: 183edd22-c029-4a0b-931f-67e33d0a8d9a
+langcode: en
+status: true
+dependencies: {  }
+id: search_general
+label: 'general search'
+searchPluginId: SearchApiSearch
+searchPluginConfig: '{"index":"content"}'
+inputSelectors: '.uk-search input.uk-search-input'
+numberOfResults: 5
+emptyResult: ''
+viewModes:
+  block: default
+  comment: default
+  file: default
+  media: default
+  menu_link_content: default
+  node: default
+  paragraph: default
+  taxonomy_term: default
+  user: default
+keyMinLength: 3
+keyMaxLength: 5
+allResultsLink: false
+allResultsLinkThreshold: 0
+breakpoint: 0
+resultLocation: ''
+highlightingEnabled: true
+anonymousSearch: true
+cleanUpFiles: true
+filesExpiryTime: '-1 day'
