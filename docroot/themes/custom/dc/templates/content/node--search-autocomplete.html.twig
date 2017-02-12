@@ -1,13 +1,10 @@
 {% set classes = [
 'uk-article',
-'uk-margin-bottom',
-'uk-box-shadow-small',
-'uk-padding-small',
 'uk-visible-toggle'
 ] %}
 <article{{ attributes.addClass(classes) }}>
   {{ label }}
-  <header class="uk-comment-header uk-position-relative">
+  <header class="uk-position-relative">
     {% block node_header_meta %}
       <div class="uk-grid-medium uk-flex-top" uk-grid>
         <div class="uk-width-auto">

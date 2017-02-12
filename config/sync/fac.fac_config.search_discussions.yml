@@ -1,0 +1,31 @@
+uuid: 4013b1d4-eb53-4359-a698-bae2e98159fa
+langcode: en
+status: true
+dependencies: {  }
+id: search_discussions
+label: 'Discussion search'
+searchPluginId: filtered_searchapi_search
+searchPluginConfig: '{"index":"content","bundles":{"content":{"entity:node":{"discussion":"discussion","book":0,"news":0,"page":0,"showroom":0}}}}'
+inputSelectors: '.node-discussion-form #edit-title-0-value'
+numberOfResults: 10
+emptyResult: ''
+viewModes:
+  block: default
+  comment: default
+  file: default
+  media: default
+  menu_link_content: default
+  node: search_autocomplete
+  paragraph: default
+  taxonomy_term: default
+  user: default
+keyMinLength: 5
+keyMaxLength: 15
+allResultsLink: false
+allResultsLinkThreshold: 0
+breakpoint: 0
+resultLocation: '.node-discussion-form .js-form-item-title-0-value'
+highlightingEnabled: true
+anonymousSearch: true
+cleanUpFiles: true
+filesExpiryTime: '-1 day'
