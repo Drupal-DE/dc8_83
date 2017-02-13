@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "54b1ef04662310feb0da9c8609c0b03f",
+    "content-hash": "0fdbc510d3de158f3a4130b3974604c4",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -110,6 +110,34 @@
                 "stack"
             ],
             "time": "2016-08-01T12:05:04+00:00"
+        },
+        {
+            "name": "ckeditor/codesnippet",
+            "version": "4.6.2",
+            "dist": {
+                "type": "zip",
+                "url": "http://download.ckeditor.com/codesnippet/releases/codesnippet_4.6.2.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "^1.2.0"
+            },
+            "type": "drupal-library"
+        },
+        {
+            "name": "ckeditor/codetag",
+            "version": "0.1.0",
+            "dist": {
+                "type": "zip",
+                "url": "http://download.ckeditor.com/codetag/releases/codetag_0.1_0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "^1.2.0"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "composer/installers",
