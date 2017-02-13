@@ -101,7 +101,11 @@
             ]
         },
         "enable-patching": true,
-        "patches": {}
+        "patches": {
+            "drupal/fac" : {
+                "Open in new window/tab when metaKey is pressed on click [#2852004]": "https://www.drupal.org/files/issues/fac-open_links_in_new_window_tab-2852004-2.patch"
+            }
+        }
     },
     "config": {
         "autoloader-suffix": "DrupalCenter",
