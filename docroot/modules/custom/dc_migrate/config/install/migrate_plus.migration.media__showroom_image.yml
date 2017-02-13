@@ -1,0 +1,42 @@
+id: media__showroom_image
+label: Create media entities for showroom images.
+migration_group: drupalcenter
+destination:
+  plugin: entity:media
+source:
+  plugin: dc_file__showroom_image
+  constants:
+    langcode: 'de'
+    status: 1
+process:
+  bundle:
+    plugin: default_value
+    default_value: image
+  langcode: 'constants/langcode'
+  status: 'constants/status'
+  name: filename
+  uid:
+    -
+      plugin: migration
+      migration: user_accounts
+      source: uid
+    -
+      plugin: skip_on_empty
+      # Do not create user picture for non-existing accounts.
+      method: row
+  'field_image/target_id':
+    -
+      plugin: migration
+      migration:
+        - file__showroom_image
+      source: uid
+    -
+      plugin: skip_on_empty
+      # Do not create media entity if source image has not been migrated.
+      method: row
+  field_image_alt: image_alt
+  field_image_title: image_title
+migration_dependencies:
+  optional:
+    - file__showroom_image
+    - user_accounts

@@ -2,7 +2,6 @@
 
 namespace Drupal\dc_migrate\Plugin\migrate\source;
 
-use Drupal\Core\Database\Query\SelectInterface;
 use Drupal\dc_migrate\Plugin\migrate\source\DcSqlBaseFile;
 use Drupal\migrate\Row;
 

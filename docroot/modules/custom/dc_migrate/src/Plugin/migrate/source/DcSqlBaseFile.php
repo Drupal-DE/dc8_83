@@ -28,16 +28,17 @@ class DcSqlBaseFile extends DcSqlBase {
       $mime_type = $source_config['mime_type'];
     }
 
-    $query = $this->select('file_managed', 'fm')
-      ->fields('fm', []);
+    $query = $this->select('files', 'f')
+      ->fields('f', []);
+    $query->addField('f', 'filepath', 'uri');
 
     if (!empty($mime_type)) {
-      $query->condition('fm.filemime', '%' . $this->database->escapeLike($mime_type) . '%', 'LIKE');
+      $query->condition('f.filemime', '%' . $this->database->escapeLike($mime_type) . '%', 'LIKE');
     }
 
     $this->alterQuery($query);
 
-    return $query->distinct()->orderBy('fm.fid', 'ASC');
+    return $query->distinct()->orderBy('f.fid', 'ASC');
   }
 
   /**
@@ -55,7 +56,6 @@ class DcSqlBaseFile extends DcSqlBase {
       'filesize' => $this->t('Size of file'),
       'status' => $this->t('File status (permanent/temporary)'),
       'timestamp' => $this->t('File creation date'),
-      'type' => $this->t('File type'),
     ];
 
     $this->alterFields($fields);
@@ -73,6 +73,7 @@ class DcSqlBaseFile extends DcSqlBase {
     $row->setSourceProperty('filepath', $path);
     // Extract directory.
     $row->setSourceProperty('directory', substr($path, 0, strrpos($path, '/') + 1));
+    $row->setSourceProperty('filename', substr($path, strrpos($path, '/') + 1));
 
     return parent::prepareRow($row);
   }
@@ -84,7 +85,7 @@ class DcSqlBaseFile extends DcSqlBase {
     return [
       'fid' => [
         'type' => 'integer',
-        'alias' => 'fm',
+        'alias' => 'f',
       ],
     ];
   }

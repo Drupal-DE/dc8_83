@@ -1,0 +1,48 @@
+uuid: 48695d07-a4e6-482f-8a62-52d34f22d317
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 1xwBEVM5JRdedpVXsIfHAgihy9k90HpW9zemlY-4Ud4
+id: media__showroom_image
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Create media entities for showroom images.'
+source:
+  plugin: dc_file__showroom_image
+  constants:
+    langcode: de
+    status: 1
+process:
+  bundle:
+    plugin: default_value
+    default_value: image
+  langcode: constants/langcode
+  status: constants/status
+  name: filename
+  uid:
+    -
+      plugin: migration
+      migration: user_accounts
+      source: uid
+    -
+      plugin: skip_on_empty
+      method: row
+  field_image/target_id:
+    -
+      plugin: migration
+      migration:
+        - file__showroom_image
+      source: uid
+    -
+      plugin: skip_on_empty
+      method: row
+  field_image_alt: image_alt
+  field_image_title: image_title
+destination:
+  plugin: 'entity:media'
+migration_dependencies:
+  optional:
+    - file__showroom_image
+    - user_accounts
