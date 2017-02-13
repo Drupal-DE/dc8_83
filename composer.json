@@ -27,7 +27,22 @@
             "type": "vcs",
             "name": "drupal/views_lazy_load",
             "url": "https://github.com/stborchert/views_lazy_load"
-        }
+        },
+        {
+            "type": "package",
+                "package": {
+                    "name": "harvesthq/chosen",
+                    "version": "1.6.1",
+                    "type": "drupal-library",
+                    "dist": {
+                        "url": "https://github.com/harvesthq/chosen/releases/download/v1.6.1/chosen_v1.6.1.zip",
+                        "type": "zip"
+                  },
+                  "require": {
+                      "composer/installers": "^1.2.0"
+                  }
+            }
+         }
     ],
     "require": {
         "composer/installers": "^1.0",
@@ -36,6 +51,7 @@
         "drupal-composer/drupal-scaffold": "^2.2.0",
         "drupal/admin_toolbar": "^1.0",
         "drupal/allowed_formats": "dev-1.x",
+        "drupal/chosen": "dev-2.x",
         "drupal/codesnippet": "dev-1.x",
         "drupal/codetag": "dev-1.x",
         "drupal/console": "~1.0",
@@ -59,7 +75,8 @@
         "drupal/search_api_solr": "dev-1.x",
         "drupal/token": "^1.0",
         "drupal/views_lazy_load": "dev-8.x-1.x",
-        "drush/drush": "~8.0"
+        "drush/drush": "~8.0",
+        "harvesthq/chosen": "^1.6"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -89,9 +106,9 @@
     "extra": {
         "installer-paths": {
             "docroot/core": ["type:drupal-core"],
-            "docroot/profiles/contrib/thunder/libraries/{$name}": ["type:drupal-library"],
             "docroot/modules/contrib/{$name}": ["type:drupal-module"],
             "docroot/themes/contrib/{$name}": ["type:drupal-theme"],
+            "docroot/libraries/{$name}": ["type:drupal-library"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
         },
         "drupal-scaffold": {
