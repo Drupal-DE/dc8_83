@@ -13,6 +13,7 @@
   a,
   .uk-navbar-nav>li>a {
     color: $color--white;
+    font-family: $base-font-family;
     font-size: 1rem;
     text-transform: none;
     &:hover {
@@ -47,5 +48,8 @@
       background: $color--white;
       color: $color--dark-blue;
     }
+  }
+  .menu-item a {
+    padding-top: 8px;
   }
 }

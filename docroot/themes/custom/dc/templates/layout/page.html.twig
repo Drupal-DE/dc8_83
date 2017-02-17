@@ -4,13 +4,8 @@
       <nav class="uk-navbar-container header__navbar_main_menu" uk-navbar>
         <div class="uk-navbar-left">
           <a class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon href="#"></a>
+          <a class="uk-navbar-item uk-flex-left uk-logo" href="/">{{- site_logo -}}</a>
           {{ page.mainmenu }}
-          <ul class="uk-navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Handbuch</a></li>
-            <li><a href="/discussions">Forum</a></li>
-            <li><a href="/showroom">Showroom</a></li>
-          </ul>
         </div>
         <div class="uk-navbar-right">
           {# @toDo move #}
@@ -26,11 +21,6 @@
           {{ page.header_user_menu }}
         </div>
       </nav>
-    </div>
-  </div>
-  <div class="header__full_width_light_navy">
-    <div class="uk-container uk-container-center">
-      {{ page.header }}
     </div>
   </div>
   <div class="header__full_width_navy">

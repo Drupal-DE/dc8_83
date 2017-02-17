@@ -17,7 +17,6 @@ regions:
   breadcrumb: 'Breadcrumb'
   content: 'Content'
   footer: 'Footer'
-  header: 'Branding'
   header_login: 'Header login'
   header_search: 'Header search'
   header_user_menu: 'Header user menu'

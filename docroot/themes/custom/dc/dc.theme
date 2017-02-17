@@ -12,9 +12,15 @@ use Drupal\user\Entity\User;
  * Override variables used in page.html.twig.
  */
 function dc_preprocess_page(&$vars) {
-  $site_config = \Drupal::config('system.site');
-  $vars['site_name'] = $site_config->get('name');
-  $vars['site_slogan'] = $site_config->get('slogan');
+  // Add site logo
+  $vars['site_logo'] =[
+    '#theme' => 'image',
+    '#uri' => theme_get_setting('logo.url'),
+    '#alt' => t('Home'),
+    '#attributes' => [
+      'class' => 'dc-logo'
+    ]
+  ];
 }
 
 /**
