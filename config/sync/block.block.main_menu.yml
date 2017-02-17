@@ -1,4 +1,4 @@
-uuid: fe7b053b-c2c3-4173-a73f-99d7ed3fbb8a
+uuid: 9c5eed3f-34a5-496b-8a3f-9d5e253c74e5
 langcode: de
 status: true
 dependencies:
@@ -8,15 +8,15 @@ dependencies:
     - system
   theme:
     - dc
-id: dc_hauptnavigation_2
+id: main_menu
 theme: dc
-region: navigation
+region: mainmenu
 weight: 0
 provider: null
 plugin: 'system_menu_block:main'
 settings:
   id: 'system_menu_block:main'
-  label: Hauptnavigation
+  label: 'Main menu'
   provider: system
   label_display: '0'
   level: 1
