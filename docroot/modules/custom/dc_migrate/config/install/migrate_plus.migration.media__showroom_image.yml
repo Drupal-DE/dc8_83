@@ -29,7 +29,7 @@ process:
       plugin: migration
       migration:
         - file__showroom_image
-      source: uid
+      source: fid
     -
       plugin: skip_on_empty
       # Do not create media entity if source image has not been migrated.

@@ -49,6 +49,7 @@ class DcSqlBaseFile extends DcSqlBase {
     $fields = [
       'fid' => $this->t('File ID'),
       'uid' => $this->t('File owner'),
+      'uri' => $this->t('File uri'),
       'filename' => $this->t('Name of file'),
       'filepath' => $this->t('File path'),
       'directory' => $this->t('File directory'),

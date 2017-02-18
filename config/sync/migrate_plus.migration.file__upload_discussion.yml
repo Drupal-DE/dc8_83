@@ -1,0 +1,49 @@
+uuid: e48b5df1-c8fc-4e17-a59d-656836a900f4
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: pfQIJLqaP6ZmaeO59ixstGzDNLAJsgwvENnP-5Xz6wU
+id: file__upload_discussion
+class: null
+migration_tags: null
+migration_group: drupalcenter
+label: 'Copy images associated to discussion topics into the new directory structure'
+source:
+  plugin: dc_upload__discussions
+  constants:
+    source_base: 'dcmigration:/'
+    langcode: de
+    status: 1
+process:
+  langcode: constants/langcode
+  filename: filename
+  source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base
+        - filepath
+    -
+      plugin: urlencode
+  file_destination:
+    plugin: string_replace
+    replacements:
+      files/: 'public://'
+    source: uri
+  uri:
+    plugin: file_copy
+    source:
+      - '@source_full_path'
+      - '@file_destination'
+  status: constants/status
+  uid:
+    plugin: migration
+    migration: user_accounts
+    source: uid
+destination:
+  plugin: 'entity:file'
+migration_dependencies:
+  optional:
+    - user_accounts

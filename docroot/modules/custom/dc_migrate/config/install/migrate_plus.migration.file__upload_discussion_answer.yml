@@ -1,0 +1,41 @@
+id: file__upload_discussion_answer
+label: Copy images associated to discussion answers into the new directory structure
+migration_group: drupalcenter
+destination:
+  plugin: entity:file
+source:
+  plugin: dc_upload__discussion_answers
+  constants:
+    source_base: 'dcmigration:/'
+    langcode: 'de'
+    status: 1
+process:
+  langcode: 'constants/langcode'
+  filename: filename
+  source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base
+        - filepath
+    -
+      plugin: urlencode
+  file_destination:
+    plugin: string_replace
+    replacements:
+      'files/': 'public://'
+    source: uri
+  uri:
+    plugin: file_copy
+    source:
+      - '@source_full_path'
+      - '@file_destination'
+  status: constants/status
+  uid:
+    plugin: migration
+    migration: user_accounts
+    source: uid
+migration_dependencies:
+  optional:
+    - user_accounts

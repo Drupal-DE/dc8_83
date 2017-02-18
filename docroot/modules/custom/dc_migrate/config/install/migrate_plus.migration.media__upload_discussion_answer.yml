@@ -1,0 +1,39 @@
+id: media__upload_discussion_answer
+label: Create media entities for uploads on discussion answers.
+migration_group: drupalcenter
+destination:
+  plugin: entity:media
+source:
+  plugin: dc_upload__discussion_answers
+  constants:
+    langcode: 'de'
+    status: 1
+    bundle: 'file'
+process:
+  bundle: 'constants/bundle'
+  langcode: 'constants/langcode'
+  status: 'constants/status'
+  name: filename
+  uid:
+    plugin: migration
+    migration: user_accounts
+    source: uid
+  'field_file/target_id':
+    -
+      plugin: migration
+      migration:
+        - file__upload_discussion_answer
+      source:
+        - fid
+        - cid
+    -
+      plugin: skip_on_empty
+      # Do not create media entity if source image has not been migrated.
+      method: row
+  delta: file_weight
+  field_file_display: file_display
+  field_file_description: file_description
+migration_dependencies:
+  optional:
+    - file__upload_discussion_answer
+    - user_accounts

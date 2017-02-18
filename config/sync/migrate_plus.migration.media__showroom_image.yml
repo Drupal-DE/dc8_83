@@ -1,9 +1,9 @@
-uuid: 48695d07-a4e6-482f-8a62-52d34f22d317
+uuid: bac02a3b-8ed2-4bc2-981c-87d0929175b9
 langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: 1xwBEVM5JRdedpVXsIfHAgihy9k90HpW9zemlY-4Ud4
+  default_config_hash: XnKxYG-XS4F9e-LYM4ZIlinssgbXgzYtF4wEElqFyYc
 id: media__showroom_image
 class: null
 migration_tags: null
@@ -34,7 +34,7 @@ process:
       plugin: migration
       migration:
         - file__showroom_image
-      source: uid
+      source: fid
     -
       plugin: skip_on_empty
       method: row
