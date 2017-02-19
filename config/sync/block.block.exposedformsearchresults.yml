@@ -1,0 +1,23 @@
+uuid: 9101d745-05b0-4a8a-9f42-b0cad79b9b89
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.search
+  module:
+    - views
+  theme:
+    - dc
+id: exposedformsearchresults
+theme: dc
+region: header_search
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:search-results'
+settings:
+  id: 'views_exposed_filter_block:search-results'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility: {  }
