@@ -5,6 +5,12 @@ services:
       - { name: path_processor_inbound, priority: 100 }
       - { name: path_processor_outbound, priority: 300 }
     arguments: []
+  dc_discussion.category_path_processor:
+    class: Drupal\dc_discussion\DcDiscussionCategoryPathProcessor
+    tags:
+      - { name: path_processor_inbound, priority: 100 }
+      - { name: path_processor_outbound, priority: 300 }
+    arguments: []
 
   dc_discussion.answer_view:
     class: Drupal\dc_discussion\EventSubscriber\DcDiscussionAnswerView

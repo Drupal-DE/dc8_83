@@ -1,0 +1,40 @@
+uuid: f94e7eba-5147-482e-be78-367f9c6ba3e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.discussion_category
+  module:
+    - ctools
+    - panels
+id: discussion_category-panels_variant-1
+label: 'Default term'
+variant: panels_variant
+variant_settings:
+  blocks:
+    247bbad0-010d-4bda-a22e-b0b1e9f0cf60:
+      id: 'entity_view:taxonomy_term'
+      label: 'Entity view (Taxonomy term)'
+      provider: ctools
+      label_display: '0'
+      view_mode: full
+      region: middle
+      weight: 0
+      uuid: 247bbad0-010d-4bda-a22e-b0b1e9f0cf60
+      context_mapping:
+        entity: taxonomy_term
+  id: panels_variant
+  uuid: 733bc923-b47c-4b33-a9c3-587774a40959
+  label: null
+  weight: 0
+  layout: onecol
+  layout_settings: {  }
+  page_title: ''
+  storage_type: page_manager
+  storage_id: discussion_category-panels_variant-1
+  builder: standard
+page: discussion_category
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

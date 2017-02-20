@@ -1,0 +1,16 @@
+uuid: 4d5e6566-d1d0-44ea-85a5-13566d9371f1
+langcode: en
+status: true
+dependencies: {  }
+id: discussion_category
+label: 'Discussion category'
+description: ''
+use_admin_theme: false
+path: '/taxonomy/term/{taxonomy_term}'
+access_logic: and
+access_conditions: {  }
+parameters:
+  taxonomy_term:
+    machine_name: taxonomy_term
+    type: 'entity:taxonomy_term'
+    label: Term

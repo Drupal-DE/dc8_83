@@ -1,0 +1,59 @@
+uuid: a2c8ae0b-9713-4261-b04b-199116ff930d
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.discussion_category
+    - views.view.discussions
+  module:
+    - ctools
+    - dc_ui
+    - panels
+    - views
+id: discussion_category-panels_variant-0
+label: 'Discussion category'
+variant: panels_variant
+variant_settings:
+  blocks:
+    ee583bde-df49-469d-b947-398e256a6b22:
+      id: discussion_category_filter
+      label: 'Filter: discussion category'
+      provider: dc_ui
+      label_display: '0'
+      region: middle
+      weight: 0
+      uuid: ee583bde-df49-469d-b947-398e256a6b22
+      context_mapping: {  }
+    82082ec1-189d-4335-9696-bd1fe93ebd39:
+      id: 'views_block:discussions-latest_full'
+      label: ''
+      provider: views
+      label_display: visible
+      views_label: ''
+      items_per_page: none
+      region: middle
+      weight: 0
+      uuid: 82082ec1-189d-4335-9696-bd1fe93ebd39
+      context_mapping: {  }
+  id: panels_variant
+  uuid: a0cfbfbe-3193-4e1a-a29b-c947ae5b2ead
+  label: null
+  weight: 0
+  layout: onecol
+  layout_settings: {  }
+  page_title: ''
+  storage_type: page_manager
+  storage_id: discussion_category-panels_variant-0
+  builder: standard
+page: discussion_category
+weight: 0
+selection_criteria:
+  -
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      discussion_category: discussion_category
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+selection_logic: and
+static_context: {  }
