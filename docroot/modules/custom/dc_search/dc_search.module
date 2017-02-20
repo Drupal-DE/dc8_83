@@ -71,6 +71,32 @@ function dc_search_form_search_api_index_fields_alter(&$form, &$form_state, $for
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dc_search_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
+  // Hide search button in exposed search results form / add some classes.
+  if ($form['#id'] == 'views-exposed-form-search-results') {
+    // Hide search button.
+    $form['actions']['#access'] = FALSE;
+    // Add global classes for
+    $form['#attributes'] = [
+      'class' => [
+        'uk-search',
+        'uk-search-navbar',
+        'uk-width-1-1'
+      ]
+    ];
+    // Search input field.
+    $form['~']['#type'] = 'search';
+    $form['~']['#attributes'] = [
+      'placeholder' => t("Search...", [], ['context' => 'Exposed search form']),
+      'class' => ['uk-search-input']
+    ];
+  }
+}
+
+
+/**
  * Implements hook_search_api_solr_query_alter().
  */
 function dc_search_search_api_solr_query_alter(Query $solarium_query, QueryInterface $query) {
