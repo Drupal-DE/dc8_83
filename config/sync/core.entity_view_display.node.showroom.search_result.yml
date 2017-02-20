@@ -1,0 +1,57 @@
+uuid: e2c9972c-dc55-4e9b-b64d-2f3ef4d64611
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.showroom.field_comments
+    - field.field.node.showroom.field_content
+    - field.field.node.showroom.field_drupal_version
+    - field.field.node.showroom.field_screenshot
+    - field.field.node.showroom.field_showroom_category
+    - field.field.node.showroom.field_showroom_url
+    - node.type.showroom
+  module:
+    - user
+id: node.showroom.search_result
+targetEntityType: node
+bundle: showroom
+mode: search_result
+content:
+  created:
+    label: hidden
+    type: timestamp
+    weight: 0
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  field_drupal_version:
+    weight: 2
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_showroom_category:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  uid:
+    label: hidden
+    type: author
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  changed: true
+  field_comments: true
+  field_content: true
+  field_screenshot: true
+  field_showroom_url: true
+  langcode: true
+  links: true

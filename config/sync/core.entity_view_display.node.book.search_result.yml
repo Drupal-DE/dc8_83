@@ -1,0 +1,49 @@
+uuid: 9adca41c-0a54-4a16-94e7-bf3da4e32031
+langcode: de
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.book.field_comments
+    - field.field.node.book.field_content
+    - field.field.node.book.field_drupal_version
+    - field.field.node.book.field_legacy_content
+    - node.type.book
+  module:
+    - user
+_core:
+  default_config_hash: 7UKHHzhlAE0hzKaKG_KHqUXXOp85mAQ1nZTOep8quTc
+id: node.book.search_result
+targetEntityType: node
+bundle: book
+mode: search_result
+content:
+  created:
+    label: hidden
+    type: timestamp
+    weight: 1
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  field_drupal_version:
+    type: entity_reference_label
+    weight: 2
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+  uid:
+    label: hidden
+    type: author
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  changed: true
+  field_comments: true
+  field_content: true
+  field_legacy_content: true
+  langcode: true
+  links: true
