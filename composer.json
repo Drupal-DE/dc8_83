@@ -75,6 +75,8 @@
          }
     ],
     "require": {
+        "ckeditor/codesnippet": "^4.6",
+        "ckeditor/codetag": "^0.1.0",
         "composer/installers": "^1.0",
         "consolidation/robo": "^0.7.2",
         "cweagans/composer-patches": "~1.0",
@@ -88,6 +90,7 @@
         "drupal/core": "^8.0",
         "drupal/fac": "dev-1.x",
         "drupal/field_group": "^1.0@RC",
+        "drupal/flag": "4.x-dev",
         "drupal/focal_point": "^1.0@beta",
         "drupal/inline_entity_form": "^1.0",
         "drupal/layout_plugin": "1.x-dev",
@@ -106,9 +109,7 @@
         "drupal/token": "^1.0",
         "drupal/views_lazy_load": "dev-8.x-1.x",
         "drush/drush": "~8.0",
-        "harvesthq/chosen": "^1.6",
-        "ckeditor/codesnippet": "^4.6",
-        "ckeditor/codetag": "^0.1.0"
+        "harvesthq/chosen": "^1.6"
     },
     "conflict": {
         "drupal/drupal": "*"
