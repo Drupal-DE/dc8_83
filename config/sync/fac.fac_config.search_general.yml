@@ -6,7 +6,7 @@ id: search_general
 label: 'general search'
 searchPluginId: SearchApiSearch
 searchPluginConfig: '{"index":"content"}'
-inputSelectors: '.uk-search input.uk-search-input'
+inputSelectors: '.uk-search input[data-drupal-selector="edit-"]'
 numberOfResults: 5
 emptyResult: ''
 viewModes:

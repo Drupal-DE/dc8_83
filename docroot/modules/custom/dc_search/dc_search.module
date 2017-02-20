@@ -1,0 +1,159 @@
+<?php
+
+/**
+ * @file
+ * Basic functions for "dc_search" module.
+ */
+use Drupal\Core\Render\Element;
+use Drupal\search_api\IndexInterface;
+use Drupal\search_api\Query\QueryInterface;
+use Drupal\search_api\SearchApiException;
+use Solarium\QueryType\Select\Query\Query;
+
+/**
+ * Implements hook_theme().
+ */
+function dc_search_theme() {
+  return [
+    'dc_search_search_index_fields_table' => [
+      'render element' => 'element',
+      'function' => 'theme_dc_search_search_index_fields_table',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_search_api_solr_documents_alter().
+ */
+function dc_search_search_api_solr_documents_alter(array $documents, IndexInterface $index, array $items) {
+  /* @var $field_manager \Drupal\dc_search\SearchIndexFieldsManager */
+  $field_manager = \Drupal::service('dc_search.index_field_manager');
+  /* @var $document \Solarium\QueryType\Update\Query\Document\Document */
+  foreach ($documents as $document) {
+    // Extract original entity from $items.
+    $fields = $document->getFields();
+    if (empty($fields['ss_search_api_id']) || empty($items[$fields['ss_search_api_id']])) {
+      // Strange things happened to the document so better not touch it.
+      continue;
+    }
+    /* @var $item \Drupal\search_api\Item\Item */
+    $item = $items[$fields['ss_search_api_id']];
+    try {
+      /* @var $entity \Drupal\Core\Entity\EntityInterface */
+      $entity = $item->getOriginalObject()->getValue();
+      $field_manager->addFields($document, $index, $entity);
+    }
+    catch (SearchApiException $exc) {
+      Drupal::logger('dc_search')->warning('Failed to add fields for entity from SearchAPI/Item: [@id].', ['@id' => $fields['ss_search_api_id']]);
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dc_search_form_search_api_index_fields_alter(&$form, &$form_state, $form_id) {
+  $boost_values = dc_search_boosts();
+  $boosts = array_combine($boost_values, $boost_values);
+
+  foreach ($form as $key => $item) {
+    if (!is_array($item) || empty($item['fields'])) {
+      continue;
+    }
+    foreach ($item['fields'] as $field_name => $field) {
+      if (empty($field['boost'])) {
+        continue;
+      }
+      // Update boost options.
+      $form[$key]['fields'][$field_name]['boost']['#options'] = $boosts;
+    }
+  }
+}
+
+/**
+ * Implements hook_search_api_solr_query_alter().
+ */
+function dc_search_search_api_solr_query_alter(Query $solarium_query, QueryInterface $query) {
+  if ($solarium_query->getComponent(Query::COMPONENT_MORELIKETHIS) !== null) {
+    return;
+  }
+  $dismax = $solarium_query->getEDisMax();
+  /* @var $field_manager \Drupal\dc_search\SearchIndexFieldsManager */
+  $field_manager = \Drupal::service('dc_search.index_field_manager');
+  $field_manager->addFieldBoost($dismax, $solarium_query, $query);
+  // Override DisMax component with altered values.
+  $solarium_query->setComponent(Query::COMPONENT_EDISMAX, $dismax);
+}
+
+/**
+ * Get a list of possible boost values.
+ *
+ * @return array
+ *   List of possible boost values.
+ */
+function dc_search_boosts() {
+  // Default boost values (copied from search_api).
+  $boost_values = [
+    '0.0',
+    '0.1',
+    '0.2',
+    '0.3',
+    '0.5',
+    '0.8',
+    '1.0',
+    '2.0',
+    '3.0',
+    '5.0',
+    '8.0',
+    '13.0',
+    '21.0',
+  ];
+  // Add custom values.
+  $boost_values[] = '-1.0';
+  $boost_values[] = '-0.5';
+  $boost_values[] = '-0.2';
+  $boost_values[] = '10.0';
+  $boost_values[] = '20.0';
+  $boost_values[] = '40.0';
+  $boost_values[] = '60.0';
+  $boost_values[] = '80.0';
+  sort($boost_values);
+
+  return $boost_values;
+}
+
+/**
+ * Returns HTML for a fields form table.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: A render element representing the form.
+ *
+ * @return string
+ *   The rendered HTML for a fields form table.
+ *
+ * @ingroup themeable
+ */
+function theme_dc_search_search_index_fields_table($variables) {
+  $form = $variables['element'];
+
+  $build = array(
+    '#theme' => 'table',
+    '#header' => $form['#header'],
+    '#rows' => [],
+  );
+  if (empty($form['plugins'])) {
+    return render($build);
+  }
+  foreach (Element::children($form['plugins']) as $name) {
+    $row = [];
+    foreach (Element::children($form['plugins'][$name]) as $field) {
+      if ($cell = render($form['plugins'][$name][$field])) {
+        $row[] = $cell;
+      }
+    }
+    $build['#rows'][] = $row;
+  }
+
+  return render($build);
+}

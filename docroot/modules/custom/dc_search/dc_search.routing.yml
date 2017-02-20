@@ -1,0 +1,7 @@
+dc_search.search_index_fields.collection:
+  path: '/admin/config/search/search-api/search_index_fields'
+  defaults:
+    _form: '\Drupal\dc_search\Form\SearchIndexFieldsForm'
+    _title: 'Custom search index fields'
+  requirements:
+    _permission: 'administer dc_search'

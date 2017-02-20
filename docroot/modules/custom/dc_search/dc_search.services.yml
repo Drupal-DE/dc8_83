@@ -1,0 +1,7 @@
+services:
+  plugin.manager.dc_search_index_fields:
+    class: Drupal\dc_search\SearchIndexFieldsPluginManager
+    parent: default_plugin_manager
+  dc_search.index_field_manager:
+    class: Drupal\dc_search\SearchIndexFieldsManager
+    arguments: ['@plugin.manager.dc_search_index_fields' ]
