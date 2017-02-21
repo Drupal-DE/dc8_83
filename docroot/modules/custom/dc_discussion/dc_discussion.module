@@ -232,7 +232,6 @@ function dc_discussion_node_view_alter(array &$build, EntityInterface $entity, E
 function _dc_discussion_create_node_links(array &$build, NodeInterface $entity) {
   /* @var $access_manager Drupal\Core\Access\AccessManagerInterface */
   $access_manager = \Drupal::service('access_manager');
-
   $user_links = [];
   $admin_links = [];
   if ($access_manager->checkNamedRoute('entity.node.edit_form', ['node' => $entity->id()])) {
@@ -279,6 +278,52 @@ function _dc_discussion_create_node_links(array &$build, NodeInterface $entity) 
       ],
     ];
   }
+
+  // Flagging links.
+  /** @var \Drupal\flag\FlagService $flag_service */
+  $flag_service = \Drupal::service('flag');
+  // Get all possible flags for this entity type.
+  $flags = $flag_service->getAllFlags($entity->getEntityTypeId(), $entity->bundle());
+
+  // Flag as spam - add flag.
+  if ($access_manager->checkNamedRoute('flag.field_entry', ['entity_id' => $entity->id(), 'flag' => 'spam_node'])) {
+    if (!$flags['spam_node']->isFlagged($entity)) {
+      $user_links['node-flag-spam'] = [
+        'title' => '',
+        'url' => Url::fromRoute('flag.field_entry', ['entity_id' => $entity->id(), 'flag' => 'spam_node']),
+        'query' => ['destination' => 'node/' . $entity->id()],
+        'attributes' => [
+          'uk-icon' => 'warning',
+          'uk-tooltip' => '',
+          'title' => t('Flag posting as spam', [], ['context' => 'discussion']),
+          'class' => ['use-ajax'],
+          'data-dialog-type' => 'modal',
+          'data-dialog-options' => '{"width":"auto"}',
+          'rel' => 'nofollow'
+        ],
+      ];
+    }
+  }
+  // Flag as spam - edit flag.
+  if ($access_manager->checkNamedRoute('flag.field_entry.edit', ['entity_id' => $entity->id(), 'flag' => 'spam_node'])) {
+    if ($flags['spam_node']->isFlagged($entity)) {
+      $user_links['node-flag-edit-spam'] = [
+        'title' => '',
+        'url' => Url::fromRoute('flag.field_entry.edit', ['entity_id' => $entity->id(),'flag' => 'spam_node']),
+        'query' => ['destination' => 'node/' . $entity->id()],
+        'attributes' => [
+          'uk-icon' => 'warning',
+          'uk-tooltip' => '',
+          'title' => t('Unflag posting as spam', [], ['context' => 'discussion']),
+          'class' => ['use-ajax'],
+          'data-dialog-type' => 'modal',
+          'data-dialog-options' => '{"width":"auto"}',
+          'rel' => 'nofollow'
+        ],
+      ];
+    }
+  }
+
   /* @var $service \Drupal\dc_discussion\DiscussionInformationInterface */
   $service = \Drupal::service('dc_discussion.discussion_information');
   if (!$service->isTopic($entity) && $service->getTopic($entity) instanceof NodeInterface) {
