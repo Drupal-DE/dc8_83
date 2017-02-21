@@ -1,0 +1,13 @@
+uuid: 712e03a0-fe7a-45d6-9acd-68a4e127ab99
+langcode: de
+status: true
+dependencies:
+  module:
+    - flag
+id: flag_action.spam_node.unflag
+label: 'Unflag posting as spam'
+type: node
+plugin: 'flag_action:spam_node.unflag'
+configuration:
+  flag_id: spam_node
+  flag_action: unflag

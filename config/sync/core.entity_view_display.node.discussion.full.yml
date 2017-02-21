@@ -20,13 +20,13 @@ bundle: discussion
 mode: full
 content:
   answer_count:
-    weight: 6
+    weight: 7
     settings: {  }
     third_party_settings: {  }
   body:
     label: hidden
     type: text_default
-    weight: 3
+    weight: 4
     settings: {  }
     third_party_settings: {  }
   created:
@@ -39,16 +39,20 @@ content:
       timezone: ''
     third_party_settings: {  }
   discussion_answers:
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
   field_files:
     type: entity_reference_entity_view
-    weight: 4
+    weight: 5
     label: above
     settings:
       view_mode: table_row
       link: false
+    third_party_settings: {  }
+  flag_spam_node:
+    weight: 3
+    settings: {  }
     third_party_settings: {  }
   links:
     weight: 2

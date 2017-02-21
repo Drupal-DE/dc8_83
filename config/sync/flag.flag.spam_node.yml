@@ -1,0 +1,37 @@
+uuid: 31f96946-b811-4529-bab3-ad9fcb76e9b7
+langcode: de
+status: true
+dependencies: {  }
+id: spam_node
+label: 'Spam (Node)'
+bundles:
+  - discussion
+entity_type: node
+global: false
+weight: 0
+flag_short: 'Flag posting as spam'
+flag_long: ''
+flag_message: ''
+unflag_short: 'Unflag posting as spam'
+unflag_long: ''
+unflag_message: ''
+unflag_denied_text: ''
+flag_type: 'entity:node'
+link_type: field_entry
+flagTypeConfig:
+  show_in_links:
+    discussion_answer: discussion_answer
+    full: full
+  show_as_field: false
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+linkTypeConfig:
+  flag_confirmation: 'Why are you mark this content as spam?'
+  unflag_confirmation: 'Unflag this content?'
+  flag_create_button: 'Mark content as spam'
+  flag_delete_button: 'Delete spam marker'
+  form_behavior: modal
+  edit_flagging: Edit
+  flag_update_button: Update

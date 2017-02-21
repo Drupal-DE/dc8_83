@@ -1,0 +1,30 @@
+uuid: 8c0be35f-874a-4345-9198-55f162a87b28
+langcode: de
+status: true
+dependencies: {  }
+id: bookmark
+label: Bookmark
+bundles:
+  - book
+  - discussion
+entity_type: node
+global: false
+weight: 0
+flag_short: 'Bookmark item'
+flag_long: ''
+flag_message: ''
+unflag_short: 'Remove bookmark'
+unflag_long: ''
+unflag_message: ''
+unflag_denied_text: ''
+flag_type: 'entity:node'
+link_type: reload
+flagTypeConfig:
+  show_in_links:
+    full: full
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+linkTypeConfig: {  }

@@ -1,0 +1,19 @@
+uuid: 3df6179c-b74e-493e-8478-bc301b4510af
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.flagging.spam_node.field_flag_description
+    - flag.flag.spam_node
+id: flagging.spam_node.default
+targetEntityType: flagging
+bundle: spam_node
+mode: default
+content:
+  field_flag_description:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+hidden: {  }

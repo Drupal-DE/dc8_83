@@ -1,0 +1,19 @@
+uuid: d5a1214a-610e-4c8a-8792-b10f905ead28
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.flagging.field_flag_description
+    - flag.flag.spam_node
+id: flagging.spam_node.field_flag_description
+field_name: field_flag_description
+entity_type: flagging
+bundle: spam_node
+label: Beschreibung
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
