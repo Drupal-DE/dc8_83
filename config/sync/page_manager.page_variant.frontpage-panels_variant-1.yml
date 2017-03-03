@@ -37,6 +37,17 @@ variant_settings:
       weight: 0
       uuid: 24452375-1689-41e8-be9b-f2a9f89a46c3
       context_mapping: {  }
+    40508216-4da5-4cf8-bd63-7cbabd5743d4:
+      id: 'views_block:news-block_news_front__sticky'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: '2'
+      region: top
+      weight: 0
+      uuid: 40508216-4da5-4cf8-bd63-7cbabd5743d4
+      context_mapping: {  }
   id: panels_variant
   uuid: c5aa3dc2-aa32-4711-b1e4-ae5640786c64
   label: null
