@@ -12,6 +12,7 @@ uikit3_base:
       dist/uikit3/css/uikit.min.css: {}
   js:
     dist/uikit3/js/uikit.min.js: {}
+    dist/uikit3/js/uikit-icons.min.js: {}
   dependencies:
     - core/jquery
 
