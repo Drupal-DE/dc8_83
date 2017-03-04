@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.news.field_news_category
     - node.type.news
   module:
+    - dc_ui
     - text
     - user
 id: node.news.teaser
@@ -20,22 +21,27 @@ content:
   created:
     label: hidden
     type: timestamp
-    weight: 0
+    weight: 1
     settings:
       date_format: custom
       custom_date_format: 'd.m.Y H:i'
       timezone: ''
     third_party_settings: {  }
+  field_content:
+    type: dc_ui_entity_reference_selected_entity_view
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: teaser
+      index: '0'
+      link: false
+    third_party_settings: {  }
   field_legacy_content:
     type: text_trimmed
-    weight: 0
+    weight: 3
     label: hidden
     settings:
       trim_length: 450
-    third_party_settings: {  }
-  links:
-    weight: 1
-    settings: {  }
     third_party_settings: {  }
   uid:
     label: hidden
@@ -46,6 +52,6 @@ content:
 hidden:
   changed: true
   field_comments: true
-  field_content: true
   field_news_category: true
   langcode: true
+  links: true
