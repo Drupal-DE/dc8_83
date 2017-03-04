@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Template for a 2 column panel layout.
+ */
+#}
+<div class="uk-container uk-container-center">
+  <div class="uk-grid" uk-grid>
+    <div class="uk-width-4-5@m panel-2col-stacked dc-panel-2col-stacked" {% if css_id %}{{ css_id }}{% endif %}>
+      <div class="uk-grid" uk-grid>
+        <div class="uk-width-1-1@m">
+          {{ content.top }}
+        </div>
+        <div class="uk-width-1-2@m">
+          {{ content.left }}
+        </div>
+        <div class="uk-width-1-2@m">
+          {{ content.right }}
+        </div>
+        <div class="uk-width-1-1@m">
+          {{ content.bottom }}
+        </div>
+      </div>
+    </div>
+    <div class="uk-width-1-5@m">
+      {{ page.sidebar_right }}
+      <div class="uk-dark uk-background-muted uk-padding-small uk-margin-top">
+        <h3 class="uk-heading">Demo sidebar content</h3>
+        Going to catch the red dot today going to catch the red dot today see owner, run in terror and tuxedo cats always looking dapper, climb leg. Scratch
+        leg; meow for can opener to feed me.
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Template for a 2 column panel layout without sidebar.
+ */
+#}
+<div class="uk-container uk-container-center panel-2col-stacked dc-panel-2col-stacked" {% if css_id %}{{ css_id }}{% endif %}>
+  <div class="uk-grid" uk-grid>
+    <div class="uk-width-1-1@m">
+      {{ content.top }}
+    </div>
+    <div class="uk-width-1-2@m">
+      {{ content.left }}
+    </div>
+    <div class="uk-width-1-2@m">
+      {{ content.right }}
+    </div>
+    <div class="uk-width-1-1@m">
+      {{ content.bottom }}
+    </div>
+  </div>
+</div>

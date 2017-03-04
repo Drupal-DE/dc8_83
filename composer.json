@@ -88,6 +88,7 @@
         "drupal/codetag": "dev-1.x",
         "drupal/console": "~1.0",
         "drupal/core": "^8.0",
+        "drupal/ctools": "dev-3.x",
         "drupal/fac": "dev-1.x",
         "drupal/field_group": "^1.0@RC",
         "drupal/flag": "4.x-dev",

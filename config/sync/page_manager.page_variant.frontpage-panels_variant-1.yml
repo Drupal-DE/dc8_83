@@ -1,5 +1,5 @@
-uuid: 308fc878-578c-4891-85a7-4b94f1c7a1cb
-langcode: de
+uuid: 4ca8e3d3-d6ae-4d6e-a2b3-cb540aa0aab8
+langcode: en
 status: true
 dependencies:
   config:
@@ -10,12 +10,12 @@ dependencies:
     - panels
     - user
     - views
-id: frontpage-panels_variant-0
-label: Frontpage
+id: frontpage-panels_variant-1
+label: anonymous
 variant: panels_variant
 variant_settings:
   blocks:
-    a1dea6e7-1782-446e-b989-7aef0c4bdc38:
+    e5b2456c-dce7-48cf-b50f-69bb458f10bc:
       id: 'views_block:news-block_news_front'
       label: ''
       provider: views
@@ -24,9 +24,9 @@ variant_settings:
       items_per_page: '5'
       region: right
       weight: 0
-      uuid: a1dea6e7-1782-446e-b989-7aef0c4bdc38
+      uuid: e5b2456c-dce7-48cf-b50f-69bb458f10bc
       context_mapping: {  }
-    c2c6e7a2-8203-4f1e-9365-e94fd1dfc59e:
+    24452375-1689-41e8-be9b-f2a9f89a46c3:
       id: 'views_block:discussions-latest'
       label: ''
       provider: views
@@ -35,9 +35,9 @@ variant_settings:
       items_per_page: '10'
       region: left
       weight: 0
-      uuid: c2c6e7a2-8203-4f1e-9365-e94fd1dfc59e
+      uuid: 24452375-1689-41e8-be9b-f2a9f89a46c3
       context_mapping: {  }
-    99bd97db-a027-46db-94c7-a9fd62fa8656:
+    40508216-4da5-4cf8-bd63-7cbabd5743d4:
       id: 'views_block:news-block_news_front__sticky'
       label: ''
       provider: views
@@ -46,17 +46,17 @@ variant_settings:
       items_per_page: '2'
       region: top
       weight: 0
-      uuid: 99bd97db-a027-46db-94c7-a9fd62fa8656
+      uuid: 40508216-4da5-4cf8-bd63-7cbabd5743d4
       context_mapping: {  }
   id: panels_variant
-  uuid: bba235f3-5b60-40de-be8c-2a8c52a336f2
+  uuid: c5aa3dc2-aa32-4711-b1e4-ae5640786c64
   label: null
   weight: 0
-  layout: dc_twocol_stacked_sidebar
+  layout: dc_twocol_stacked
   layout_settings: {  }
   page_title: ''
   storage_type: page_manager
-  storage_id: frontpage-panels_variant-0
+  storage_id: frontpage-panels_variant-1
   builder: standard
 page: frontpage
 weight: 0
@@ -65,7 +65,7 @@ selection_criteria:
     id: user_role
     roles:
       authenticated: authenticated
-    negate: false
+    negate: true
     context_mapping:
       user: current_user
 selection_logic: and

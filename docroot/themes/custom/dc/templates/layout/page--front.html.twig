@@ -1,0 +1,53 @@
+<div id="header">
+  <div class="header__full_width_dark">
+    <div class="uk-container uk-container-center">
+      <nav class="uk-navbar-container header__navbar_main_menu" uk-navbar>
+        <div class="uk-navbar-left">
+          <a class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon href="#"></a>
+          <a class="uk-navbar-item uk-flex-left uk-logo" href="/">{{- site_logo -}}</a>
+          {{ page.mainmenu }}
+        </div>
+        <div class="uk-navbar-right">
+          {# @toDo move #}
+          <div>
+            <a class="uk-navbar-toggle" uk-search-icon="ratio: 1.5" href="#"></a>
+            <div uk-drop="mode: click; pos: left-center; offset: 0">
+              {{ page.header_search }}
+            </div>
+          </div>
+          {{ page.header_user_menu }}
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="header__full_width_navy">
+    <div class="uk-container uk-container-center">
+      {% if page.header_login is not empty %}
+        <div class="uk-child-width-expand@s" uk-grid>
+          <div>
+            {{ page.breadcrumb }}
+          </div>
+          <div class="uk-padding-small uk-padding-remove-horizontal uk-text-right">
+            {{ page.header_login }}
+          </div>
+        </div>
+      {% else %}
+        {{ page.breadcrumb }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% if page.highlighted or page.help %}
+  <div class="uk-container uk-container-center">
+    <aside class="layout-container section clearfix" role="complementary">
+      {{ page.highlighted }}
+      {{ page.help }}
+    </aside>
+  </div>
+{% endif %}
+{{ page.content }}
+<div id="footer" class="footer__full_width_grey ">
+  <div class="uk-container uk-container-center uk-padding-large uk-margin-large-top">
+    {{ page.footer }}
+  </div>
+</div>

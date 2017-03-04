@@ -1,0 +1,33 @@
+dc_twocol_stacked:
+  label: 'DC: Two column stacked'
+  category: 'Columns: 2'
+  path: layouts/dc_twocol_stacked
+  icon: dc_twocol_stacked.png
+  css: dc_twocol_stacked.css
+  template: panels-dc-twocol-stacked
+  regions:
+    top:
+      label: Top
+    left:
+      label: Left side
+    right:
+      label: Right side
+    bottom:
+      label: Bottom
+
+dc_twocol_stacked_sidebar:
+  label: 'DC: Two column stacked (sidebar)'
+  category: 'Columns: 2'
+  path: layouts/dc_twocol_stacked_sidebar
+  icon: dc_twocol_stacked_sidebar.png
+  css: dc_twocol_stacked_sidebar.css
+  template: panels-dc-twocol-stacked-sidebar
+  regions:
+    top:
+      label: Top
+    left:
+      label: Left side
+    right:
+      label: Right side
+    bottom:
+      label: Bottom
