@@ -8,6 +8,7 @@ dependencies:
     - field.storage.node.field_drupal_version
     - field.storage.node.field_discussion_category
     - search_api.server.local
+    - core.entity_view_mode.node.search_result
   module:
     - taxonomy
     - search_api
@@ -18,6 +19,21 @@ name: Content
 description: ''
 read_only: false
 field_settings:
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: string
+    boost: !!float 0
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        'entity:node':
+          book: search_result
+          discussion: search_result
+          news: search_result
+          page: search_result
+          showroom: search_result
   type:
     label: 'Content type'
     datasource_id: 'entity:node'
@@ -138,17 +154,6 @@ processor_settings:
   rendered_field_item: {  }
   add_url: {  }
   aggregated_field: {  }
-  highlight:
-    highlight: always
-    highlight_partial: true
-    excerpt: true
-    excerpt_length: 256
-    exclude_fields:
-      - title
-    prefix: '<span class="highlight">'
-    suffix: '</span>'
-    weights:
-      postprocess_query: 0
   html_filter:
     fields:
       - type
