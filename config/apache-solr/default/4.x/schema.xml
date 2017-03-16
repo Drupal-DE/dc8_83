@@ -195,18 +195,19 @@
           expand="true"
           tokenizerFactory="solr.KeywordTokenizerFactory"/>
 
-        <filter class="solr.DictionaryCompoundWordTokenFilterFactory"
+        <!--Disabled because it doubles the index size!-->
+<!--        <filter class="solr.DictionaryCompoundWordTokenFilterFactory"
                 dictionary="dictionaryGerman.txt"
                 minWordSize="5"
                 minSubwordSize="3"
-                maxSubwordSize="30"
-                onlyLongestMatch="false"/>
-        <filter class="solr.LengthFilterFactory" min="3" max="100" />
+                maxSubwordSize="6"
+                onlyLongestMatch="false"/>-->
+        <filter class="solr.LengthFilterFactory" min="3" max="6" />
         <filter class="solr.LowerCaseFilterFactory"/>
     				<filter class="solr.GermanNormalizationFilterFactory"/>
         <filter class="solr.SnowballPorterFilterFactory" language="German2" protected="protwords_de.txt"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
-        <filter class="solr.NGramFilterFactory" minGramSize="4" maxGramSize="25"/>
+        <filter class="solr.NGramFilterFactory" minGramSize="3" maxGramSize="5"/>
       </analyzer>
       <analyzer type="query">
         <charFilter class="solr.MappingCharFilterFactory" mapping="mapping-ISOLatin1Accent.txt"/>
@@ -222,7 +223,7 @@
                 catenateAll="0"
                 splitOnCaseChange="0"
                 preserveOriginal="1"/>
-        <filter class="solr.LengthFilterFactory" min="2" max="100"/>
+        <filter class="solr.LengthFilterFactory" min="3" max="6" />
         <filter class="solr.LowerCaseFilterFactory"/>
     				<filter class="solr.GermanNormalizationFilterFactory"/>
         <filter class="solr.ShingleFilterFactory"
@@ -231,7 +232,7 @@
                 tokenSeparator=" "
                 fillerToken="_"
                 minShingleSize="3"
-                maxShingleSize="20"/>
+                maxShingleSize="10"/>
         <!-- see http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.PositionFilterFactory -->
         <filter class="solr.PositionFilterFactory"/>
         <filter class="solr.SnowballPorterFilterFactory" language="German2" protected="protwords_de.txt"/>
@@ -252,7 +253,7 @@
                 catenateNumbers="1"
                 catenateAll="0"
                 splitOnCaseChange="0"/>
-        <filter class="solr.LengthFilterFactory" min="2" max="100" />
+        <filter class="solr.LengthFilterFactory" min="3" max="6" />
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
       <analyzer type="query">
@@ -271,7 +272,7 @@
                 catenateNumbers="0"
                 catenateAll="0"
                 splitOnCaseChange="0"/>
-        <filter class="solr.LengthFilterFactory" min="2" max="100" />
+        <filter class="solr.LengthFilterFactory" min="3" max="6" />
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
     </fieldType>
@@ -284,7 +285,7 @@
       <analyzer type="index">
         <tokenizer class="solr.KeywordTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
-        <filter class="solr.EdgeNGramFilterFactory" minGramSize="2" maxGramSize="25" />
+        <filter class="solr.EdgeNGramFilterFactory" minGramSize="3" maxGramSize="5" />
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.KeywordTokenizerFactory"/>
@@ -297,7 +298,7 @@
       <analyzer>
         <tokenizer class="solr.StandardTokenizerFactory" />
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt"/>
-        <filter class="solr.LengthFilterFactory" min="4" max="20" />
+        <filter class="solr.LengthFilterFactory" min="3" max="6" />
         <filter class="solr.LowerCaseFilterFactory" />
         <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
       </analyzer>
