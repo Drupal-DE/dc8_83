@@ -155,6 +155,9 @@
         "patches": {
             "drupal/fac" : {
                 "Open in new window/tab when metaKey is pressed on click [#2852004]": "https://www.drupal.org/files/issues/fac-open_links_in_new_window_tab-2852004-2.patch"
+            },
+            "drupal/search_api" : {
+                "PluginNotFoundException exception in Views when using an index with multiple entity types [#2839932]": "https://www.drupal.org/files/issues/2839932-27--rendered_item_views_field_handler.patch"
             }
         }
     },
